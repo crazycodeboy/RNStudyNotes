@@ -80,8 +80,8 @@ CodePush提供了两种方式：RNPM 和 Manual，本次演示所使用的是RNP
 apply from "react.gradle"      
 apply from "../../node_modules/react-native-code-push/android/codepush.gradle"  
 ```
-第五步: 运行 `code-push deployment ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。
-第六步： 添加配置。当APP启动时我们需要让app向CodePush咨询JS bundle的所在位置，这样CodePush就可以控制版本。更新 MainApplication.java文件：  
+第五步: 运行 `code-push deployment ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。   
+第六步： 添加配置。当APP启动时我们需要让app向CodePush咨询JS bundle的所在位置，这样CodePush就可以控制版本。更新 MainApplication.java文件：    
 ```java 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -151,8 +151,8 @@ AppState.addEventListener("change", (newState) => {
 
 第一步： 在 工程目录里面新增 bundles文件：`mkdir bundles`
 
-第二步： 运行命令打包 `react-native bundle --platform 平台 --entry-file 启动文件 --bundle-output 打包js输出文件 --assets-dest 资源输出目录 --dev 是否调试`。
-eg:  
+第二步： 运行命令打包 `react-native bundle --platform 平台 --entry-file 启动文件 --bundle-output 打包js输出文件 --assets-dest 资源输出目录 --dev 是否调试`。   
+eg:    
 `react-native bundle --platform android --entry-file index.android.js --bundle-output ./bundles/index.android.bundle --dev false`   
 
 ![生成bundle](./images/生成bundle包.png)
@@ -164,7 +164,7 @@ eg:
 * 平台可以选择 android 或者 ios。  
 
 ### 发布更新  
-打包bundle结束后，就可以通过CodePush发布更新了。在终端输入
+打包bundle结束后，就可以通过CodePush发布更新了。在终端输入   
 `code-push release <应用名称> <Bundles所在目录> <对应的应用版本> --deploymentName： 更新环境
 --description： 更新描述  --mandatory： 是否强制更新`   
 eg:  
@@ -181,12 +181,12 @@ eg:
 ![对应一个版本有两个bundle的md5完全一样](./images/对应一个版本有两个bundle的md5完全一样.png)    
 
 所以如果我们要对某一个应用版本进行多次更新，只需要上传与上次不同的bundle/images即可。如：  
-eg:  
-对1.0.6的版本进行第一次更新：  
-`code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.支持文章缓存。" --mandatory true`
-对1.0.6的版本进行第二次更新：  
-`code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.新添加收藏功能。" --mandatory true`    
-5. 在终端输入 `code-push deployment history <appName> Staging` 可以看到Staging版本更新的时间、描述等等属性。    
+eg:    
+对1.0.6的版本进行第一次更新：    
+`code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.支持文章缓存。" --mandatory true`    
+对1.0.6的版本进行第二次更新：     
+`code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.新添加收藏功能。" --mandatory true`      
+5. 在终端输入 `code-push deployment history <appName> Staging` 可以看到Staging版本更新的时间、描述等等属性。     
 eg:  
 `code-push release Equipment ./bundles 1.0.1`
 
