@@ -77,8 +77,8 @@ CodePush提供了两种方式：RNPM 和 Manual，本次演示所使用的是RNP
 
 第四步： 在 android/app/build.gradle文件里面添如下代码：
 ```  
-apply from "react.gradle"      
-apply from "../../node_modules/react-native-code-push/android/codepush.gradle"  
+apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"  
 ```
 第五步: 运行 `code-push deployment ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。   
 第六步： 添加配置。当APP启动时我们需要让app向CodePush咨询JS bundle的所在位置，这样CodePush就可以控制版本。更新 MainApplication.java文件：    
