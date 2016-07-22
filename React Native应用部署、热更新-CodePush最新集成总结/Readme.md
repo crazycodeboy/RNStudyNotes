@@ -28,20 +28,20 @@ CodePush开源了react-native版本，[react-native-code-push](https://github.co
 ### 安装 CodePush CLI
 管理 CodePush 账号需要通过 NodeJS-based CLI。   
 只需要在终端输入 `npm install -g code-push-cli`，就可以安装了。  
-安装完毕后，输入 `code-push -v`查看版本，如看到版本代表成功。    
-[安装 CodePush CLI成功]()  
-目前我的版本是 1.12.1-beta 
+安装完毕后，输入 `code-push -v`查看版本，如看到版本代表成功。   
+![安装 CodePush CLI成功](./images/安装 CodePush CLI成功.png)    
+目前我的版本是 1.12.1-beta   
 
 **PS.  **  
 `npm`为NodeJS的包管理器，如果你没安装NodeJS请先安装。  
 
 ### 创建一个CodePush 账号
 在终端输入`code-push register`，会打开如下注册页面让你选择授权账号。  
-[注册codepush]()  
+![注册codepush](./images/注册codepush.png)  
 授权通过之后，CodePush会告诉你“access key”，复制此key到终端即可完成注册。  
-[获取codepush access key]()  
+![获取codepush access key](./images/获取codepush access key.png)  
 然后终端输入`code-push login`进行登陆，登陆成功后，你的session文件将会写在 /Users/你的用户名/.code-push.config。  
-[登录成功]()
+![登陆成功](./images/登陆成功.png)
 
 ** PS.相关命令**  
 
@@ -153,8 +153,9 @@ AppState.addEventListener("change", (newState) => {
 
 第二步： 运行命令打包 `react-native bundle --platform 平台 --entry-file 启动文件 --bundle-output 打包js输出文件 --assets-dest 资源输出目录 --dev 是否调试`。
 eg:  
-`react-native bundle --platform android --entry-file index.android.js --bundle-output ./bundles/index.android.bundle --dev false`
-[生成bundle]()  
+`react-native bundle --platform android --entry-file index.android.js --bundle-output ./bundles/index.android.bundle --dev false`   
+
+![生成bundle](./images/生成bundle包.png)
 
 **需要注意的是：**  
 
@@ -168,7 +169,7 @@ eg:
 --description： 更新描述  --mandatory： 是否强制更新`   
 eg:  
 `code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.支持文章缓存。" --mandatory true`
-[推送更新到CodePush]()
+![推送更新到CodePush](./images/推送更新到CodePush.png)
 
 **注意：**  
 1. CodePush默认是更新 staging 环境的，如果是staging，则不需要填写 deploymentName。     
@@ -177,7 +178,7 @@ eg:
 如客户端版本是 1.0.6，那么我们对1.0.6的客户端更新js/images，targetBinaryVersion填的就是1.0.6。     
 4. 对于对某个应用版本进行多次更新的情况，CodePush会检查每次上传的 bundle，如果在该版本下如1.0.6已经存在与这次上传完全一样的bundle(对应一个版本有两个bundle的md5完全一样)，那么CodePush会拒绝此次更新。
 如图：  
-[对应一个版本有两个bundle的md5完全一样]()    
+![对应一个版本有两个bundle的md5完全一样](./images/对应一个版本有两个bundle的md5完全一样.png)    
 
 所以如果我们要对某一个应用版本进行多次更新，只需要上传与上次不同的bundle/images即可。如：  
 eg:  
@@ -190,11 +191,11 @@ eg:
 `code-push release Equipment ./bundles 1.0.1`
 
 下面我们启动事先安装好的应用，看有什么反应：  
-[提示更新]()  
+![提示更新](./images/提示更新.png)  
 应用启动之后，从CodePush服务器查询更新，并下载到本地，下载好之后，提示用户进行更新。这就是CodePush用于热更新的整个过程。  
 
 对比一下推送到CodePush上的更新，与应用从CodePush下载下来的更新：  
-[Code Push非增量更新]()  
+![Code Push非增量更新](./images/Code Push非增量更新.png)  
 由此可以发现，CodePush在更新方便并没有采用增量更新。  
 
 **更多部署APP相关命令**
@@ -209,7 +210,7 @@ eg:
 ### 调试技巧  
 如果你用模拟器进行调试CodePush，在默认情况下是无法达到调试效果的，因为在开发环境下装在模拟器上的React Native应用每次启动时都会从NodeJS服务器上获取最新的bundle，所以还没等CodePush从服务器将更新包下载下来时，APP就已经从NodeJS服务器完成了更新。
 为规避这个问题可以将开发环境的调试地址改为一个不可用的地址，如下图：
-[解决NodeJS对CodePush的影响]()  
+![解决NodeJS对CodePush的影响](./images/解决NodeJS对CodePush的影响.png)  
 这样APP就无法连接到NodeJS服务器了，自然也就不能从NodeJS服务器下载bundle进行更新了，它也只能乖乖的等待从CodePush服务器下载更新包进行更新了。   
 
 
