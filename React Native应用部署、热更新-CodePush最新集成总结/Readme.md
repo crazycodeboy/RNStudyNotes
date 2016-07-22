@@ -360,8 +360,8 @@ codePush.getUpdateMetadata(UpdateState.PENDING).then((update) => {
 **codePush.restartApp**  
 `codePush.restartApp(onlyIfUpdateIsPending: Boolean = false): void;`  
 立即重启app。
-当以下情况时，这个方式是很有用的：
-1. app 当 调用 `sync` 或 `LocalPackage.install` 方法时，指定的 `install mode `是 `ON_NEXT_RESTART` 或 `ON_NEXT_RESUME时` 。 这两种情况都是当app重启或`resume`时，更新内容才能被看到。
+当以下情况时，这个方式是很有用的：   
+1. app 当 调用 `sync` 或 `LocalPackage.install` 方法时，指定的 `install mode `是 `ON_NEXT_RESTART` 或 `ON_NEXT_RESUME时` 。 这两种情况都是当app重启或`resume`时，更新内容才能被看到。   
 2. 在特定情况下，如用户从其它页面返回到APP的首页时，这个时候调用此方法完成过更新对用户来说不是特别的明显。因为强制重启，能马上显示更新内容。  
 
 
