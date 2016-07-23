@@ -1,6 +1,6 @@
 # React Native 学习笔记  
 该项目用于分享我在研究React Native过程中的一些经验，总结，以及踩过的一些坑。如果文章中有不对的地方还请大家及时批评指正，本项目持续更新，欢迎大家Fork and Star。    
-**欢迎大家加入：[React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)  **  
+**欢迎大家加入：**[React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)     
 ![React Native学习交流群](./React Native发布APP之签名打包APK/images/react native 学习交流群_qrcode_share.png)
 
 ## 列表  
