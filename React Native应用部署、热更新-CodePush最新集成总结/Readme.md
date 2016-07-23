@@ -1,5 +1,9 @@
 # React Native应用部署/热更新-CodePush最新集成总结
-
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。  
+了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)和加入：  
+[React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)     
+![React Native学习交流群](../React Native发布APP之签名打包APK/images/react native 学习交流群_qrcode_share.png)  
+-------
 
 React Native的出现为移动开发领域带来了两大革命性的创新：  
 1. 整合了移动端APP的开发，不仅缩短了APP的开发时间，也提高了APP的开发效率。  
