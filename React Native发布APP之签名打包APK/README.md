@@ -4,7 +4,8 @@
 [React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)     
 ![React Native学习交流群](../React Native发布APP之签名打包APK/images/react native 学习交流群_qrcode_share.png)  
 -------
-用React Native开发好APP之后，如何将APP发布以供用户使用呢？一款APP的发布流程无外乎：签名打包—>发布到各store这两大步骤。本文将向大家分享如何签名打包一款React Native APP。      
+用React Native开发好APP之后，如何将APP发布以供用户使用呢？一款APP的发布流程无外乎：签名打包—>发布到各store这两大步骤。本文将向大家分享如何签名打包一款React Native APP。   
+
    
 众所周知，Android要求所有的APP都需要进行数字签名后，才能够被安装到相应的设备上。签名打包一个Android APP已经是每一位Android开发者的家常便饭了。
 那么如何签名打包一款用React Native开发的APP呢？  
