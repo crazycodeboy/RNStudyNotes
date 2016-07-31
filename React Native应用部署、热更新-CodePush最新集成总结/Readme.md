@@ -2,7 +2,8 @@
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。  
 了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)和加入：  
 [React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)     
-![React Native学习交流群](../React Native发布APP之签名打包APK/images/react native 学习交流群_qrcode_share.png)  
+![React Native学习交流群](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK/images/react%20native%20%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%BE%A4_qrcode_share.png)
+
 -------
 
 React Native的出现为移动开发领域带来了两大革命性的创新：  
@@ -25,27 +26,28 @@ CodePush 可以进行实时的推送代码更新：
 * 支持JavaScript 文件与图片资源的更新
 * 暂不支持增量更新  
 
-CodePush开源了react-native版本，[react-native-code-push](https://github.com/Microsoft/react-native-code-push)托管在GitHub上。 
+CodePush开源了react-native版本，[react-native-code-push](https://github.com/Microsoft/react-native-code-push)托管在GitHub上。
 
 ## 安装与注册CodePush    
 使用CodePush之前首先要安装CodePush客户端。本文以OSX 10.11.5作为平台进行演示。    
+
 ### 安装 CodePush CLI
 管理 CodePush 账号需要通过 NodeJS-based CLI。   
 只需要在终端输入 `npm install -g code-push-cli`，就可以安装了。  
 安装完毕后，输入 `code-push -v`查看版本，如看到版本代表成功。   
-![安装 CodePush CLI成功](./images/安装 CodePush CLI成功.png)    
+![安装 CodePush CLI成功](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/安装 CodePush CLI成功.png)    
 目前我的版本是 1.12.1-beta   
 
-**PS.  **  
+**PS.**  
 `npm`为NodeJS的包管理器，如果你没安装NodeJS请先安装。  
 
 ### 创建一个CodePush 账号
 在终端输入`code-push register`，会打开如下注册页面让你选择授权账号。  
-![注册codepush](./images/注册codepush.png)  
+![注册codepush](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/注册codepush.png)  
 授权通过之后，CodePush会告诉你“access key”，复制此key到终端即可完成注册。  
-![获取codepush access key](./images/获取codepush access key.png)  
+![获取codepush access key](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/获取codepush access key.png)  
 然后终端输入`code-push login`进行登陆，登陆成功后，你的session文件将会写在 /Users/你的用户名/.code-push.config。  
-![登陆成功](./images/登陆成功.png)
+![登陆成功](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/登陆成功.png)
 
 ** PS.相关命令**  
 
@@ -53,7 +55,7 @@ CodePush开源了react-native版本，[react-native-code-push](https://github.co
 * `code-push loout` 注销  
 * `code-push access-key ls` 列出登陆的token  
 * `code-push access-key rm <accessKye>` 删除某个 access-key  
- 
+
 ### 在CodePush服务器注册app  
 为了让CodePush服务器知道你的app，我们需要向它注册app： 在终端输入`code-push app add <appName>`即可完成注册。
 
@@ -80,13 +82,16 @@ CodePush提供了两种方式：RNPM 和 Manual，本次演示所使用的是RNP
 [react-native-code-push has been successfully linked]()  
 
 第四步： 在 android/app/build.gradle文件里面添如下代码：
+
 ```  
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"  
 ```
+
 第五步: 运行 `code-push deployment ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。   
 第六步： 添加配置。当APP启动时我们需要让app向CodePush咨询JS bundle的所在位置，这样CodePush就可以控制版本。更新 MainApplication.java文件：    
-```java 
+
+```java
 public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -116,6 +121,7 @@ public class MainApplication extends Application implements ReactApplication {
 ```
 第七步：修改versionName。  
 在 android/app/build.gradle中有个 android.defaultConfig.versionName属性，我们需要把 应用版本改成 1.0.0（默认是1.0，但是codepush需要三位数）。
+
 ```
 android{
     defaultConfig{
@@ -124,12 +130,13 @@ android{
 }
 ```   
 至此Code Push for Android的SDK已经集成完成。   
+
 ### iOS  
 本文主要使用Android作为演示，在iOS上集成CodePush可参照：[iOS Setup](https://microsoft.github.io/code-push/docs/react-native.html#link-4)
 
 ## 使用CodePush进行热更新  
 
-### 设置更新策略 
+### 设置更新策略
 在使用CodePush更新你的应用之前需要，先配置一下更新控制策略，即：  
 
 * 什么时候检查更新？（在APP启动的时候？在设置页面添加一个检查更新按钮？）
@@ -145,11 +152,13 @@ android{
 如果更新是强制性的，更新文件下载好之后会立即进行更新。    
 如果你期望更及时的获得更新，可以在每次APP从后台进入前台的时候去主动的检查更新：  
 在应用的根component的`componentDidMount`中添加如下代码：  
+
 ```
 AppState.addEventListener("change", (newState) => {
     newState === "active" && codePush.sync();
 });
 ```
+
 #### 生成bundle  
 发布更新之前，需要先把 js打包成 bundle，以下是anroid的做法：
 
@@ -159,7 +168,7 @@ AppState.addEventListener("change", (newState) => {
 eg:    
 `react-native bundle --platform android --entry-file index.android.js --bundle-output ./bundles/index.android.bundle --dev false`   
 
-![生成bundle](./images/生成bundle包.png)
+![生成bundle](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/生成bundle包.png)
 
 **需要注意的是：**  
 
@@ -173,7 +182,7 @@ eg:
 --description： 更新描述  --mandatory： 是否强制更新`   
 eg:  
 `code-push release GitHubPopular ./bundles/index.android.bundle 1.0.6 --deploymentName Production  --description "1.支持文章缓存。" --mandatory true`
-![推送更新到CodePush](./images/推送更新到CodePush.png)
+![推送更新到CodePush](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/推送更新到CodePush.png)
 
 **注意：**  
 1. CodePush默认是更新 staging 环境的，如果是staging，则不需要填写 deploymentName。     
@@ -182,7 +191,7 @@ eg:
 如客户端版本是 1.0.6，那么我们对1.0.6的客户端更新js/images，targetBinaryVersion填的就是1.0.6。     
 4. 对于对某个应用版本进行多次更新的情况，CodePush会检查每次上传的 bundle，如果在该版本下如1.0.6已经存在与这次上传完全一样的bundle(对应一个版本有两个bundle的md5完全一样)，那么CodePush会拒绝此次更新。
 如图：  
-![对应一个版本有两个bundle的md5完全一样](./images/对应一个版本有两个bundle的md5完全一样.png)    
+![对应一个版本有两个bundle的md5完全一样](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/对应一个版本有两个bundle的md5完全一样.png)    
 
 所以如果我们要对某一个应用版本进行多次更新，只需要上传与上次不同的bundle/images即可。如：  
 eg:    
@@ -195,11 +204,11 @@ eg:
 `code-push release Equipment ./bundles 1.0.1`
 
 下面我们启动事先安装好的应用，看有什么反应：  
-![提示更新](./images/提示更新.png)  
+![提示更新](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/提示更新.png)  
 应用启动之后，从CodePush服务器查询更新，并下载到本地，下载好之后，提示用户进行更新。这就是CodePush用于热更新的整个过程。  
 
 对比一下推送到CodePush上的更新，与应用从CodePush下载下来的更新：  
-![Code Push非增量更新](./images/Code Push非增量更新.png)  
+![Code Push非增量更新](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/Code Push非增量更新.png)  
 由此可以发现，CodePush在更新方便并没有采用增量更新。  
 
 **更多部署APP相关命令**
@@ -214,7 +223,7 @@ eg:
 ### 调试技巧  
 如果你用模拟器进行调试CodePush，在默认情况下是无法达到调试效果的，因为在开发环境下装在模拟器上的React Native应用每次启动时都会从NodeJS服务器上获取最新的bundle，所以还没等CodePush从服务器将更新包下载下来时，APP就已经从NodeJS服务器完成了更新。
 为规避这个问题可以将开发环境的调试地址改为一个不可用的地址，如下图：
-![解决NodeJS对CodePush的影响](./images/解决NodeJS对CodePush的影响.png)  
+![解决NodeJS对CodePush的影响](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/解决NodeJS对CodePush的影响.png)  
 这样APP就无法连接到NodeJS服务器了，自然也就不能从NodeJS服务器下载bundle进行更新了，它也只能乖乖的等待从CodePush服务器下载更新包进行更新了。   
 
 
@@ -229,10 +238,12 @@ eg:
 * sync
 
 其实我们可以将这些API分为两类，一类是自动模式，一类是手动模式。  
+
 ### 自动模式
 `sync`为自动模式，调用此方法CodePush会帮你完成一系列的操作。其它方法都是在手动模式下使用的。    
 **codePush.sync**     
-`codePush.sync(options: Object, syncStatusChangeCallback: function(syncStatus: Number), downloadProgressCallback: function(progress: DownloadProgress)): Promise<Number>;`  
+`codePush.sync(options: Object, syncStatusChangeCallback: function(syncStatus: Number),
+downloadProgressCallback: function(progress: DownloadProgress)): Promise<Number>;`  
 通过调用该方法CodePush会帮我们自动完成检查更新，下载，安装等一系列操作。除非我们需要自定义UI表现，不然直接用这个方法就可以了。    
 **sync方法，提供了如下属性以允许你定制sync方法的默认行为**  
 
@@ -251,6 +262,7 @@ eg:
 	* title (String) - 要显示的更新通知的标题. Defaults to “Update available”.
 
 eg:  
+
 ```javascript  
 codePush.sync({
       updateDialog: {
@@ -297,7 +309,8 @@ codePush.sync({
 有更新可供下载。    
 
 eg：
-```javascript 
+
+```javascript
 codePush.checkForUpdate()
 .then((update) => {
     if (!update) {
@@ -313,10 +326,11 @@ codePush.checkForUpdate()
 `codePush.disallowRestart(): void;`  
 不允许立即重启用于以完成更新。    
 eg:  
+
 ```javascript
 class OnboardingProcess extends Component {
     ...
-    
+
     componentWillMount() {
         // Ensure that any CodePush updates which are
         // synchronized in the background can't trigger
@@ -338,6 +352,7 @@ class OnboardingProcess extends Component {
 `codePush.getUpdateMetadata(updateState: UpdateState = UpdateState.RUNNING): Promise<LocalPackage>;`  
 获取当前已安装更新的元数据（描述、安装时间、大小等）。  
 eg:  
+
 ```javascript
 // Check if there is currently a CodePush update running, and if
 // so, register it with the HockeyApp SDK (https://github.com/slowpath/react-native-hockeyapp)
@@ -382,4 +397,3 @@ codePush.getUpdateMetadata(UpdateState.PENDING).then((update) => {
 **参考：**   
 http://microsoft.github.io/code-push/docs/getting-started.html   
 https://github.com/Microsoft/react-native-code-push   
-
