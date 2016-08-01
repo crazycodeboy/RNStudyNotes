@@ -1,4 +1,4 @@
-  
+
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
 
@@ -13,9 +13,9 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 ### 像素无关  
 在React Native中尺寸是没有单位的，它代表了设备独立像素。  
 
-```
-<View style={{width:100,height:100,margin:40,backgroundColor:'gray'}}>
-        <Text style={{fontSize:16,margin:20}}>尺寸</Text>
+```html
+<View style={ {width:100,height:100,margin:40,backgroundColor:'gray'}}>
+        <Text style={ {fontSize:16,margin:20}}>尺寸</Text>
 </View>
 ```    
 
@@ -39,10 +39,10 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 #### 父视图属性(容器属性)：   
 >
-* flexDirection enum('row', 'column','row-reverse','column-reverse') 
-* flexWrap enum('wrap', 'nowrap') 
-* justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around') 
-* alignItems enum('flex-start', 'flex-end', 'center', 'stretch') 
+* flexDirection enum('row', 'column','row-reverse','column-reverse')
+* flexWrap enum('wrap', 'nowrap')
+* justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
+* alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 #### 主轴和侧轴(横轴和竖轴)
 在学习上述属性之前，让我们先了解一个概念：主轴和侧轴  
@@ -52,7 +52,7 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 >#### flexDirection    
 
 `flexDirection enum('row', 'column','row-reverse','column-reverse')`  
-`flexDirection`属性定义了父视图中的子元素沿横轴或侧轴方片的排列方式。 
+`flexDirection`属性定义了父视图中的子元素沿横轴或侧轴方片的排列方式。
 
 >
 * row: 从左向右依次排列
@@ -62,30 +62,30 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 **Usage:**  
 
+```html
+<View style={ {flexDirection:'row-reverse',backgroundColor:"darkgray",marginTop:20}}>
+    <View style={ {width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>1</Text>
+  </View>
+  <View style={ {width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>2</Text>
+  </View>
+  <View style={ {width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>3</Text>
+  </View>
+  <View style={ {width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>4</Text>
+  </View>
+  </View>
 ```
-<View style={{flexDirection:'row-reverse',backgroundColor:"darkgray",marginTop:20}}>
-    <View style={{width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>1</Text>
-  </View>
-  <View style={{width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>2</Text>
-  </View>
-  <View style={{width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>3</Text>
-  </View>
-  <View style={{width:40,height:40,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>4</Text>
-  </View>
-  </View>
-```
-![flexDirection](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flexDirection.jpg)
+![flexDirection](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flexDirection.jpg)
 
 
 
 >#### flexWrap    
 
 `flexWrap enum('wrap', 'nowrap')`  
-`flexWrap`属性定义了子元素在父视图内是否允许多行排列，默认为nowrap。 
+`flexWrap`属性定义了子元素在父视图内是否允许多行排列，默认为nowrap。
 
 >
 * nowrap flex的元素只排列在一行上，可能导致溢出。
@@ -93,19 +93,19 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 **Usage:**   
 
-```
-<View 		 style={{flexWrap:'wrap',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
-··· 
+```html
+<View 		 style={ {flexWrap:'wrap',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
+···
 </View>
 ```
-![flexWrap](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flexWrap.jpg)
+![flexWrap](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flexWrap.jpg)
 
 
 >#### justifyContent    
 
 `justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
 `  
-`justifyContent`属性定义了浏览器如何分配顺着父容器主轴的弹性（flex）元素之间及其周围的空间，默认为flex-start。 
+`justifyContent`属性定义了浏览器如何分配顺着父容器主轴的弹性（flex）元素之间及其周围的空间，默认为flex-start。
 
 >
 * flex-start(default) 从行首开始排列。每行第一个弹性元素与行首对齐，同时所有后续的弹性元素与前一个对齐。
@@ -116,12 +116,12 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 **Usage:**   
 
-```
-<View 		 style={{justifyContent:'center',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
-··· 
+```html
+<View 		 style={ {justifyContent:'center',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
+···
 </View>
 ```
-![justifyContent](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/justifyContent.jpg)
+![justifyContent](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/justifyContent.jpg)
 
 
 >#### alignItems    
@@ -137,18 +137,18 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 **Usage:**   
 
-```
-<View 		 style={{justifyContent:'center',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
-··· 
+```html
+<View 		 style={ {justifyContent:'center',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
+···
 </View>
 ```
-![alignItems](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/alignItems.jpg)  
+![alignItems](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/alignItems.jpg)  
 
 
-#### 子视图属性 
+#### 子视图属性
 >
-* alignSelf enum('auto', 'flex-start', 'flex-end', 'center', 'stretch') 
-* flex number 
+* alignSelf enum('auto', 'flex-start', 'flex-end', 'center', 'stretch')
+* flex number
 
 >#### alignSelf    
 
@@ -159,43 +159,43 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 * auto(default) 元素继承了它的父容器的 align-items 属性。如果没有父容器则为 "stretch"。
 * stretch	元素被拉伸以适应容器。
 * center	元素位于容器的中心。
-* flex-start	元素位于容器的开头。	
-* flex-end	元素位于容器的结尾。	
+* flex-start	元素位于容器的开头。
+* flex-end	元素位于容器的结尾。
 
 
 **Usage:**   
 
-```
-<View style={{alignSelf:'baseline',width:60,height:	20,backgroundColor:"darkcyan",margin:5}}>
-   <Text style={{fontSize:16}}>1</Text>
+```html
+<View style={ {alignSelf:'baseline',width:60,height:	20,backgroundColor:"darkcyan",margin:5}}>
+   <Text style={ {fontSize:16}}>1</Text>
 </View>
-... 
+...
 ```
-![alignItems](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/alignSelf.jpg)  
+![alignItems](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/alignSelf.jpg)  
 
 
 >#### flex     
 
 `flex number`  
-`flex` 属性定义了一个可伸缩元素的能力，默认为0。 
+`flex` 属性定义了一个可伸缩元素的能力，默认为0。
 >
 
 **Usage:**   
 
-```
-<View style={{flexDirection:'row',height:40, backgroundColor:"darkgray",marginTop:20}}>
-  <View style={{flex:1,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>flex:1</Text>
+```html
+<View style={ {flexDirection:'row',height:40, backgroundColor:"darkgray",marginTop:20}}>
+  <View style={ {flex:1,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>flex:1</Text>
   </View>
-  <View style={{flex:2,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>flex:2</Text>
+  <View style={ {flex:2,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>flex:2</Text>
   </View>
-  <View style={{flex:3,backgroundColor:"darkcyan",margin:5}}>
-    <Text style={{fontSize:16}}>flex:3</Text>
+  <View style={ {flex:3,backgroundColor:"darkcyan",margin:5}}>
+    <Text style={ {fontSize:16}}>flex:3</Text>
   </View>          
 </View>
 ```
-![flex](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/Reac%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flex.jpg)  
+![flex](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/images/flex.jpg)  
 
 
 ### 其他布局 in React Native  
@@ -213,15 +213,15 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 * border<Bottom|Left|Right|Top>Color 个方向边框的颜色
 * borderColor 边框颜色
 
-#### 尺寸 
+#### 尺寸
 >
-* width number 
-* height number 
+* width number
+* height number
 
 #### 外边距
 >
 * margin number 外边距
-* marginBottom number 下外边距 
+* marginBottom number 下外边距
 * marginHorizontal number  左右外边距
 * marginLeft number 左外边距
 * marginRight number 右外边距
@@ -231,7 +231,7 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 #### 内边距
 >
 * padding number 内边距
-* paddingBottom number 下内边距 
+* paddingBottom number 下内边距
 * paddingHorizontal number 左右内边距
 * paddingLeft number 做内边距
 * paddingRight number  右内边距
@@ -240,7 +240,7 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 
 #### 边缘
-> 
+>
 * left number 属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。
 * right number 属性规定元素的右边缘。该属性定义了定位元素右外边距边界与其包含块右边界之间的偏移
 * top number  属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。
@@ -259,8 +259,8 @@ position enum('absolute', 'relative')属性设置元素的定位方式，为将�
 ## 参考  
 [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)   
 [Using CSS flexible boxes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)  
-[Layout with Flexbox](https://facebook.github.io/react-native/docs/flexbox.html)  
-[Layout Props](https://facebook.github.io/react-native/docs/layout-props.html)
+[Layout with Flexbox](https://facebook.github.io/React-native/docs/flexbox.html)  
+[Layout Props](https://facebook.github.io/React-native/docs/layout-props.html)
 
 ## About
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。    
@@ -271,5 +271,3 @@ position enum('absolute', 'relative')属性设置元素的定位方式，为将�
 ----
 *  [React Native发布APP之签名打包APK](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK)    
 *  [React Native应用部署、热更新-CodePush最新集成总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93)
-
-
