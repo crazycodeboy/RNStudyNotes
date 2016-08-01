@@ -36,12 +36,15 @@ FlexBox提供了在不同尺寸设备上都能保持一致的布局方式。Flex
 
 #### 主轴和侧轴(横轴和竖轴)
 在学习上述属性之前，让我们先了解一个概念：主轴和侧轴  
-![主轴和侧轴](https://mdn.mozillademos.org/files/12998/flexbox.png)
+![主轴和侧轴](https://mdn.mozillademos.org/files/12998/flexbox.png)  
 主轴即水平方向的轴线，可以理解成横轴，侧轴垂直于主轴，可以理解为竖轴。
 
 #### flexDirection
 `flexDirection enum('row', 'column')`  
 `flexDirection`规定了，父视图中的子元素沿横轴或侧轴方片的排列方式。 
+
+
+
 
 
 #### 子视图属性 
