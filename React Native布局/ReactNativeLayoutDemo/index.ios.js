@@ -22,10 +22,16 @@ class ReactNativeLayoutDemo extends Component {
         </View>
 
         {/*横轴和竖轴*/}
-        <View style={{flexDirection:'row',backgroundColor:"darkgray",margin:10}}>
-          <View style={{width:80,height:80,backgroundColor:"darkcyan",margin:5}}></View>
-          <View style={{width:80,height:80,backgroundColor:"darkcyan",margin:5}}></View>
-          <View style={{width:80,height:80,backgroundColor:"darkcyan",margin:5}}></View>
+        <View style={{flexDirection:'row',height:40,borderBottomWidth:1,borderColor:'yellow'}}>
+          <View style={{flex:1,backgroundColor:"darkcyan",margin:5,position:'top'}}>
+            <Text style={{fontSize:16}}>flex:1</Text>
+          </View>
+          <View style={{flex:2,backgroundColor:"darkcyan",margin:5}}>
+            <Text style={{fontSize:16}}>flex:2</Text>
+          </View>
+          <View style={{flex:3,backgroundColor:"darkcyan",margin:5}}>
+            <Text style={{fontSize:16}}>flex:3</Text>
+          </View>
         </View>
 
       </View>
