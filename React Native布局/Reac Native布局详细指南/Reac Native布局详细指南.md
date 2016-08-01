@@ -1,3 +1,7 @@
+  
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
+
+
 一款好的APP离不了一个漂亮的布局，本文章将向大家分享React Native中的布局方式FlexBox。    
 在React Native中布局采用的是FleBox(弹性框)进行布局。  
 
@@ -252,11 +256,20 @@ position enum('absolute', 'relative')属性设置元素的定位方式，为将�
 
 
 
-
 ## 参考  
 [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)   
 [Using CSS flexible boxes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)  
 [Layout with Flexbox](https://facebook.github.io/react-native/docs/flexbox.html)  
 [Layout Props](https://facebook.github.io/react-native/docs/layout-props.html)
+
+## About
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。    
+了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)   
+@[https://crazycodeboy.github.io/](https://crazycodeboy.github.io/)  
+
+推荐阅读
+----
+*  [React Native发布APP之签名打包APK](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK)    
+*  [React Native应用部署、热更新-CodePush最新集成总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93)
 
 
