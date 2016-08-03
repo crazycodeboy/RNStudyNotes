@@ -96,7 +96,7 @@ Chrome 开发工具一共提供了8大组工具：
 
 #### 第一步：启动远程调试   
 在Developer Menu下单击"Debug JS Remotely" 启动JS远程调试功能。此Chrome会被打开，同时会创建一个“http://localhost:8081/debugger-ui.” Tab页。  
-![http-//localhost-8081/debugger-ui](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/localhost-8081/debugger-ui.png)
+![http-//localhost-8081/debugger-ui](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/localhost-8081-debugger-ui.png)
 
 #### 第二步：打开Chrome开发者工具
 在该“http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单->选择更多工具->选择开发者工具。你也可以通过快捷键(Command⌘ + Option⌥ + I on Mac, Ctrl + Shift + I on Windows)打开。
