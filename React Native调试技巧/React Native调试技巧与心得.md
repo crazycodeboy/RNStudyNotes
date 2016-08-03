@@ -23,7 +23,7 @@ Developer Menu是React Native给开发者定制的一个开发者菜单，来帮
 在真机上你可以通过摇动手机来开启Developer Menu。  
 
 #### 预览图
-![Developer Menu.jpg](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Developer Menu.jpg)
+![Developer Menu](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Developer%20Menu.jpg)
 
 ## Reloading JavaScript
 
@@ -40,14 +40,14 @@ Reload js即将你项目中js代码部分重新生成bundle，然后传输给模
 ### 小技巧：Automatic reloading
 
 #### Enable Live Reload
-![Enable Live Reload](/Users/penn/Desktop/Enable Live Reload.gif)
+![Enable Live Reload](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Enable%20Live%20Reload.gif)
 
 React Native旨在为开发者带来一个更好的开发体验。如果你觉得上文的加载js代码方式太low了或者不够方便，那么有没有一种更简便加载js代码的方式呢？  
 答案是肯定的。    
 在 Developer Menu中你会看到"Enable Live Reload" 选项，该选项提供了React Native动态加载的功能。当你的js代码发生变化后，React Native会自动生成bundle然后传输到模拟器或手机上，是不是觉得很方便。    
 
 #### Hot Reloading 
-![Hot Reloading](/Users/penn/Desktop/ Hot Reloading .gif)
+![Hot Reloading](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/%20Hot%20Reloading%20.gif)
 另外，Developer Menu中还有一项需要特别介绍的，就是"Hot Reloading"热加载，如果说Enable Live Reload解放了你的双手的话，那么Hot Reloading不但解放了你的双手而且还解放了你的时间。  当你每次保存代码时Hot Reloading功能便会生成此次修改代码的增量包，然后传输到手机或模拟器上以实现热加载。相比 Enable Live Reload需要每次都返回到启动页面，Enable Live Reload则会在保持你的程序状态的情况下，就可以将最新的代码部署到设备上，听起来是不是很疯狂呢。  
 
 >提示：当你做布局的时候启动Enable Live Reload功能你就可以实时的预览布局效果了，这可以和用AndroidStudio或AutoLayout做布局的实时预览相媲美。
@@ -60,14 +60,14 @@ React Native旨在为开发者带来一个更好的开发体验。如果你觉�
 
 React Native程序运行时出现的Errors会被直接显示在屏幕上，以红色的背景显示，并会打印出错误信息。  你也可以通过` console.error()`来手动触发Errors。
 
-![Errors](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Errors.png)
+![Errors](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Errors.png)
 
 ### Warnings  
  
 React Native程序运行时出现的Warnings也会被直接显示在屏幕上，以黄色的背景显示，并会打印出警告信息。  你也可以通过` console.warn()`来手动触发Warnings。
 你也可以通过`console.disableYellowBox = true`来手动禁用Warnings的显示，或者通过`console.ignoredYellowBox = ['Warning: ...'];`来忽略相应的Warning。  
 
-![Warnings](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Warnings.png)
+![Warnings](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Warnings.png)
 
 >提示：在生产环境release (production)下Errors和Warnings功能是不可用的。  
 
@@ -96,15 +96,15 @@ Chrome 开发工具一共提供了8大组工具：
 
 #### 第一步：启动远程调试   
 在Developer Menu下单击"Debug JS Remotely" 启动JS远程调试功能。此Chrome会被打开，同时会创建一个“http://localhost:8081/debugger-ui.” Tab页。  
-![http-//localhost-8081/debugger-ui](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/http-::localhost-8081:debugger-ui.png)
+![http-//localhost-8081/debugger-ui](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/localhost-8081/debugger-ui.png)
 
 #### 第二步：打开Chrome开发者工具
 在该“http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单->选择更多工具->选择开发者工具。你也可以通过快捷键(Command⌘ + Option⌥ + I on Mac, Ctrl + Shift + I on Windows)打开。
 
-![打开开发者工具](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/打开开发者工具.png)
+![打开开发者工具](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/dakaikaifazhegongju.png)
 
 打开Chrome开发着工具之后你会看到如下界面：  
-![打开Chrome开发着工具](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/打开Chrome开发着工具.png)   
+![打开Chrome开发着工具](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/dakaiChromekaifazhuogongju.png)   
 
 ### 真机调试  
 
@@ -126,7 +126,7 @@ Chrome 开发工具一共提供了8大组工具：
 #### 巧用Sources面板
 
 Sources 面板提供了调试 JavaScript 代码的功能。它提供了图形化的V8 调试器。
-![Sources面板](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Sources面板.jpg)
+![Sources面板](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Sourcesmianban.jpg)
 
 Sources 面板可以让你看到你所要检查的页面的所有脚本代码，并在面板选择栏下方提供了一组标准控件，提供了暂停，恢复，步进等功能。在窗口的最下方的按钮可以在遇到异常(exception)时强制暂停。源码显示在单独的标签页，通过点击  打开文件导航面板，导航栏中会显示所有已打开的脚本文件。
 
@@ -146,7 +146,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 #### 查看js文件    
 如果你想在开发者工具上预览你的js文件，可以在打开Sources tab下的debuggerWorker.js选项卡，该选项卡下回显示当前调试项目的所有js文件。 
   
-![查看js文件](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/查看js文件.png)  
+![查看js文件](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/chakanjswenjian.png)  
 
 #### 断点其实很简单   
 
@@ -158,9 +158,9 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 在 Sources 面板的文件导航面板中打开一个JavaScript文件来调试，点击边栏(line gutter) 为当前行设置一个断点，已经设置的断点处会有一个蓝色的标签，单击蓝色标签，断点即被移除。  
 
-![添加移除断点](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/添加移除断点.png)
+![添加移除断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/tianjiayichuduandian.png)
 
->心得：右键点击蓝色标签会打开一个菜单，菜单包含以下选项：执行到此(Continue to Here)，黑盒脚本(Blackbox scripts)，移除断点(Remove Breakpoint)， 编辑断点(Edit Breakpoint)，和 禁用断点(Disable Breakpoint)。在这里你可以对断点进行更高级的定制化的操作。![右键蓝色图标](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/右键蓝色图标.png)
+>心得：右键点击蓝色标签会打开一个菜单，菜单包含以下选项：执行到此(Continue to Here)，黑盒脚本(Blackbox scripts)，移除断点(Remove Breakpoint)， 编辑断点(Edit Breakpoint)，和 禁用断点(Disable Breakpoint)。在这里你可以对断点进行更高级的定制化的操作。![右键蓝色图标](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/youjianlansetubiao.png)
 
 ##### 高级操作  
 上文讲到右键点击蓝色标签会打开一个菜单，下面就介绍一下该菜单下的高级操作。  
@@ -176,16 +176,16 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 **编辑断点(Edit Breakpoint)：**
 
 通过该功能你可以创建一个条件断点，你也可以在边栏(gutter line) 右键并选择添加条件断点(Add Conditional Breakpoint) 。在输入框中，输入一个可解析为真或假的表达式。仅当条件为真时，执行会在此暂停。   
-![条件断点](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/条件断点.png)
+![条件断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/tianjiayichuduandian.png)
 
->心得：如果你想让程序在某处从来都不要暂停，可以编辑一个条件永远为false的条件断点。另外，你也可以在该行代码的边栏(gutter line)前单击右键选择“Never pause here”即可，你会发现“Never pause here”其实就是在该行代码上设了一个永远为false的条件断点。![Never pause here](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Never pause here.png)  
+>心得：如果你想让程序在某处从来都不要暂停，可以编辑一个条件永远为false的条件断点。另外，你也可以在该行代码的边栏(gutter line)前单击右键选择“Never pause here”即可，你会发现“Never pause here”其实就是在该行代码上设了一个永远为false的条件断点。![Never pause here](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Never%20pause%20here.png)  
 
 
 
 ##### 管理你的断点  
 你可以通过Chrome开发者工具的右边面板来统一管理你的断点。  
 
-![管理断点](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/管理断点.png)
+![管理断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/guanliduandian.png)
 
 >心得：你可以通过断点前的复选框来启用和禁用断点，也可以单击右键来进行更多的操作(如：移除断点，移除所有断点，启用禁用断点等)。  
 
@@ -193,13 +193,13 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 ##### 有一种断点叫全局断点
 全局断点的作用是，当程序出现异常时，会在异常的地方暂停，这对快速定位异的常位置很方便。  
 做iOS开发的同学都知道在Xcode中可以设置全局断点，其实在Chrome 开发者工具中也同样有与之对应的功能，叫“Pause On Caught Exceptions”。如果勾选上此功能，则即使所发生运行时异常的代码在 try/catch 范围内，Chrome 开发者工具也能够在错误代码处停住。   
-![全局断点](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/全局断点.png)
+![全局断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/quanjuduandian.png)
 
 
 #### 不要忽略控制台
 DevTools 控制台(Console) 可以让你在目前已暂停的状态下进行试验。按 Esc 键打开/关闭控制台。
 
-![Console](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/Console.png)  
+![Console](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/Console.png)  
 
 >心得：你可以在控制台(Console)上打印变量，执行脚本等操作。在开发调试中非常有用。    
 
