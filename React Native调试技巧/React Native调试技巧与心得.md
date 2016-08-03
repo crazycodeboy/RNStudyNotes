@@ -160,7 +160,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 ![添加移除断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/tianjiayichuduandian.png)
 
->心得：右键点击蓝色标签会打开一个菜单，菜单包含以下选项：执行到此(Continue to Here)，黑盒脚本(Blackbox scripts)，移除断点(Remove Breakpoint)， 编辑断点(Edit Breakpoint)，和 禁用断点(Disable Breakpoint)。在这里你可以对断点进行更高级的定制化的操作。![右键蓝色图标](/Users/penn/Documents/RNStudyNotes/React Native调试技巧/images/youjianlansetubiao.png)
+>心得：右键点击蓝色标签会打开一个菜单，菜单包含以下选项：执行到此(Continue to Here)，黑盒脚本(Blackbox scripts)，移除断点(Remove Breakpoint)， 编辑断点(Edit Breakpoint)，和 禁用断点(Disable Breakpoint)。在这里你可以对断点进行更高级的定制化的操作。![右键蓝色图标](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/develop/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/images/youjianlansetubiao.png)
 
 ##### 高级操作  
 上文讲到右键点击蓝色标签会打开一个菜单，下面就介绍一下该菜单下的高级操作。  
