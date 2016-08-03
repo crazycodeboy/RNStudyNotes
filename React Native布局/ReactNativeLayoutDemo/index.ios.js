@@ -13,6 +13,14 @@ import {
 } from 'react-native';
 
 class ReactNativeLayoutDemo extends Component {
+  componentDidMount(){
+    console.log("");
+    console.log("");
+    this.test();
+  }
+  test(){
+    console.log("test");
+  }
   render() {
     return (
       <View>
@@ -23,7 +31,7 @@ class ReactNativeLayoutDemo extends Component {
 
         {/*横轴和竖轴*/}
         <View style={{flexDirection:'row',height:40,borderBottomWidth:1,borderColor:'yellow'}}>
-          <View style={{flex:1,backgroundColor:"darkcyan",margin:5,position:'top'}}>
+          <View style={{flex:1,backgroundColor:"darkcyan",margin:5}}>
             <Text style={{fontSize:16}}>flex:1</Text>
           </View>
           <View style={{flex:2,backgroundColor:"darkcyan",margin:5}}>
