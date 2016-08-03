@@ -89,17 +89,17 @@ Chrome 开发工具一共提供了8大组工具：
 
 >提示：对于调试React Native应用来说，Sources和Console是使用频率很高的两个工具。
 
-你可以向调试JavaScript代码一样来调试你的React Native程序。   
+你可以像调试JavaScript代码一样来调试你的React Native程序。   
 
 ### 如何通过 Chrome调试React Native程序  
 你可以通过以下步骤来调试你的React Native程序：  
 
 #### 第一步：启动远程调试   
-在Developer Menu下单击"Debug JS Remotely" 启动JS远程调试功能。此Chrome会被打开，同时会创建一个“http://localhost:8081/debugger-ui.” Tab页。  
+在Developer Menu下单击"Debug JS Remotely" 启动JS远程调试功能。此时Chrome会被打开，同时会创建一个“http://localhost:8081/debugger-ui.” Tab页。  
 ![http-//localhost-8081/debugger-ui](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/localhost-8081-debugger-ui.png)
 
 #### 第二步：打开Chrome开发者工具
-在该“http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单->选择更多工具->选择开发者工具。你也可以通过快捷键(Command⌘ + Option⌥ + I on Mac, Ctrl + Shift + I on Windows)打开。
+在该“http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单->选择更多工具->选择开发者工具。你也可以通过快捷键(Command⌘ + Option⌥ + I on Mac, Ctrl + Shift + I on Windows)打开开发者工具。
 
 ![打开开发者工具](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/dakaikaifazhegongju.png)
 
@@ -120,6 +120,7 @@ Chrome 开发工具一共提供了8大组工具：
 方式二：  
 你也可以通过在“Developer Menu”下的“Dev Settings”中设置你的电脑ip来进行调试。  
 
+>心得：在使用真机调试时，你需要确保你的手机和电脑处在同一个网段内，即它们实在同一个路由器下。
 
 ### 小技巧：
 -----
@@ -131,9 +132,8 @@ Sources 面板提供了调试 JavaScript 代码的功能。它提供了图形化
 Sources 面板可以让你看到你所要检查的页面的所有脚本代码，并在面板选择栏下方提供了一组标准控件，提供了暂停，恢复，步进等功能。在窗口的最下方的按钮可以在遇到异常(exception)时强制暂停。源码显示在单独的标签页，通过点击  打开文件导航面板，导航栏中会显示所有已打开的脚本文件。
 
 >心得：Chrome开发着工具中的Sources面板几乎是我最常用的功能面板。通常只要是开发遇到了js报错或者其他代码问题，在审视一遍自己的代码而一无所获之后，我首先就会打开Sources进行js断点调试。  
-执行控制#
 
-##### 执行控工具  
+#### 执行控工具  
 从上图可以看到“执行控工具”按钮在侧板顶部，让你可以按步执行代码，当你进行调试的时候这几个按钮非常有用：  
 
 * 继续(Continue): 继续执行代码直到遇到下一个断点。
@@ -144,7 +144,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 
 #### 查看js文件    
-如果你想在开发者工具上预览你的js文件，可以在打开Sources tab下的debuggerWorker.js选项卡，该选项卡下回显示当前调试项目的所有js文件。 
+如果你想在开发者工具上预览你的js文件，可以在打开Sources tab下的debuggerWorker.js选项卡，该选项卡下会显示当前调试项目的所有js文件。 
   
 ![查看js文件](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/chakanjswenjian.png)  
 
@@ -154,7 +154,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 >心得：你可以像使用Xcode/AndroidStudio调试Native应用一样，来使用Chrome开发者工具通过断点对程序进行调试。 
  
-##### 添加和移除断点
+#### 添加和移除断点
 
 在 Sources 面板的文件导航面板中打开一个JavaScript文件来调试，点击边栏(line gutter) 为当前行设置一个断点，已经设置的断点处会有一个蓝色的标签，单击蓝色标签，断点即被移除。  
 
@@ -162,7 +162,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 >心得：右键点击蓝色标签会打开一个菜单，菜单包含以下选项：执行到此(Continue to Here)，黑盒脚本(Blackbox scripts)，移除断点(Remove Breakpoint)， 编辑断点(Edit Breakpoint)，和 禁用断点(Disable Breakpoint)。在这里你可以对断点进行更高级的定制化的操作。![右键蓝色图标](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/youjianlansetubiao.png)
 
-##### 高级操作  
+#### 高级操作  
 上文讲到右键点击蓝色标签会打开一个菜单，下面就介绍一下该菜单下的高级操作。  
 
 **执行到此(Continue to Here)：**
@@ -182,7 +182,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 
 
 
-##### 管理你的断点  
+#### 管理你的断点  
 你可以通过Chrome开发者工具的右边面板来统一管理你的断点。  
 
 ![管理断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/guanliduandian.png)
@@ -190,7 +190,7 @@ Sources 面板可以让你看到你所要检查的页面的所有脚本代码，
 >心得：你可以通过断点前的复选框来启用和禁用断点，也可以单击右键来进行更多的操作(如：移除断点，移除所有断点，启用禁用断点等)。  
 
 
-##### 有一种断点叫全局断点
+#### 有一种断点叫全局断点
 全局断点的作用是，当程序出现异常时，会在异常的地方暂停，这对快速定位异的常位置很方便。  
 做iOS开发的同学都知道在Xcode中可以设置全局断点，其实在Chrome 开发者工具中也同样有与之对应的功能，叫“Pause On Caught Exceptions”。如果勾选上此功能，则即使所发生运行时异常的代码在 try/catch 范围内，Chrome 开发者工具也能够在错误代码处停住。   
 ![全局断点](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native调试技巧与心得/images/quanjuduandian.png)
