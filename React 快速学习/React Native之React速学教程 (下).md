@@ -18,7 +18,8 @@ ES6全称ECMAScript 6.0，ES6于2015年6月17日发布，ECMAScript是ECMA制定
 
 #### 定义组件
    
-##### ES5  
+>**ES5** 
+
 在ES5里，通常通过React.createClass来定义一个组件类，像这样：
 
 ```javascript
@@ -31,7 +32,8 @@ var Photo = React.createClass({
 });
 ```
 
-##### ES6
+>**ES6**
+
 在ES6里，我们通过定义一个继承自React.Component的class来定义一个组件类，像这样：
 
 ```javascript
