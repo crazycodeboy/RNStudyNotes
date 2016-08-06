@@ -37,6 +37,8 @@
 ### 初始化state 
 ### 更新 state 
 
+----第一部分
+
 
 ## [Component Lifecycle]
 ### 组件的详细说明  
