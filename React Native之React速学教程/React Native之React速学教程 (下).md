@@ -3,7 +3,7 @@
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
 React Native是基于React的，在开发React Native过程中少不了的需要用到React方面的知识。虽然官方也有相应的Document，但篇幅比较多，学起来比较枯燥。
-通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将[《React Native之React速学教程》]()分为[上]()、[中]()、[下]()三篇，大家可以根据需要进行阅读学习。  
+通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将《React Native之React速学教程》分为[上](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8A\).md)、[中](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%AD\)%20.md)、[下](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8B\).md)三篇，大家可以根据需要进行阅读学习。  
 
 ## 概述
 
@@ -184,8 +184,7 @@ class PauseMenu extends React.Component{
 }
 ```
 
-@http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8/2
-需要注意的是，不论是bind还是箭头函数，每次被执行都返回的是一个新的函数引用，因此如果你还需要函数的引用去做一些别的事情（譬如卸载监听器），那么你必须自己保存这个引用
+>需要注意的是：不论是bind还是箭头函数，每次被执行都返回的是一个新的函数引用，因此如果你还需要函数的引用去做一些别的事情（譬如卸载监听器），那么你必须自己保存这个引用。
 
 ### 4.ES6不再支持Mixins
 在ES5下，我们经常使用mixin来为组件添加一些新的方法，如： 
@@ -444,11 +443,11 @@ Video.propTypes = {
 
 ### 2.在导入(import)与导出(export)组件上的不同  
 
-@https://segmentfault.com/a/1190000002904199
-@http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8
+
 #### 导入组件  
 
 >**ES5**  
+
 在ES5里，如果使用CommonJS标准，引入React包基本通过require进行，代码类似这样：
 
 ```javascript
@@ -500,7 +499,8 @@ import FavoritePage  from './app/FavoritePage' //引入app目录下FavoritePage�
 另外，ES6支持将组件导入作为一个对象，使用“ * as”修饰即可。  
 
 ```javascript
-import  * as AboutPage from './app/AboutPage' //引入app目录下AboutPage组件作为一个对象，接下来就可使用“AboutPage.”来调用AboutPage的方法及属性了。  
+//引入app目录下AboutPage组件作为一个对象，接下来就可使用“AboutPage.”来调用AboutPage的方法及属性了。  
+import  * as AboutPage from './app/AboutPage' 
 ```
 
 >心得：使用“ * as ”修饰后，导入的组件直接被实例化成一个对象，可以使用“.”语法来调用组件的方法和属性，和没有“ * as ”修饰是有本质区别的，使用的时候要特别注意。  

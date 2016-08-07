@@ -3,7 +3,7 @@
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
 React Native是基于React的，在开发React Native过程中少不了的需要用到React方面的知识。虽然官方也有相应的Document，但篇幅比较多，学起来比较枯燥。
-通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将[《React Native之React速学教程》]()分为[上]()、[中]()、[下]()三篇，大家可以根据需要进行阅读学习。  
+通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将《React Native之React速学教程》分为[上](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8A\).md)、[中](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%AD\)%20.md)、[下](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8B\).md)三篇，大家可以根据需要进行阅读学习。  
 
 ## 概述
 
@@ -17,12 +17,12 @@ React Native是基于React的，在开发React Native过程中少不了的需要
 ### render
 `ReactComponent render()`   
 `render()` 方法是必须的。  
-当该方法被回调的时候，会检测 `this.props` 和 `this.state`，并返回一个单子级组件。该子级组件可以是虚拟的本地 DOM 组件（比如 <div /> 或者 `React.DOM.div()`），也可以是自定义的复合组件。  
+当该方法被回调的时候，会检测 `this.props` 和 `this.state`，并返回一个单子级组件。该子级组件可以是虚拟的本地 DOM 组件（比如 \<div /> 或者 `React.DOM.div()`），也可以是自定义的复合组件。  
 你也可以返回 `null` 或者 `false` 来表明不需要渲染任何东西。实际上，React 渲染一个`<noscript> `标签来处理当前的差异检查逻辑。当返回 `null` 或者 `false` 的时候，`this.getDOMNode()` 将返回 `null`。   
 
 **注意：**  
 
-`render() `函数应该是纯粹的，也就是说该函数不修改组件 `state`，每次调用都返回相同的结果，不读写 DOM 信息，也不和浏览器交互（例如通过使用 `setTimeout`）。如果需要和浏览器交互，在 `componentDidMount()` 中或者其它生命周期方法中做这件事。保持 `render()` 纯粹，可以使服务器端渲染更加切实可行，也使组件更容易被理解。  
+`render() `函数应该是纯粹的，也就是说该函数不修改组件的 `state`，每次调用都返回相同的结果，不读写 DOM 信息，也不和浏览器交互（例如通过使用 `setTimeout`）。如果需要和浏览器交互，在 `componentDidMount()` 中或者其它生命周期方法中做这件事。保持 `render()` 纯粹，可以使服务器端渲染更加切实可行，也使组件更容易被理解。  
 
 
 >心得：不要在`render()`函数中做复杂的操作，更不要进行网络请求，数据库读写，I/O等操作。
@@ -57,7 +57,7 @@ getDefaultProps() {
 
 ### [PropTypes](https://facebook.github.io/react/docs/top-level-api.html#react.proptypes) 
 `object propTypes`  
-`propTypes` 对象用于验证传入到组件的 `props`。  更多关于混合的信息，可参考[可重用的组件](https://facebook.github.io/react/docs/reusable-components.html)。
+`propTypes` 对象用于验证传入到组件的 `props`。  可参考[可重用的组件](https://facebook.github.io/react/docs/reusable-components.html)。
 
 **Usage:**   
 
@@ -80,7 +80,7 @@ var NavigationBar=React.createClass({
 
 ### mixins
 `array mixins`  
-`mixin` 数组允许使用混合来在多个组件之间共享行为。更多关于混合的信息，参考[可重用的组件](https://facebook.github.io/react/docs/reusable-components.html#mixins)。  
+`mixin` 数组允许使用混合来在多个组件之间共享行为。更多关于混合的信息，可参考[Reusable Components](https://facebook.github.io/react/docs/reusable-components.html#mixins)。  
 
 >心得：由于ES6不再支持mixins，所以不建议在使用mixins，我们可以用另外一种方式来替代mixins，请参考：[React Native之React速学教程(下)-ES6不再支持Mixins]()。
 
@@ -108,7 +108,7 @@ MyComponent.customMethod('bar');  // true
 
 ### displayName
 `string displayName`  
-`displayName` 字符串用于输出调试信息。JSX 自动设置该值；[参考JSX 深入](https://facebook.github.io/react/docs/jsx-in-depth.html#the-transform)。
+`displayName` 字符串用于输出调试信息。JSX 自动设置该值；可参考[JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html#the-transform)。
 
 #### isMounted
 
@@ -122,7 +122,7 @@ MyComponent.customMethod('bar');  // true
 
 那么在React 中组件(Component)也是有自己的生命周期方法的。  
 
-![component-lifecycle](/Users/penn/Documents/RNStudyNotes/React 快速学习/images/component-lifecycle.jpg)
+![component-lifecycle](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/component-lifecycle.jpg)
 
 ### 组件的生命周期分成三个状态：  
 
@@ -168,8 +168,6 @@ MyComponent.customMethod('bar');  // true
 
 ## isMounted是个反模式
 
-[isMounted is an Antipattern](https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html)
-
 isMounted通常用于避免修改一个已经被卸载的组件的状态，因为调用一个没有被装载的组件的`setState()`方法，系统会抛出异常警告。  
 
 ```javascript
@@ -178,11 +176,15 @@ if(this.isMounted()) { //不推荐
 }
 ```
 
-但这种做法有点反模式，`isMounted()`起到作用的时候也就是组件被卸载之后还有异步操作在进行的时候，这就意味着一个被销毁的组件还持有着一些资源的引用，这会导致系统性能降低甚至内存溢出。      
+上面做法有点反模式，`isMounted()`起到作用的时候也就是组件被卸载之后还有异步操作在进行的时候，这就意味着一个被销毁的组件还持有着一些资源的引用，这会导致系统性能降低甚至内存溢出。      
+
+
 React 在设计的时候通过`setState()`被调用时做了一些检查，来帮助开发者发现被卸载的组件还持有一些资源的引用的情况。如何你使用了`isMounted()`，也就是跳过的React的检查，也就无法发现被卸载的组件还持有资源的问题。       
+
+
 既然isMounted()是反模式，那么有没有可替代方案呢？    
 我们可以通过在设置一个变量来表示组件的装载和卸载的状态，当`componentDidMount`被调用时该变量为true，当
-`componentWillUnmount`被调用时，该变量为false，这样该变量就可以当`isMounted()`来使用。但还不够，到目前为止，我们只是通过变量来替代`isMounted()`，还没有做任何的优化，接下来我们需要在`componentWillUnmount`被调用时取消所有的回调，主动释放所有资源，这样就能避免被卸载的组件还持有资源的引用的情况，从而减少了内存溢出等情况的发生。   
+`componentWillUnmount`被调用时，该变量为false，这样该变量就可以当`isMounted()`来使用。但还不够，到目前为止，我们只是通过变量来替代`isMounted()`，还没有做任何的优化，接下来我们需要在`componentWillUnmount`被调用时取消所有的异步回调，主动释放所有资源，这样就能避免被卸载的组件还持有资源的引用的情况，从而减少了内存溢出等情况的发生。   
 
 ```javascript
 class MyComponent extends React.Component {

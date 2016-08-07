@@ -2,7 +2,7 @@
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
 React Native是基于React的，在开发React Native过程中少不了的需要用到React方面的知识。虽然官方也有相应的Document，但篇幅比较多，学起来比较枯燥。
-通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将[《React Native之React速学教程》]()分为[上]()、[中]()、[下]()三篇，大家可以根据需要进行阅读学习。  
+通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将《React Native之React速学教程》分为[上](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8A\).md)、[中](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%AD\)%20.md)、[下](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B%20\(%E4%B8%8B\).md)三篇，大家可以根据需要进行阅读学习。  
 
 ## 概述
 
@@ -18,9 +18,9 @@ React是一个用于组建用户界面的JavaScript库，让你以更简单的�
 
 不是模板却比模板更加灵活：  
 
-![Component](/Users/penn/Documents/RNStudyNotes/React 快速学习/images/Component.jpg)  
+![Component](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/Component.jpg)  
 
->心得：上图是[GitHub Popular]()的首页截图，这个页面是通过不同的组件组装而成的，组件化的开发模式，使得代码在更大程度上的到复用，而且组件之间对的组装很灵活。  
+>心得：上图是[GitHub Popular](https://github.com/crazycodeboy/GitHubPopular)的首页截图，这个页面是通过不同的组件组装而成的，组件化的开发模式，使得代码在更大程度上的到复用，而且组件之间对的组装很灵活。  
 
 
 ## Get Started
@@ -33,7 +33,7 @@ React是一个用于组建用户界面的JavaScript库，让你以更简单的�
 上面一共列举了三个库： react.js 、react-dom.js 和 browser.min.js ，它们必须首先加载。其中，react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，browser.min.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。  
 你可以从[React官网](https://facebook.github.io/react/downloads.html)下载这些库，也可以将其下载到本地去使用。 
 
->心得：在做React Native开发时，这些库作为React Native核心库已经被初始化在node_modules目录下，所以不需要单独的下载。  
+>心得：在做React Native开发时，这些库作为React Native核心库已经被初始化在node_modules目录下，所以不需要单独下载。  
 
 ### 使用React 
 解压从上述地址下载的压缩包，在根目录中创建一个包含以下内容的 “helloworld.html” 。  
@@ -77,10 +77,7 @@ ReactDOM.render(
 JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。
 每一个XML标签都会被JSX转换工具转换成纯JavaScript代码，使用JSX，组件的结构和组件之间的关系看上去更加清晰。  
 JSX并不是React必须使用的，但React官方建议我们使用 JSX , 因为它能定义简洁且我们熟知的包含属性的树状结构语法。 
-  
->提示：    
->- React 的 JSX 里约定分别使用首字母大、小写来区分本地组件的类和 HTML 标签。    
->- 由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，  React DOM 使用 className 和 htmlFor 来做对应的属性。  
+    
 
 **Usage:**  
   
@@ -121,8 +118,9 @@ var myElement = <MyComponent someProperty={true} />;
 React.render(myElement, document.body);
 ```
 
->提示：React 的 JSX 里约定分别使用首字母大、小写来区分本地组件的类和 HTML 标签。   
-由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。
+>提示：    
+>- React 的 JSX 里约定分别使用首字母大、小写来区分本地组件的类和 HTML 标签。    
+>- 由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，  React DOM 使用 className 和 htmlFor 来做对应的属性。  
 
 ### JavaScript 表达式
 
@@ -175,7 +173,7 @@ class ReactDemo extends Component {
 }
 ```
 
->提示：在标签节点以外注释，和通常的注释是一样的，多行用“/**/” 单行用“//”；
+>心得：在标签节点以外注释，和通常的注释是一样的，多行用“/**/” 单行用“//”；
 
 ### JSX延展属性  
 
