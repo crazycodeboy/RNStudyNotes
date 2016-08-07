@@ -1,28 +1,13 @@
 # React Native之React速学教程(中) 
 
-------
-分上下两篇：
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
-结构： 
+React Native是基于React的，在开发React Native过程中少不了的需要用到React方面的知识。虽然官方也有相应的Document，但篇幅比较多，学起来比较枯燥。
+通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将[《React Native之React速学教程》]()分为[上]()、[中]()、[下]()三篇，大家可以根据需要进行阅读学习。  
 
+## 概述
 
-## [Component Lifecycle]
-### 组件的详细说明  
-#### render
-#### getInitialState
-#### getDefaultProps
-#### [PropTypes]
-#### mixins
-#### statics
-#### displayName
-
-### 组件的生命周期
-#### 组件的生命周期分成三个状态：  
-#### Mounting(装载)
-#### Updating (更新)
-#### Unmounting(移除)
-
--------
+本篇为《React Native之React速学教程》的第二篇。本篇将从组件(Component)的详细说明、组件的生命周期(Component Lifecycle)、isMounted是个反模式等方面进行讲解，让大家对组件(Component)有个更系统以及更深入的认识。  
 
 
 
@@ -97,7 +82,7 @@ var NavigationBar=React.createClass({
 `array mixins`  
 `mixin` 数组允许使用混合来在多个组件之间共享行为。更多关于混合的信息，参考[可重用的组件](https://facebook.github.io/react/docs/reusable-components.html#mixins)。  
 
->心得：由于ES6不再支持mixins，所以不建议在使用mixins，我们可以用另外一种方式来替代mixins，请参考：[使用高阶组件替代Mixins]()。
+>心得：由于ES6不再支持mixins，所以不建议在使用mixins，我们可以用另外一种方式来替代mixins，请参考：[React Native之React速学教程(下)-ES6不再支持Mixins]()。
 
 ### statics
 
@@ -124,6 +109,12 @@ MyComponent.customMethod('bar');  // true
 ### displayName
 `string displayName`  
 `displayName` 字符串用于输出调试信息。JSX 自动设置该值；[参考JSX 深入](https://facebook.github.io/react/docs/jsx-in-depth.html#the-transform)。
+
+#### isMounted
+
+`boolean isMounted()`，当组件被渲染到DOM，该方法返回true，否则返回false。该方法通常用于异步任务完成后修改state前的检查，以避免修改一个没有被渲染的组件的state。   
+
+>心得：开发中不建议大家isMounted，大家可以使用另外一种更好的方式来避免修改没有被渲染的DOM，请下文的[isMounted 是个反模式]()。
 
 ## [组件的生命周期(Component Lifecycle)](https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle)
 
@@ -175,47 +166,86 @@ MyComponent.customMethod('bar');  // true
 
 在该方法中执行任何必要的清理，比如无效的定时器，或者清除在 componentDidMount 中创建的 DOM 元素。
 
-## ES6 Classes
+## isMounted是个反模式
 
+[isMounted is an Antipattern](https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html)
 
-## ES5 VS ES6
+isMounted通常用于避免修改一个已经被卸载的组件的状态，因为调用一个没有被装载的组件的`setState()`方法，系统会抛出异常警告。  
 
-
-### [isMounted is an Antipattern](https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html)
-
-## 技巧
-
-### ES6的箭头函数  
-()=>{}
-### 函数也可以这样写
-test(){
+```javascript
+if(this.isMounted()) { //不推荐
+  this.setState({...});
 }
-vs
-test:function(){
+```
+
+但这种做法有点反模式，`isMounted()`起到作用的时候也就是组件被卸载之后还有异步操作在进行的时候，这就意味着一个被销毁的组件还持有着一些资源的引用，这会导致系统性能降低甚至内存溢出。      
+React 在设计的时候通过`setState()`被调用时做了一些检查，来帮助开发者发现被卸载的组件还持有一些资源的引用的情况。如何你使用了`isMounted()`，也就是跳过的React的检查，也就无法发现被卸载的组件还持有资源的问题。       
+既然isMounted()是反模式，那么有没有可替代方案呢？    
+我们可以通过在设置一个变量来表示组件的装载和卸载的状态，当`componentDidMount`被调用时该变量为true，当
+`componentWillUnmount`被调用时，该变量为false，这样该变量就可以当`isMounted()`来使用。但还不够，到目前为止，我们只是通过变量来替代`isMounted()`，还没有做任何的优化，接下来我们需要在`componentWillUnmount`被调用时取消所有的回调，主动释放所有资源，这样就能避免被卸载的组件还持有资源的引用的情况，从而减少了内存溢出等情况的发生。   
+
+```javascript
+class MyComponent extends React.Component {
+  componentDidMount() {
+    mydatastore.subscribe(this);
+  }
+  render() {
+    ...
+  }
+  componentWillUnmount() {
+    mydatastore.unsubscribe(this);
+  }
 }
+```
+使用可取消的Promise做异步操作。  
 
- 
-## React in React Native 
 
-### 创建组件的两种方式
+```javascript
+const cancelablePromise = makeCancelable(
+  new Promise(r => component.setState({...}}))
+);
+cancelablePromise
+  .promise
+  .then(() => console.log('resolved'))
+  .catch((reason) => console.log('isCanceled', reason.isCanceled));
+cancelablePromise.cancel(); // Cancel the promise
+```
+
+可取消的Promise。
+
+```javascript
+const makeCancelable = (promise) => {
+  let hasCanceled_ = false;
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then((val) =>
+      hasCanceled_ ? reject({isCanceled: true}) : resolve(val)
+    );
+    promise.catch((error) =>
+      hasCanceled_ ? reject({isCanceled: true}) : reject(error)
+    );
+  });
+  return {
+    promise: wrappedPromise,
+    cancel() {
+      hasCanceled_ = true;
+    },
+  };
+};
+```
 
 ## 参考  
+[React's official site](https://facebook.github.io/react/)  
+[React on ES6+](https://babeljs.io/blog/2015/06/07/react-on-es6-plus)
 
+## About
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。    
+了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)   
+@[http://jiapenghui.com](http://jiapenghui.com)  
 
-##  About
-
----
-
-
-
-
-
-## 使用React 
-
-
-
-
-
-
-@[React's official site](https://facebook.github.io/react/)  
-@[React 中文网](http://reactjs.cn/react/index.html)  
+推荐阅读
+----
+* [React Native 学习笔记](https://github.com/crazycodeboy/RNStudyNotes)   
+* [Reac Native布局详细指南](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React Native布局/React Native布局详细指南/React Native布局详细指南.md)   
+* [React Native调试技巧与心得](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97.md)
+*  [React Native发布APP之签名打包APK](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK)    
+*  [React Native应用部署、热更新-CodePush最新集成总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93)

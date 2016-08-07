@@ -1,68 +1,12 @@
-# React Native之React速学教程 
+# React Native之React速学教程(上)
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
-------
-分上下两篇：
+React Native是基于React的，在开发React Native过程中少不了的需要用到React方面的知识。虽然官方也有相应的Document，但篇幅比较多，学起来比较枯燥。
+通过《React Native之React速学教程》你可以对React有更系统和更深入的认识。为了方便大家学习，我将[《React Native之React速学教程》]()分为[上]()、[中]()、[下]()三篇，大家可以根据需要进行阅读学习。  
 
-结构：  
-## What's React 
+## 概述
 
-
-## Get Started
-### 使用React 
-### ReactDOM.render()
-
-
-## JSX 
-### HTML标签 与 React组件 对比
-
-### JavaScript 表达式
-#### 属性表达式
-#### 子节点表达式
-
-### 注释
-
-### JSX延展属性  
-#### 不要试图去修改组件的属性  
-#### 延展属性（Spread Attributes）
-
-
-## Component  
-
-
-## 组件的属性(props)  
-### [遍历对象的属性]
-
-
-## Reactive state
-### 初始化state 
-### 更新 state 
-
-----第一部分
-
-
-## [Component Lifecycle]
-### 组件的详细说明  
-#### render
-#### getInitialState
-#### getDefaultProps
-#### [PropTypes]
-#### mixins
-#### statics
-#### displayName
-
-### 组件的生命周期
-#### 组件的生命周期分成三个状态：  
-#### Mounting(装载)
-#### Updating (更新)
-#### Unmounting(移除)
-
-
-## ES5 VS ES6
-
-## 使用高阶组件替代Mixins
--------
-
-
+本篇为《React Native之React速学教程》的第一篇。本篇将从React的特点、如何使用React、JSX语法、组件(Component）以及组件的属性，状态等方面进行讲解。  
 
 
 ## What's React 
@@ -463,6 +407,22 @@ var FavoriteButton=React.createClass({
 
 >心得：由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
 
+## 参考  
+[React's official site](https://facebook.github.io/react/)  
+[React on ES6+](https://babeljs.io/blog/2015/06/07/react-on-es6-plus)
 
-@[React's official site](https://facebook.github.io/react/)  
-@[React 中文网](http://reactjs.cn/react/index.html)  
+## About
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。    
+了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)   
+@[http://jiapenghui.com](http://jiapenghui.com)  
+
+推荐阅读
+----
+* [React Native 学习笔记](https://github.com/crazycodeboy/RNStudyNotes)   
+* [Reac Native布局详细指南](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React Native布局/React Native布局详细指南/React Native布局详细指南.md)   
+* [React Native调试技巧与心得](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97.md)
+*  [React Native发布APP之签名打包APK](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK)    
+*  [React Native应用部署、热更新-CodePush最新集成总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93)
+
+
+
