@@ -1,3 +1,5 @@
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
+
 在做React Native开发时，少不了的需要对React Native程序进行调试。调试程序是每一位开发者的基本功，高效的调试不仅能提高开发效率，也能降低Bug率。本文将向大家分享React Native程序调试的一些技巧和心得。  
 
 ## Developer Menu
