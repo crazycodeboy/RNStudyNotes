@@ -213,24 +213,24 @@ Chrome Developer Tools 快捷键
 
 当DevTools被打开的时候，按Ctrl+P或O（cmd+p或o on mac）,就能快速搜寻和打开你项目的文件。  
 
-![快速切换文件]()
+![快速切换文件](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/images/%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2%E6%96%87%E4%BB%B6.GIF)
 
 >### 在当前文件中查找内容
 在当前文件中查找内容可通过Ctrl(cmd) + F快捷键。 　　
 
-![在当前文件中查找内容]()　　
+![在当前文件中查找内容](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/images/%E5%9C%A8%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%86%85%E5%AE%B9.png)　　
 　　
 > ###在所有文件中查找内容
 
 如果你希望在在所有文件中查找内容怎么办呢？在页面已经加载的文件中搜寻一个特定的字符串，快捷键是Ctrl + Shift + F (Cmd + Opt + F)，这种搜寻方式还支持正则表达式。　
 
-![在源代码中搜索]()　
+![在源代码中搜索](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/images/%E5%9C%A8%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%90%9C%E7%B4%A2.GIF)　
 
 > ###快速跳转到指定行
 
 在Sources标签中打开一个文件之后，按Ctrl + G，然后输入行号，DevTools就会允许你跳转到文件中的任意一行。
 
-![快速跳转到指定行]()　
+![快速跳转到指定行](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/images/%E5%BF%AB%E9%80%9F%E8%B7%B3%E8%BD%AC%E5%88%B0%E6%8C%87%E5%AE%9A%E8%A1%8C.GIF)　
 
 >心得：如果你在“快速切换文件”输入框中输入“:”然后加行号也能跳转到指定行。  
 
