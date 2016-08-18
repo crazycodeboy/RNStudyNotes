@@ -6,7 +6,7 @@
 如果你是一名Android、iOS、或前端开发人员，有者一颗积极进取的心，欢迎关注《React Native 每日一学》。本栏目汇聚React Native开发的技巧，知识点，经验等。  
 
 ## 列表  
-1. [D1:React Native 读取本地的json文件 (2016-8-18)](./#D1:React Native 读取本地的json文件 (2016-8-18))
+1. [D1:React Native 读取本地的json文件 (2016-8-18)](#d1react-native-读取本地的json文件-2016-8-18)
 
 
 
@@ -48,10 +48,10 @@ import langsData from '../../../res/data/langs.json'
 
 **读取`langs.json`**  
 
-![React Native 读取本地的json文件-1](/Users/penn/Documents/RNStudyNotes/React Native 每日一学/images/D1/React Native 读取本地的json文件-1.png)
+![React Native 读取本地的json文件-1](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E6%AF%8F%E6%97%A5%E4%B8%80%E5%AD%A6/images/D1/React%20Native%20%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E7%9A%84json%E6%96%87%E4%BB%B6-1.png)
 
 **使用`langs.json`**    
 
-![React Native 读取本地的json文件-2](/Users/penn/Documents/RNStudyNotes/React Native 每日一学/images/D1/React Native 读取本地的json文件-2.png)  
+![React Native 读取本地的json文件-2](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E6%AF%8F%E6%97%A5%E4%B8%80%E5%AD%A6/images/D1/React%20Native%20%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E7%9A%84json%E6%96%87%E4%BB%B6-2.png)  
 
 @[How to fetch data from local JSON file on react native?](http://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native)
