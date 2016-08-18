@@ -175,7 +175,7 @@ class PauseMenu extends React.Component{
     componentWillMount(){
         AppStateIOS.addEventListener('change', this.onAppPaused);
     }
-    componentDidUnmount(){
+    componentWillUnmount(){
         AppStateIOS.removeEventListener('change', this.onAppPaused);
     }
     onAppPaused = (event) => {
