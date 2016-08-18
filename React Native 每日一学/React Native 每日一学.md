@@ -1,32 +1,57 @@
 
-# Learn a little every day  
+# React Native 每日一学(Learn a little every day)  
+
+汇聚知识，分享精华。  
+>如果你是一名React Native爱好者，或者有一颗热爱钻研新技术的心，喜欢分享技术干货、项目经验、以及你在React Naive学习研究或实践中的一些经验心得等等，欢迎投稿《React Native 每日一学》栏目。   
+如果你是一名Android、iOS、或前端开发人员，有者一颗积极进取的心，欢迎关注《React Native 每日一学》。本栏目汇聚React Native开发的技巧，知识点，经验等。  
+
+## 列表  
+1. [D1:React Native 读取本地的json文件 (2016-8-18)](./#D1:React Native 读取本地的json文件 (2016-8-18))
+
+
 
 
 ```
-模板
-  
+模板：   
+D1:标题 (日期)
+------
+概述
+### 子标题
+内容  
+### 子标题
+内容   
+另外：记得在列表中添加链接 
 ```
 
 
 
 D1:React Native 读取本地的json文件 (2016-8-18)
 ------  
-自 React Native 0.4.3，你可以导入的形式，来读取本地的json文件，导入的文件可以作为一个js对象使用。      
+自 React Native 0.4.3，你可以以导入的形式，来读取本地的json文件，导入的文件可以作为一个js对象使用。      
 
 ### 第一步：导入json文件   
 
-```JavaScript
-var customData = require('./customData.json');
+```javascript
+var langsData = require('../../../res/data/langs.json');
 ```
 
 ES6/ES2015     
 
-```JavaScript
-import customData from './customData.json';
+```javascript
+import langsData from '../../../res/data/langs.json'
 ```
 
 ### 第二步：使用   
+如果`langs.json`的路径正确切没有格式错误，那么现在你可以操作`langsData`对象了。  
 
+### Usage  
 
+**读取`langs.json`**  
+
+![React Native 读取本地的json文件-1](/Users/penn/Documents/RNStudyNotes/React Native 每日一学/images/D1/React Native 读取本地的json文件-1.png)
+
+**使用`langs.json`**    
+
+![React Native 读取本地的json文件-2](/Users/penn/Documents/RNStudyNotes/React Native 每日一学/images/D1/React Native 读取本地的json文件-2.png)  
 
 @[How to fetch data from local JSON file on react native?](http://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native)
