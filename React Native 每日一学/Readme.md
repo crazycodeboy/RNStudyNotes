@@ -8,7 +8,7 @@
 ## 列表  
 1. [D1:React Native 读取本地的json文件 (2016-8-18)](#d1react-native-读取本地的json文件-2016-8-18)
 2. [D2:React Native import 文件的小技巧 (2016-8-19)](#d2react-native-import-文件的小技巧-2016-8-19)
-
+3. [D3:React Native 真机调试 (2016-8-22)](#d3react-native-真机调试-2016-8-22)
 
 ```
 模板：   
@@ -23,7 +23,7 @@ D1:标题 (日期)
 ```
 D3:React Native 真机调试 (2016-8-22)
 ------ 
-开发中真机调试时必不可少的,有些功能和问题模拟器是无法重现的,所以就需要配合真机测试,接下来就说下安卓和iOS的真机调试,不难,但是有很多细节需要注意
+开发中真机调试是必不可少的,有些功能和问题模拟器是无法重现的,所以就需要配合真机测试,接下来就说下安卓和iOS的真机调试,不难,但是有很多细节需要注意
 
 ###iOS 真机调试
 1. ``必须`` 保证调试用电脑的和你的设备处于相同的 ``WiFi ``网络环境中下
@@ -31,7 +31,7 @@ D3:React Native 真机调试 (2016-8-22)
 3. 更改 jsCodeLocation 中的 localhost 改成你电脑的局域网IP地址
 4. IP地址点击左面右上角WIFi图标,找到打开网络偏好设置,状态栏下就可以看见了
 5. 在Xcode中,选择你的手机作为目标设备,Run运行就可以了
-![React Native 真机调试的json文件-1]
+![React Native 真机调试的json文件-1](https://raw.githubusercontent.com/WT-Road/RNStudyNotes/master/React%20Native%20%E6%AF%8F%E6%97%A5%E4%B8%80%E5%AD%A6/images/D1/React%20Native%20%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E7%9A%84json%E6%96%87%E4%BB%B6-1.png)
 
 ###Android 真机调试
 1. 在 Android 设备上打开 USB debugging 并连接上电脑启动调试。
@@ -44,8 +44,7 @@ D3:React Native 真机调试 (2016-8-22)
 注:因为本人不是安卓开发,所以参考[http://my.oschina.net/imot/blog/512808](http://my.oschina.net/imot/blog/512808)
 
 ###细节
-其实还是有些坑的,这里只说iOS
-如开始所说,必须是同一网络下,有时电脑同时开着Wifi和插着网线,建议把网线拔掉,但是也不排除可以,没有试过,还有就是
+其实还是有些坑的,这里只说iOS 如开始所说,必须是同一网络下,有时电脑同时开着Wifi和插着网线,建议把网线拔掉,但是也不排除可以,没有试过,还有就是
 
 ``jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];``
 
