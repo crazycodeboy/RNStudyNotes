@@ -7,8 +7,7 @@
 
 ## 列表  
 1. [D1:React Native 读取本地的json文件 (2016-8-18)](#d1react-native-读取本地的json文件-2016-8-18)
-
-
+2. [D2:React Native import 文件的小技巧 (2016-8-19)](#d2react-native-import-文件的小技巧-2016-8-19)
 
 
 ```
@@ -23,6 +22,35 @@ D1:标题 (日期)
 另外：记得在列表中添加链接 
 ```
 
+D2:React Native import 文件的小技巧 (2016-8-19)
+------  
+开发中经常需要 import 其他 js 文件，如果需要同时导入一些相关的 js 文件时，可以创建一个索引文件方便引用。  
+
+### 第一步：创建index.js   
+在 index.js 中 import 相关的 js 文件
+
+```
+'use strict';
+
+import * as Type from './network/EnvironmentConst';
+import Request from './network/RequestManager';
+import AppContext from './network/AppContext';
+import ApiServiceFactory from './network/ApiServiceFactory';
+
+module.exports = {
+    ApiServiceFactory,
+    Type,
+    Request,
+    AppContext
+};
+```
+
+### 第二步：使用   
+如果需要使用这些类，只需要导入index文件就可以了~
+
+```
+import {Request, ApiServiceFactory, AppContext, Type} from '../expand/index';
+```
 
 
 D1:React Native 读取本地的json文件 (2016-8-18)
