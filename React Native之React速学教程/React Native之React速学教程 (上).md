@@ -362,6 +362,34 @@ ReactDOM.render(
 需要注意的是，由于 this.refs.[refName] 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 Click 事件的回调函数，确保了只有等到真实 DOM 发生 Click 事件之后，才会读取 this.refs.[refName] 属性。  
 React 组件支持很多事件，除了 Click 事件以外，还有 KeyDown 、Copy、Scroll 等，完整的事件清单请查看[官方文档](https://facebook.github.io/react/docs/events.html#supported-events)。
 
+### ref属性不只是string  
+ref属性不仅接受string类型的参数，而且它还接受一个function作为callback。这一特性让开发者对ref的使用更加灵活。   
+     
+
+```javascript
+ render: function() {
+    return (
+      <TextInput
+        ref={function(input) {
+          if (input != null) {
+            input.focus();
+          }
+        }} />
+    );
+  },
+```   
+在ES6中我们可以使用箭头函数来为组件的ref设置一个callback。  
+
+```javascript
+  render() {
+    return <TextInput ref={(c) => this._input = c} />;
+  },
+  componentDidMount() {
+    this._input.focus();
+  },
+```
+需要提醒大家的是，只有在组件的render方法被调用时，ref才会被调用，组件才会返回ref。如果你在调用this.refs.xx时render方法还没被调用，那么你得到的是undefined。
+
 >心得：ref属性在开发中使用频率很高，使用它你可以获取到任何你想要获取的组件的对象，有个这个对象你就可以灵活地做很多事情，比如：读写对象的变量，甚至调用对象的函数。  
 
 
