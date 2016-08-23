@@ -9,6 +9,7 @@
 1. [D1:React Native 读取本地的json文件 (2016-8-18)](#d1react-native-读取本地的json文件-2016-8-18)
 2. [D2:React Native import 文件的小技巧 (2016-8-19)](#d2react-native-import-文件的小技巧-2016-8-19)
 3. [D3:React Native 真机调试 (2016-8-22)](#d3react-native-真机调试-2016-8-22)
+4. [D4:React Native 函数的绑定 (2016-8-23)](#d4react-native-函数的绑定-2016-8-23)
 
 ```
 模板：   
@@ -21,6 +22,56 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D4:React Native 函数的绑定 (2016-8-23)
+----
+在ES6的class中函数不再被自动绑定，你需要手动去绑定它们。
+
+第一种在构造函数里绑定。
+
+	  constructor(props) {
+    	super(props); 
+    	// Set up initial state
+    	this.state = {
+      		text: props.initialValue || 'placeholder' 
+    };
+        // Functions must be bound manually with ES6 classes
+    	this.handleChange = this.handleChange.bind(this); 
+另一种方式就是在你使用的地方通过内联来绑定:
+
+	// Use `.bind`:
+	 render() { 
+    	return (
+     	 <input onChange={this.handleChange.bind(this)}
+       	 value={this.state.text} /> 
+    );
+	}
+	// Use an arrow function:
+	render() {
+		 return (
+			<input onChange={() => 	this.handleChange()} 
+      	value={this.state.text} />
+	);
+以上任意一种都可以，然而在效率上却不行了。每一次调用render(可以说是非常频繁！)一个新的函数都会被创建。与在构造函数里只绑定一次相比就慢一些。
+
+最终的选择是使用箭头函数直接替换函数在类中的声明，像这样：
+
+	// the normal way
+	// requires binding elsewhere
+	handleChange(event) {
+	  	this.setState({
+    	text: event.target.value
+		});
+	}
+	// the ES7 way
+	// all done, no binding required
+	handleChange = (event) => { 
+	  this.setState({
+    text: event.target.value
+	  });
+	}
+通过这种方式，你不需要绑定任何东西。这都已经通过神奇的箭头函数被搞定了。像期望的那样，函数内部的this将会指向组件实例。
+参考：[http://www.jianshu.com/p/a4c23654932e](http://www.jianshu.com/p/a4c23654932e)
+
 D3:React Native 真机调试 (2016-8-22)
 ------ 
 开发中真机调试是必不可少的,有些功能和问题模拟器是无法重现的,所以就需要配合真机测试,接下来就说下安卓和iOS的真机调试,不难,但是有很多细节需要注意
@@ -111,3 +162,5 @@ import langsData from '../../../res/data/langs.json'
 ![React Native 读取本地的json文件-2](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E6%AF%8F%E6%97%A5%E4%B8%80%E5%AD%A6/images/D1/React%20Native%20%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E7%9A%84json%E6%96%87%E4%BB%B6-2.png)  
 
 @[How to fetch data from local JSON file on react native?](http://stackoverflow.com/questions/29452822/how-to-fetch-data-from-local-json-file-on-react-native)
+
+
