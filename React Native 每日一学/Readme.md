@@ -10,7 +10,7 @@
 2. [D2:React Native import 文件的小技巧 (2016-8-19)](#d2react-native-import-文件的小技巧-2016-8-19)
 3. [D3:React Native 真机调试 (2016-8-22)](#d3react-native-真机调试-2016-8-22)
 4. [D4:React Native 函数的绑定 (2016-8-23)](#d4react-native-函数的绑定-2016-8-23)
-6. [D5:React Native setNativeProps使用(2016-8-24)](#D5:React Native setNativeProps使用2016-8-24)
+5. [D5:React Native setNativeProps使用 (2016-8-24)](#d5react-native-setnativeprops使用2016-8-24)
 
 ```
 模板：   
@@ -52,7 +52,7 @@ D5:React Native setNativeProps使用（2016-8-24)
   });
  ```
  
-### 避免和`rende`r方法的冲突
+### 避免和`render`方法的冲突
 
 如果要更新一个由`render`方法来维护的属性，则可能会碰到一些出人意料的bug。因为每一次组件重新渲染都可能引起属性变化，这样一来，之前通过`setNativeProps`所设定的值就被完全忽略和覆盖掉了。
 
