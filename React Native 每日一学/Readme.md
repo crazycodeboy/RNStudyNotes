@@ -10,7 +10,7 @@
 2. [D2:React Native import 文件的小技巧 (2016-8-19)](#d2react-native-import-文件的小技巧-2016-8-19)
 3. [D3:React Native 真机调试 (2016-8-22)](#d3react-native-真机调试-2016-8-22)
 4. [D4:React Native 函数的绑定 (2016-8-23)](#d4react-native-函数的绑定-2016-8-23)
-5. [D5:React Native setNativeProps使用（2016-8-24）](#d5react-native-setNativeProps使用-2016-8-24)
+6. [D5:React Native setNativeProps使用(2016-8-24)](#D5:React Native setNativeProps使用2016-8-24)
 
 ```
 模板：   
@@ -23,12 +23,18 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
-D5:React Native setNativeProps使用（2016-8-24）
-----
-有时候我们需要直接改动组件并触发局部的刷新，但不使用state或是props.
-setNativeProps 方法可以理解为web的直接修改dom。使用该方法修改 View 、 Text 等 RN自带的组件 ，则不会触发组件的 componentWillReceiveProps 、 shouldComponentUpdate 、 componentWillUpdate 等组件生命周期中的方法。
 
-###使用例子
+
+
+D5:React Native setNativeProps使用（2016-8-24)
+----
+
+有时候我们需要直接改动组件并触发局部的刷新，但不使用`state`或是`props`。
+`setNativeProps` 方法可以理解为web的直接修改dom。使用该方法修改 `View` 、 `Text` 等 RN自带的组件 ，则不会触发组件的 `componentWillReceiveProps` 、 `shouldComponentUpdate` 、`componentWillUpdate` 等组件生命周期中的方法。
+
+### 使用例子
+ 
+ ```javascript
   class MyButton extends React.Component({
 	setNativeProps(nativeProps) {
 	     this._root.setNativeProps({   //这里输入你要修改的组件style
@@ -44,8 +50,11 @@ setNativeProps 方法可以理解为web的直接修改dom。使用该方法修�
 	     )
 	},
   });
-###避免和render方法的冲突
-   如果要更新一个由render方法来维护的属性，则可能会碰到一些出人意料的bug。因为每一次组件重新渲染都可能引起属性变化，这样一来，之前通过setNativeProps所设定的值就被完全忽略和覆盖掉了。
+ ```
+ 
+### 避免和`rende`r方法的冲突
+
+如果要更新一个由`render`方法来维护的属性，则可能会碰到一些出人意料的bug。因为每一次组件重新渲染都可能引起属性变化，这样一来，之前通过`setNativeProps`所设定的值就被完全忽略和覆盖掉了。
 
 
 D4:React Native 函数的绑定 (2016-8-23)
