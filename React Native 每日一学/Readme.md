@@ -11,6 +11,7 @@
 3. [D3:React Native 真机调试 (2016-8-22)](#d3react-native-真机调试-2016-8-22)
 4. [D4:React Native 函数的绑定 (2016-8-23)](#d4react-native-函数的绑定-2016-8-23)
 5. [D5:React Native setNativeProps使用 (2016-8-24)](#d5react-native-setnativeprops使用2016-8-24)
+6. [D6:ref属性不只是string（2016-8-25)](#d6ref属性不只是string2016-8-25)
 
 ```
 模板：   
@@ -23,6 +24,38 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+
+D6:ref属性不只是string（2016-8-25)
+----
+
+ref属性不仅接受string类型的参数，而且它还接受一个function作为callback。这一特性让开发者对ref的使用更加灵活。   
+     
+
+```javascript
+ render: function() {
+    return (
+      <TextInput
+        ref={function(input) {
+          if (input != null) {
+            input.focus();
+          }
+        }} />
+    );
+  },
+```   
+在ES6中我们可以使用箭头函数来为组件的ref设置一个callback。  
+
+```javascript
+  render() {
+    return <TextInput ref={(c) => this._input = c} />;
+  },
+  componentDidMount() {
+    this._input.focus();
+  },
+```
+需要提醒大家的是，只有在组件的render方法被调用时，ref才会被调用，组件才会返回ref。如果你在调用this.refs.xx时render方法还没被调用，那么你得到的是undefined。
+
+>心得：ref属性在开发中使用频率很高，使用它你可以获取到任何你想要获取的组件的对象，有个这个对象你就可以灵活地做很多事情，比如：读写对象的变量，甚至调用对象的函数。  
 
 
 
