@@ -12,7 +12,86 @@ react-native run-ios
 
 ####1. 集成 React-Native 到 iOS 原生项目
 开发 iOS 应用时，一般都会使用 CocoaPods 管理第三方开源类库，这里同样使用 CocoaPods 集成 RN，如果你的项目中不想使用 CocoaPods 的话，你可以参考[这里][0]，手动添加依赖到到原生项目中。
+
+1. 创建一个文件夹 RNProject
+·. 创建 package.json 文件
+	- 在 RNProject 中 添加 package.json 文件
+	- 编辑 package.json 文件
 	
+		```
+		{
+  			"name": "RNProject",
+  			"version": "0.0.1",
+  			"private": true,
+  			"scripts": {
+    			"start": "node node_modules/react-native/local-cli/cli.js start"
+  			},
+  			"dependencies": {
+    			"react": "15.3.0",
+    			"react-native": "0.32.0"
+  			}
+		}
+		```
+1. 安装 Packages
+
+	```
+	// 执行 npm install 之后，将会安装 package.json 中添加的依赖包到 node_modules/ 中
+	// Tip：记得在 .gitignore 里面添加了 node_modules/ 
+		
+	$ npm install
+	```
+1. 添加原生项目到根目录下	
+1. 在 Podfile 添加依赖
+
+	```
+	platform:ios, '7.0'
+	inhibit_all_warnings!
+	
+	target "specialksudi" do
+	
+	pod 'React', :path => '../node_modules/react-native', :subspecs => [
+		'Core',
+		'RCTText',
+		'RCTImage',
+		'RCTWebSocket'
+	]
+	end
+	```
+	```
+	Tip:
+	React 默认只添加 Core 这一个子模块，如果想要添加其他模块，需要在 subspecs 中手动添加。
+	默认添加模块：'Core'
+	其他依赖：ios, "7.0"
+	所有子模块：
+	'Core' 
+	'ART'  
+	'RCTActionSheet' 
+	'RCTAdSupport' 
+	'RCTAnimation'  
+	'RCTCameraRoll'  
+	'RCTGeolocation' 
+	'RCTImage'  
+	'RCTNetwork'   
+	'RCTPushNotification'  
+	'RCTSettings'  
+	'RCTText'  
+	'RCTVibration'  
+	'RCTWebSocket'   
+	'RCTLinkingIOS'   
+	'RCTTest'
+	```
+
+1. pod 安装
+
+	```
+	$ pod install
+	```
+
+1. 代码集成
+	- js 代码
+	- OC 代码
+	
+
 ####2. iOS 原生界面调用 React-Native 界面
 	
 ####2. React-Native 调用原生UI组件
