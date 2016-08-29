@@ -382,7 +382,7 @@ class PayPackage implements ReactPackage {
 ##问题
 1.使用API InteractionManager，它的作用就是可以使本来JS的一些操作在动画完成之后执行，这样就可确保动画的流程性
 
-	InteractionManager.runAfterInter	actions(()=>{
+	InteractionManager.runAfterInteractions(()=>{
 	//耗时较长
 	//获取网络数据
 	});
