@@ -2,10 +2,7 @@
 
 如果React Native还不支持某个你需要的原生特性，你应当可以自己实现该特性的封装。
 
--[原生模块](#原生模块)
--[原生UI 组件](#原生UI 组件)
-
-原生模块
+##原生模块
 
 首先来创建一个原生模块。一个原生模块是一个继承了`ReactContextBaseJavaModule`的Java类，它可以实现一些JavaScript所需的功能。我们这里的目标是可以在JavaScript里写`PayAndroid.onPay()`;
 ```java
@@ -261,7 +258,7 @@ class PayPackage implements ReactPackage {
 	}
 	...
 
-原生UI 组件
+##原生UI 组件
 
 原生视图需要被一个ViewManager的派生类创建和管理。它能够包含更多公共的属性，譬如背景颜色、透明度、Flexbox布局等等。
 
