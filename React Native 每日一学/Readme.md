@@ -13,7 +13,7 @@
 5. [D5:React Native setNativeProps使用 (2016-8-24)](#d5react-native-setnativeprops使用2016-8-24)
 6. [D6:ref属性不只是string（2016-8-25)](#d6ref属性不只是string2016-8-25)
 7. [D7:解构赋值（Destructuring assignment）(2016-8-26)](#d7解构赋值destructuring-assignment2016-8-26)
-8. [D8:React-Native 原生模块调用(iOS) (2016-8-29)](#d8react-native-原生模块调用(iOS)-2016-8-29)
+8. [D8:React-Native 原生模块调用(iOS) (2016-8-29)](#d8react-native-原生模块调用ios-2016-8-29)
 
 ```
 模板：   
