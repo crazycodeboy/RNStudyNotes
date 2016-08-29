@@ -13,6 +13,7 @@
 5. [D5:React Native setNativeProps使用 (2016-8-24)](#d5react-native-setnativeprops使用2016-8-24)
 6. [D6:ref属性不只是string（2016-8-25)](#d6ref属性不只是string2016-8-25)
 7. [D7:解构赋值（Destructuring assignment）(2016-8-26)](#d7解构赋值destructuring-assignment2016-8-26)
+8. [D8:React-Native 原生模块调用(iOS) (2016-8-29)](#d8react-native-原生模块调用(iOS)-2016-8-29)
 
 ```
 模板：   
@@ -24,6 +25,54 @@ D1:标题 (日期)
 ### 子标题
 内容   
 另外：记得在列表中添加链接 
+```
+
+D8:React-Native 原生模块调用(iOS) (2016-8-29)
+------
+在项目中遇到地图,拨打电话,清除缓存等iOS与Andiorid机制不同的功能,就需要调用原生的界面或模块,这里说下React Native调用iOS原生模块,Andiorid也是大同小异
+###1.创建原生模块，实现“RCTBridgeModule”协议
+```
+#import <Foundation/Foundation.h>
+#import "RCTBridgeModule.h"
+
+@interface KSDMapManager : NSObject <RCTBridgeModule>
+
+@end
+```
+###2 导出模块，导出方法
+```
+@implementation KSDMapManager
+//导出模块
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(gotoIM:(RCTResponseSenderBlock)callback)
+{
+   __weak typeof(self) weakSelf = self;
+  self.callback = callback;
+  
+  UIViewController *controller = (UIViewController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
+  KSDMapLocationViewController *mapVc = [[KSDMapLocationViewController alloc] init];
+  mapVc.handle = ^(NSString *address) {
+    weakSelf.itemValue = address;
+    NSArray *events = [[NSArray alloc] initWithObjects:self.itemValue, nil];
+    callback(events);
+  }; 
+  [controller presentViewController:mapVc animated:YES completion:nil];
+}
+
+```
+
+###3 js文件中调用
+```
+//创建原生模块实例
+var KSDMapManager = NativeModules.KSDMapManager;
+//方法调用
+KSDMapManager.gotoIM(
+          (events)=>{
+            this._inputReceiveAddress(events);
+            console.log(events);
+          })       
+
 ```
 
 D7:解构赋值（[Destructuring assignment][0]）(2016-8-26)
