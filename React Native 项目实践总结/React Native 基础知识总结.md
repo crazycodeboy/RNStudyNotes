@@ -1,11 +1,12 @@
-##React Native ×Ü½á
+## React Native æ€»ç»“
 
 
 
-###Component
-Component£º×é¼ş£¬Ê¹ÓÃ```extends React.Component```´´½¨µÄÀàÎª×é¼ş¡£?
- ```componentWillMount()```»¹¿ÉÒÔÓÃ``` constructor ```À´´úÌæ£º
+### Component
+Componentï¼šç»„ä»¶ï¼Œä½¿ç”¨`extends React.Component`åˆ›å»ºçš„ç±»ä¸ºç»„ä»¶ã€‚?
+ `componentWillMount()`è¿˜å¯ä»¥ç”¨` constructor `æ¥ä»£æ›¿ï¼š
 
+```javascript
 	class Label extends React.Component{
 	  constructor(props) {
           super(props);  
@@ -13,38 +14,41 @@ Component£º×é¼ş£¬Ê¹ÓÃ```extends React.Component```´´½¨µÄÀàÎª×é¼ş¡£?
 	    render(){
 	    }
 	}
+```
 
+### propsä¸state
 
-###propsÓëstate
+##### propså±æ€§ï¼š
+ç»„ä»¶å¯ä»¥å®šä¹‰åˆå§‹å€¼ï¼Œè‡ªå·±ä¸å¯æ›´æ”¹propså±æ€§å€¼ï¼Œåªå…è®¸ä»çˆ¶ç»„ä»¶ä¸­ä¼ é€’è¿‡æ¥ï¼š
 
-#####propsÊôĞÔ£º
-×é¼ş¿ÉÒÔ¶¨Òå³õÊ¼Öµ£¬×Ô¼º²»¿É¸ü¸ÄpropsÊôĞÔÖµ£¬Ö»ÔÊĞí´Ó¸¸×é¼şÖĞ´«µİ¹ıÀ´£º
-
-	// ¸¸×é¼ş
+```javascript
+	// çˆ¶ç»„ä»¶
 	class ParentComponent extends React.Component{
 	    render(){
 	        return(<Child name="name">);
 	    }
 	}
 	
-	// ×Ó×é¼ş
+	// å­ç»„ä»¶
 	class Child extends React.Component{
 	    render(){
 	        return(<Text>{this.props.name}</Text>);
 	    }
 	}
+```
 	
-¸¸×é¼şÏò×Ó×é¼ş´«µİname="name"µÄpropsÊôĞÔ£¬ÔÚ×Ó×é¼şÖĞÊ¹ÓÃthis.props.nameÒıÓÃ´ËÊôĞÔ¡£
+çˆ¶ç»„ä»¶å‘å­ç»„ä»¶ä¼ é€’name="name"çš„propså±æ€§ï¼Œåœ¨å­ç»„ä»¶ä¸­ä½¿ç”¨this.props.nameå¼•ç”¨æ­¤å±æ€§ã€‚
 
-ÊôĞÔÀàĞÍ``` prop type ```ºÍÄ¬ÈÏÊôĞÔ ```default prop ```¿ÉÒÔÍ¨¹ıÀàÖĞµÄ ```static ```À´ÉùÃ÷£º
+å±æ€§ç±»å‹``` prop type ```å’Œé»˜è®¤å±æ€§ ```default prop ```å¯ä»¥é€šè¿‡ç±»ä¸­çš„ ```static ```æ¥å£°æ˜ï¼š
 
-	class Demo extends React.Component {
-	   // Ä¬ÈÏprops
+```javascript
+class Demo extends React.Component {
+	   // é»˜è®¤props
 	  static defaultProps = {
         autoPlay: false,
         maxLoops: 10,
 	  }
-  	   // propTypesÓÃÓÚÑéÖ¤×ªÈëµÄprops£¬µ±Ïò props ´«ÈëÎŞĞ§Êı¾İÊ±£¬JavaScript ¿ØÖÆÌ¨»áÅ×³ö¾¯¸æ
+  	   // propTypesç”¨äºéªŒè¯è½¬å…¥çš„propsï¼Œå½“å‘ props ä¼ å…¥æ— æ•ˆæ•°æ®æ—¶ï¼ŒJavaScript æ§åˆ¶å°ä¼šæŠ›å‡ºè­¦å‘Š
 	  static propTypes = {
         autoPlay: React.PropTypes.bool.isRequired,
         maxLoops: React.PropTypes.number.isRequired,
@@ -54,60 +58,63 @@ Component£º×é¼ş£¬Ê¹ÓÃ```extends React.Component```´´½¨µÄÀàÎª×é¼ş¡£?
         loopsRemaining: this.props.maxLoops,
 	  }
 	}
-#####stateÊôĞÔ£º
-×é¼şÓÃÀ´¸Ä±ä×Ô¼º×´Ì¬µÄÊôĞÔ£¬Í¨³£Ê¹ÓÃ```setState({key:value})```À´¸Ä±äÊôĞÔÖµ´¥·¢½çÃæË¢ĞÂ£¬²»ÄÜÊ¹ÓÃ```this.state.xxx```À´Ö±½Ó¸Ä±ä¡£
-ÔÚ¿ª·¢ÖĞ£¬Ò»°ã²»»áÔÚ¶¨Ê±Æ÷º¯Êı£¨setInterval¡¢setTimeoutµÈ£©ÖĞÀ´²Ù×÷state¡£µäĞÍµÄ³¡¾°ÊÇÔÚ½ÓÊÕµ½·şÎñÆ÷·µ»ØµÄĞÂÊı¾İ£¬»òÕßÔÚÓÃ»§ÊäÈëÊı¾İÖ®ºó¡£
+```
 
-¶ÔÓÚ¾­³£¸Ä±äµÄÊı¾İÇÒĞèÒªË¢ĞÂ½çÃæÏÔÊ¾£¬¿ÉÒÔÊ¹ÓÃstate¡£¶ÔÓÚ²»ĞèÒª¸Ä±äµÄÊôĞÔÖµ¿ÉÒÔÊ¹ÓÃprops¡£React Native½¨ÒéÓÉ¶¥²ãµÄ¸¸×é¼ş¶¨ÒåstateÖµ£¬²¢½«stateÖµ×÷Îª×Ó×é¼şµÄpropsÊôĞÔÖµ´«µİ¸ø×Ó×é¼ş£¬ÕâÑù¿ÉÒÔ±£³Öµ¥Ò»µÄÊı¾İ´«µİ¡£
+##### stateå±æ€§ï¼š
+ç»„ä»¶ç”¨æ¥æ”¹å˜è‡ªå·±çŠ¶æ€çš„å±æ€§ï¼Œé€šå¸¸ä½¿ç”¨```setState({key:value})```æ¥æ”¹å˜å±æ€§å€¼è§¦å‘ç•Œé¢åˆ·æ–°ï¼Œä¸èƒ½ä½¿ç”¨```this.state.xxx```æ¥ç›´æ¥æ”¹å˜ã€‚
+åœ¨å¼€å‘ä¸­ï¼Œä¸€èˆ¬ä¸ä¼šåœ¨å®šæ—¶å™¨å‡½æ•°ï¼ˆsetIntervalã€setTimeoutç­‰ï¼‰ä¸­æ¥æ“ä½œstateã€‚å…¸å‹çš„åœºæ™¯æ˜¯åœ¨æ¥æ”¶åˆ°æœåŠ¡å™¨è¿”å›çš„æ–°æ•°æ®ï¼Œæˆ–è€…åœ¨ç”¨æˆ·è¾“å…¥æ•°æ®ä¹‹åã€‚
+
+å¯¹äºç»å¸¸æ”¹å˜çš„æ•°æ®ä¸”éœ€è¦åˆ·æ–°ç•Œé¢æ˜¾ç¤ºï¼Œå¯ä»¥ä½¿ç”¨stateã€‚å¯¹äºä¸éœ€è¦æ”¹å˜çš„å±æ€§å€¼å¯ä»¥ä½¿ç”¨propsã€‚React Nativeå»ºè®®ç”±é¡¶å±‚çš„çˆ¶ç»„ä»¶å®šä¹‰stateå€¼ï¼Œå¹¶å°†stateå€¼ä½œä¸ºå­ç»„ä»¶çš„propså±æ€§å€¼ä¼ é€’ç»™å­ç»„ä»¶ï¼Œè¿™æ ·å¯ä»¥ä¿æŒå•ä¸€çš„æ•°æ®ä¼ é€’ã€‚
 
 
 	
-###ÉúÃüÖÜÆÚ
+###ç”Ÿå‘½å‘¨æœŸ
 
-ÎÒÃÇ°Ñ×é¼ş´Ó```×°ÔØ```£¬µ½```äÖÈ¾```£¬ÔÙµ½```Ğ¶ÔØ```µ±×öÒ»´ÎÉúÃüÖÜÆÚ£¬Ò²¾ÍÊÇ×é¼şµÄÉú´æ×´Ì¬´Ó```×°ÔØ```¿ªÊ¼µ½```Ğ¶ÔØ```ÎªÖ¹£¬ÆÚ¼ä¿ÉÒÔ¸ù¾İÊôĞÔµÄ±ä»¯½øĞĞ¶à´ÎäÖÈ¾¡£
-ÉúÃüÖÜÆÚµÄÈıÖÖ×´Ì¬£º
--	Mounting£º×°ÔØ
+æˆ‘ä»¬æŠŠç»„ä»¶ä»```è£…è½½```ï¼Œåˆ°```æ¸²æŸ“```ï¼Œå†åˆ°```å¸è½½```å½“åšä¸€æ¬¡ç”Ÿå‘½å‘¨æœŸï¼Œä¹Ÿå°±æ˜¯ç»„ä»¶çš„ç”Ÿå­˜çŠ¶æ€ä»```è£…è½½```å¼€å§‹åˆ°```å¸è½½```ä¸ºæ­¢ï¼ŒæœŸé—´å¯ä»¥æ ¹æ®å±æ€§çš„å˜åŒ–è¿›è¡Œå¤šæ¬¡æ¸²æŸ“ã€‚
+ç”Ÿå‘½å‘¨æœŸçš„ä¸‰ç§çŠ¶æ€ï¼š
+-	Mountingï¼šè£…è½½
 1.componentWillMount()
 2.componentDidMount()
--	Updating£ºäÖÈ¾
+-	Updatingï¼šæ¸²æŸ“
 1.componentWillReceiveProps()
 2.shouldComponentUpdate()
 3.componentWillUpdate()
 4.componentDidUpdate()
--	Unmounting£ºĞ¶ÔØ
+-	Unmountingï¼šå¸è½½
 componentWillUnmount()
 
 ```
-componentWillMount()£¬×é¼ş¿ªÊ¼×°ÔØÖ®Ç°µ÷ÓÃ£¬ÔÚÒ»´ÎÉúÃüÖÜÆÚÖĞÖ»»áÖ´ĞĞÒ»´Î¡£
+componentWillMount()ï¼Œç»„ä»¶å¼€å§‹è£…è½½ä¹‹å‰è°ƒç”¨ï¼Œåœ¨ä¸€æ¬¡ç”Ÿå‘½å‘¨æœŸä¸­åªä¼šæ‰§è¡Œä¸€æ¬¡ã€‚
 
-componentDidMount()£¬×é¼şÍê³É×°ÔØÖ®ºóÁ¢¼´µ÷ÓÃ£¬ÔÚÒ»´ÎÉúÃüÖÜÆÚÖĞÖ»»áÖ´ĞĞÒ»´Î¡£ÔÚÕâÀï¿ªÊ¼¾Í¿ÉÒÔ¶Ô×é¼ş½øĞĞ¸÷ÖÖ²Ù×÷ÁË£¬±ÈÈçÔÚ×é¼ş×°ÔØÍê³ÉºóÒªÏÔÊ¾µÄÊ±ºòÖ´ĞĞ¶¯»­¡£
+componentDidMount()ï¼Œç»„ä»¶å®Œæˆè£…è½½ä¹‹åç«‹å³è°ƒç”¨ï¼Œåœ¨ä¸€æ¬¡ç”Ÿå‘½å‘¨æœŸä¸­åªä¼šæ‰§è¡Œä¸€æ¬¡ã€‚åœ¨è¿™é‡Œå¼€å§‹å°±å¯ä»¥å¯¹ç»„ä»¶è¿›è¡Œå„ç§æ“ä½œäº†ï¼Œæ¯”å¦‚åœ¨ç»„ä»¶è£…è½½å®Œæˆåè¦æ˜¾ç¤ºçš„æ—¶å€™æ‰§è¡ŒåŠ¨ç”»ã€‚
 
 
-componentWillUpdate(object nextProps, object nextState)£¬µ±ĞÂµÄprops»òÕßstate±»½ÓÊÜÊ±,×é¼şÊôĞÔ¸üĞÂÖ®Ç°µ÷ÓÃ,Õâ¸ö·½·¨²»»á±»³õÊ¼äÖÈ¾µ÷ÓÃ¡£²»ÄÜÔÚÕâ¸ö·½·¨ÀïÊ¹ÓÃ this.setState()¡£Èç¹ûÄãÒªÏìÓ¦Ò»¸öprop±ä»¯À´¸üĞÂstate,Ê¹ÓÃcomponentWillReceiveProps À´Ìæ´ú¡£
+componentWillUpdate(object nextProps, object nextState)ï¼Œå½“æ–°çš„propsæˆ–è€…stateè¢«æ¥å—æ—¶,ç»„ä»¶å±æ€§æ›´æ–°ä¹‹å‰è°ƒç”¨,è¿™ä¸ªæ–¹æ³•ä¸ä¼šè¢«åˆå§‹æ¸²æŸ“è°ƒç”¨ã€‚ä¸èƒ½åœ¨è¿™ä¸ªæ–¹æ³•é‡Œä½¿ç”¨ this.setState()ã€‚å¦‚æœä½ è¦å“åº”ä¸€ä¸ªpropå˜åŒ–æ¥æ›´æ–°state,ä½¿ç”¨componentWillReceiveProps æ¥æ›¿ä»£ã€‚
 
-componentDidUpdate(object prevProps, object prevState)£¬×é¼şÊôĞÔ¸üĞÂÖ®ºóµ÷ÓÃ£¬Ã¿´ÎÊôĞÔ¸üĞÂ¶¼»áµ÷ÓÃ£¬Õâ¸ö·½·¨²»»á±»³õÊ¼äÖÈ¾µ÷ÓÃ¡£
+componentDidUpdate(object prevProps, object prevState)ï¼Œç»„ä»¶å±æ€§æ›´æ–°ä¹‹åè°ƒç”¨ï¼Œæ¯æ¬¡å±æ€§æ›´æ–°éƒ½ä¼šè°ƒç”¨ï¼Œè¿™ä¸ªæ–¹æ³•ä¸ä¼šè¢«åˆå§‹æ¸²æŸ“è°ƒç”¨ã€‚
 
-componentWillUnmount()£¬×é¼şĞ¶ÔØÖ®Ç°µ÷ÓÃ£¬ÔÚÕâ¸ö·½·¨ÀïÖ´ĞĞÒ»Ğ©±ØÒªµÄÇåÀí²Ù×÷,±ÈÈçtimers¡£
+componentWillUnmount()ï¼Œç»„ä»¶å¸è½½ä¹‹å‰è°ƒç”¨ï¼Œåœ¨è¿™ä¸ªæ–¹æ³•é‡Œæ‰§è¡Œä¸€äº›å¿…è¦çš„æ¸…ç†æ“ä½œ,æ¯”å¦‚timersã€‚
 ```
 
-#####×é¼şÊôĞÔ¸ü¸ÄÊ±»áµ÷ÓÃÒÔÏÂ·½·¨£¬ÔÚÒ»´ÎÉúÃüÖÜÆÚÖĞ¿ÉÒÔÖ´ĞĞ¶à´Î£º
+##### ç»„ä»¶å±æ€§æ›´æ”¹æ—¶ä¼šè°ƒç”¨ä»¥ä¸‹æ–¹æ³•ï¼Œåœ¨ä¸€æ¬¡ç”Ÿå‘½å‘¨æœŸä¸­å¯ä»¥æ‰§è¡Œå¤šæ¬¡ï¼š
 
-	componentWillReceiveProps(object nextProps)£¬ÒÑ¼ÓÔØ×é¼şÊÕµ½ĞÂµÄpropsÊ±±»µ÷ÓÃ.Õâ¸ö·½·¨²»»áÎª×î³õµÄäÖÈ¾µ÷ÓÃ¡£
+	componentWillReceiveProps(object nextProps)ï¼Œå·²åŠ è½½ç»„ä»¶æ”¶åˆ°æ–°çš„propsæ—¶è¢«è°ƒç”¨.è¿™ä¸ªæ–¹æ³•ä¸ä¼šä¸ºæœ€åˆçš„æ¸²æŸ“è°ƒç”¨ã€‚
 	
-	shouldComponentUpdate(object nextProps, object nextState)£¬×é¼şÅĞ¶ÏÊÇ·ñÖØĞÂäÖÈ¾Ê±µ÷ÓÃ£¬µ±ĞÂµÄprops»òÕßstate±»ÊÕµ½,ÔÚäÖÈ¾Ç°±»µ÷ÓÃ.Õâ¸ö·½·¨²»»áÔÚ×î³õµÄäÖÈ¾±»µ÷ÓÃ¡£
+	shouldComponentUpdate(object nextProps, object nextState)ï¼Œç»„ä»¶åˆ¤æ–­æ˜¯å¦é‡æ–°æ¸²æŸ“æ—¶è°ƒç”¨ï¼Œå½“æ–°çš„propsæˆ–è€…stateè¢«æ”¶åˆ°,åœ¨æ¸²æŸ“å‰è¢«è°ƒç”¨.è¿™ä¸ªæ–¹æ³•ä¸ä¼šåœ¨æœ€åˆçš„æ¸²æŸ“è¢«è°ƒç”¨ã€‚
 	
-²¢Ã»ÓĞÀàËÆµÄ ```componentWillReceiveState ()```µÄ·½·¨¡£Ò»¸ö¼´½«µ½À´µÄ prop ×ª±ä¿ÉÄÜ»áµ¼ÖÂÒ»¸ö state ±ä»¯,µ«ÊÇ·´Ö®²»ÊÇ¡£Èç¹ûÄãĞèÒªÊµÏÖÒ»¸ö¶Ô state ±ä»¯ÏàÓ¦µÄ²Ù×÷£¬Ê¹ÓÃ ```componentWillUpdate()```¡£
+å¹¶æ²¡æœ‰ç±»ä¼¼çš„ ```componentWillReceiveState ()```çš„æ–¹æ³•ã€‚ä¸€ä¸ªå³å°†åˆ°æ¥çš„ prop è½¬å˜å¯èƒ½ä¼šå¯¼è‡´ä¸€ä¸ª state å˜åŒ–,ä½†æ˜¯åä¹‹ä¸æ˜¯ã€‚å¦‚æœä½ éœ€è¦å®ç°ä¸€ä¸ªå¯¹ state å˜åŒ–ç›¸åº”çš„æ“ä½œï¼Œä½¿ç”¨ ```componentWillUpdate()```ã€‚
 
 
-Èç¹û shouldComponentUpdate () ·µ»Øfalse, render() »áÔÚÏÂ´Îstate±ä»¯Ç°±»ÍêÈ«Ìø¹ı¡£ÁíÍâcomponentWillUpdate () ºÍ componentDidUpdate()  ½«²»»á±»µ÷ÓÃ¡£
+å¦‚æœ shouldComponentUpdate () è¿”å›false, render() ä¼šåœ¨ä¸‹æ¬¡stateå˜åŒ–å‰è¢«å®Œå…¨è·³è¿‡ã€‚å¦å¤–componentWillUpdate () å’Œ componentDidUpdate()  å°†ä¸ä¼šè¢«è°ƒç”¨ã€‚
 
-Ä¬ÈÏÇé¿öÏÂshouldComponentUpdate()  ×ÜÊÇ·µ»Ø true À´×èÖ¹µ± state Í»±äÊ±µÄÏ¸Î¢bug¡£
+é»˜è®¤æƒ…å†µä¸‹shouldComponentUpdate()  æ€»æ˜¯è¿”å› true æ¥é˜»æ­¢å½“ state çªå˜æ—¶çš„ç»†å¾®bugã€‚
 	
 	
-###Ò³ÃæÌø×ª
+### é¡µé¢è·³è½¬
 
-³õÊ¼»¯µÚÒ»¸öÒ³Ãæ£º
+åˆå§‹åŒ–ç¬¬ä¸€ä¸ªé¡µé¢ï¼š
 
+```javascript
 	import SeatPageComponent from './SeatPageComponent';
 	import MainPageComponent from './MainPageComponent';
 	import TrainListComponent from './TrainListComponent';
@@ -118,129 +125,137 @@ componentWillUnmount()£¬×é¼şĞ¶ÔØÖ®Ç°µ÷ÓÃ£¬ÔÚÕâ¸ö·½·¨ÀïÖ´ĞĞÒ»Ğ©±ØÒªµÄÇåÀí²Ù×÷,±ÈÈ
 	        let defaultComponent = MainPageComponent;
 	        return (
 	            <Navigator
-	                // Ö¸¶¨Ä¬ÈÏÒ³Ãæ
+	                // æŒ‡å®šé»˜è®¤é¡µé¢
 	                initialRoute={{ name: defaultName, component: defaultComponent }}
-	                // ÅäÖÃÒ³Ãæ¼äÌø×ª¶¯»­
+	                // é…ç½®é¡µé¢é—´è·³è½¬åŠ¨ç”»
 	                configureScene={(route) => {
 	                    return Navigator.SceneConfigs.VerticalDownSwipeJump;
 	                }}
-	                // ³õÊ¼»¯Ä¬ÈÏÒ³Ãæ
+	                // åˆå§‹åŒ–é»˜è®¤é¡µé¢
 	                renderScene={(route, navigator) => {
 	                    let Component = route.component;
-	                    // ½«navigator×÷Îªprops´«µİµ½ÏÂÒ»¸öÒ³Ãæ
+	                    // å°†navigatorä½œä¸ºpropsä¼ é€’åˆ°ä¸‹ä¸€ä¸ªé¡µé¢
 	                    return <Component {...route.params} navigator={navigator} />
 	                }} />
 	        );
 	    }
 	}
 	
+```
 
-Ìø×ªµ½ÏÂÒ»Ò³Ãæ£º
+è·³è½¬åˆ°ä¸‹ä¸€é¡µé¢ï¼š
 
+```javascript
 	jumpToNext(){
-	      const { navigator } = this.props;// ÓÉÉÏÒ»¸öÒ³Ãæ´«µİ¹ıÀ´
+	      const { navigator } = this.props;// ç”±ä¸Šä¸€ä¸ªé¡µé¢ä¼ é€’è¿‡æ¥
 	      if(navigator) {
 	          navigator.push({
 	              name: 'SeatPageComponent',
-	              component: SeatPageComponent,// ÏÂÒ»¸öÒ³Ãæ
+	              component: SeatPageComponent,// ä¸‹ä¸€ä¸ªé¡µé¢
 	          });
 	      }
 	}
+```
 
-·µ»ØÉÏÒ»¸öÒ³Ãæ£º
+è¿”å›ä¸Šä¸€ä¸ªé¡µé¢ï¼š
 
+```javascript
 	 _back(){
 	     const { navigator } = this.props;
 	     if(navigator) {
 	         navigator.pop();
 	     }
 	 }
+```
 	
-Ò³Ãæ¼äÍ¨ĞÅ
+é¡µé¢é—´é€šä¿¡
 
-ÀıÈç£º´ÓAÒ³Ãæ´ò¿ªBÒ³Ãæ
-AÍ¨¹ıroute.params½«²ÎÊı´«µİ¸øB£º
+ä¾‹å¦‚ï¼šä»Aé¡µé¢æ‰“å¼€Bé¡µé¢
+Aé€šè¿‡route.paramså°†å‚æ•°ä¼ é€’ç»™Bï¼š
 
+```javascript
 	jumpToNext(){ 
-	    const { navigator } = this.props;// ÓÉÉÏÒ»¸öÒ³Ãæ´«µİ¹ıÀ´
+	    const { navigator } = this.props;// ç”±ä¸Šä¸€ä¸ªé¡µé¢ä¼ é€’è¿‡æ¥
 	    if(navigator) { 
 	        navigator.push({ 
 	            name: 'SeatPageComponent', 
-	            component: SeatPageComponent,// ÏÂÒ»¸öÒ³Ãæ 
-	            params: { // ĞèÒª´«µİ¸öÏÂÒ»¸öÒ³ÃæµÄ²ÎÊı,µÚ¶ş¸öÒ³ÃæÊ¹ÓÃthis.props.xxx»ñÈ¡²ÎÊı
+	            component: SeatPageComponent,// ä¸‹ä¸€ä¸ªé¡µé¢ 
+	            params: { // éœ€è¦ä¼ é€’ä¸ªä¸‹ä¸€ä¸ªé¡µé¢çš„å‚æ•°,ç¬¬äºŒä¸ªé¡µé¢ä½¿ç”¨this.props.xxxè·å–å‚æ•°
 	                id: 123,
 	                title: this.state.title, 
 	            },
 	        });
 	     }
 	}
+```
 	
-AÍ¨¹ıroute.params´«µİ»Øµ÷·½·¨»òÕßAµÄÒıÓÃÀ´ÈÃB½«Êı¾İ´«»Ø¸øA£º
+Aé€šè¿‡route.paramsä¼ é€’å›è°ƒæ–¹æ³•æˆ–è€…Açš„å¼•ç”¨æ¥è®©Bå°†æ•°æ®ä¼ å›ç»™Aï¼š
 
-	// AÒ³Ãæ
+```javascript
+	// Aé¡µé¢
 	jumpToNext(){ 
-	    const { navigator } = this.props;// ÓÉÉÏÒ»¸öÒ³Ãæ´«µİ¹ıÀ´
+	    const { navigator } = this.props;// ç”±ä¸Šä¸€ä¸ªé¡µé¢ä¼ é€’è¿‡æ¥
 	    if(navigator) { 
-	        let that = this;// this×÷ÓÃÓò£¬²Î¼ûÏÂÎÄº¯Êı°ó¶¨
+	        let that = this;// thisä½œç”¨åŸŸï¼Œå‚è§ä¸‹æ–‡å‡½æ•°ç»‘å®š
 	        navigator.push({ 
 	            name: 'SeatPageComponent', 
-	            component: SeatPageComponent,// ÏÂÒ»¸öÒ³Ãæ 
-	            params: { // ĞèÒª´«µİ¸öÏÂÒ»¸öÒ³ÃæµÄ²ÎÊı,µÚ¶ş¸öÒ³ÃæÊ¹ÓÃthis.props.xxx»ñÈ¡²ÎÊı
-	                title: '²âÊÔ',
+	            component: SeatPageComponent,// ä¸‹ä¸€ä¸ªé¡µé¢ 
+	            params: { // éœ€è¦ä¼ é€’ä¸ªä¸‹ä¸€ä¸ªé¡µé¢çš„å‚æ•°,ç¬¬äºŒä¸ªé¡µé¢ä½¿ç”¨this.props.xxxè·å–å‚æ•°
+	                title: 'æµ‹è¯•',
 	                getName: function(name) {that.setState({ name: name })}
 	            },
 	        });
 	     }
 	}
 	
-	// BÒ³Ãæ
+	// Bé¡µé¢
 	 _back(){
 	     const { navigator } = this.props;
 	     if(this.props.getName){
-	         this.props.getName('²âÊÔ');
+	         this.props.getName('æµ‹è¯•');
 	     }
 	     if(navigator) {
 	         navigator.pop();
 	     }
 	 }
+```
 
 
+### flexboxå¸ƒå±€
+##### ä»€ä¹ˆæ˜¯flexboxå¸ƒå±€
+Reactä¸­å¼•å…¥äº†flexboxæ¦‚å¿µ,flexboxæ˜¯å±äºwebå‰ç«¯é¢†åŸŸCSSçš„ä¸€ç§å¸ƒå±€æ–¹æ¡ˆï¼Œæ˜¯2009å¹´W3Cæå‡ºäº†ä¸€ç§æ–°çš„å¸ƒå±€æ–¹æ¡ˆï¼Œå¯ä»¥ç®€ä¾¿ã€å®Œæ•´ã€å“åº”å¼åœ°å®ç°å„ç§é¡µé¢å¸ƒå±€ã€‚
+RNåˆ©ç”¨flexBoxæ¨¡å‹å¸ƒå±€, ä¹Ÿå°±æ˜¯åœ¨æ‰‹æœºå±å¹•ä¸Šå¯¹ç»„ä»¶è¿›è¡Œæ’åˆ—.åˆ©ç”¨flexBoxæ¨¡å‹,å¼€å‘è€…å¯ä»¥å¼€å‘å‡ºåŠ¨æ€å®½é«˜çš„è‡ªé€‚åº”çš„UIå¸ƒå±€ã€‚
 
-###flexbox²¼¾Ö
-#####Ê²Ã´ÊÇflexbox²¼¾Ö
-ReactÖĞÒıÈëÁËflexbox¸ÅÄî,flexboxÊÇÊôÓÚwebÇ°¶ËÁìÓòCSSµÄÒ»ÖÖ²¼¾Ö·½°¸£¬ÊÇ2009ÄêW3CÌá³öÁËÒ»ÖÖĞÂµÄ²¼¾Ö·½°¸£¬¿ÉÒÔ¼ò±ã¡¢ÍêÕû¡¢ÏìÓ¦Ê½µØÊµÏÖ¸÷ÖÖÒ³Ãæ²¼¾Ö¡£
-RNÀûÓÃflexBoxÄ£ĞÍ²¼¾Ö, Ò²¾ÍÊÇÔÚÊÖ»úÆÁÄ»ÉÏ¶Ô×é¼ş½øĞĞÅÅÁĞ.ÀûÓÃflexBoxÄ£ĞÍ,¿ª·¢Õß¿ÉÒÔ¿ª·¢³ö¶¯Ì¬¿í¸ßµÄ×ÔÊÊÓ¦µÄUI²¼¾Ö¡£
+##### flexboxä¸­çš„æ ·å¼ä¸»è¦æœ‰ä»¥ä¸‹å‡ ç±»:
+1.	ä½ç½®åŠå®½ã€é«˜ç›¸å…³çš„æ ·å¼é”®
+2.	å®¹å™¨å±æ€§,å†³å®šå­ç»„ä»¶æ’åˆ—è§„åˆ™çš„é”®
+3.	å…ƒç´ å±æ€§,å†³å®šç»„ä»¶æ˜¾ç¤ºè§„åˆ™çš„é”®
+4.	è¾¹æ¡†ã€ç©ºéš™ä¸å¡«å……
 
-#####flexboxÖĞµÄÑùÊ½Ö÷ÒªÓĞÒÔÏÂ¼¸Àà:
-1.	Î»ÖÃ¼°¿í¡¢¸ßÏà¹ØµÄÑùÊ½¼ü
-2.	ÈİÆ÷ÊôĞÔ,¾ö¶¨×Ó×é¼şÅÅÁĞ¹æÔòµÄ¼ü
-3.	ÔªËØÊôĞÔ,¾ö¶¨×é¼şÏÔÊ¾¹æÔòµÄ¼ü
-4.	±ß¿ò¡¢¿ÕÏ¶ÓëÌî³ä
-
-#####²¼¾ÖÑùÊ½ 
+#####å¸ƒå±€æ ·å¼ 
 - position
- ```relative```(Ä¬ÈÏ) ±íÊ¾µ±Ç°ÃèÊöµÄÎ»ÖÃÊÇÏà¶Ô¶¨Î»£¬²»¿ÉÒÔÊ¹ÓÃ``` bottom```ºÍ```right```¡£```top```ºÍ```left```±íÊ¾µ±Ç°×é¼ş¾àÀëÉÏÒ»¸öÍ¬¼¶×é¼şµÄ×îÉÏ(×ó)¾àÀë
- ```absolute``` ±íÊ¾µ±Ç°ÃèÊöµÄÎ»ÖÃÊÇ¾ø¶Ô¶¨Î»£¬``` top``` ¡¢```bottom```¡¢``` left```¡¢ ```right```£¬ÃèÊöµ±Ç°×é¼şµÄÎ»ÖÃ¾àÀë¸¸×é¼ş×î£¨ÉÏÏÂ¡¢×ó¡¢ÓÒ)µÄ¾àÀë
+ ```relative```(é»˜è®¤) è¡¨ç¤ºå½“å‰æè¿°çš„ä½ç½®æ˜¯ç›¸å¯¹å®šä½ï¼Œä¸å¯ä»¥ä½¿ç”¨``` bottom```å’Œ```right```ã€‚```top```å’Œ```left```è¡¨ç¤ºå½“å‰ç»„ä»¶è·ç¦»ä¸Šä¸€ä¸ªåŒçº§ç»„ä»¶çš„æœ€ä¸Š(å·¦)è·ç¦»
+ ```absolute``` è¡¨ç¤ºå½“å‰æè¿°çš„ä½ç½®æ˜¯ç»å¯¹å®šä½ï¼Œ``` top``` ã€```bottom```ã€``` left```ã€ ```right```ï¼Œæè¿°å½“å‰ç»„ä»¶çš„ä½ç½®è·ç¦»çˆ¶ç»„ä»¶æœ€ï¼ˆä¸Šä¸‹ã€å·¦ã€å³)çš„è·ç¦»
 - width
- ```width```¡¢```height```¡¢```maxHeight```¡¢```maxWidth```¡¢```minHeight```¡¢```minWidth``` ×é¼şµÄ¿íºÍ¸ßÊÇ¿ÉÒÔ¶¯Ì¬¸Ä±äµÄ,ËùÒÔ¿ÉÒÔÉèÖÃ¿íºÍ¸ßµÄ×î´óºÍ×îĞ¡Öµ 
+ ```width```ã€```height```ã€```maxHeight```ã€```maxWidth```ã€```minHeight```ã€```minWidth``` ç»„ä»¶çš„å®½å’Œé«˜æ˜¯å¯ä»¥åŠ¨æ€æ”¹å˜çš„,æ‰€ä»¥å¯ä»¥è®¾ç½®å®½å’Œé«˜çš„æœ€å¤§å’Œæœ€å°å€¼ 
 - flexDirection
- ```row```£ººáÏòÅÅÁĞ£¬<b>Ö÷Öá</b>ÎªË®Æ½·½Ïò£»
- ```?column```£ºÊúÖ±ÅÅÁĞ£¬<b>Ö÷Öá</b>Îª´¹Ö±·½Ïò¡£ 
+ ```row```ï¼šæ¨ªå‘æ’åˆ—ï¼Œ<b>ä¸»è½´</b>ä¸ºæ°´å¹³æ–¹å‘ï¼›
+ ```?column```ï¼šç«–ç›´æ’åˆ—ï¼Œ<b>ä¸»è½´</b>ä¸ºå‚ç›´æ–¹å‘ã€‚ 
 - flexWrap
- ```?wrap ```?ºÍ ```?nowrap ```?(Ä¬ÈÏÖµ)?£¬µ±Ë®Æ½»ò´¹Ö±²¼¾ÖÊ±£¬Èç¹û×ÓView·Å²»ÏÂ¿ÉÑ¡ ```?wrap ```?ÊµÏÖ×Ô¶¯»»ĞĞ,
+ ```?wrap ```?å’Œ ```?nowrap ```?(é»˜è®¤å€¼)?ï¼Œå½“æ°´å¹³æˆ–å‚ç›´å¸ƒå±€æ—¶ï¼Œå¦‚æœå­Viewæ”¾ä¸ä¸‹å¯é€‰ ```?wrap ```?å®ç°è‡ªåŠ¨æ¢è¡Œ,
 - justifyContent 
-×Ó²¼¾ÖÔÚÖ÷Öá·½ÏòÎ»ÖÃ  enum(```flex- start```,```flex-end```,```center```,```space-between```,```space-around```)
+å­å¸ƒå±€åœ¨ä¸»è½´æ–¹å‘ä½ç½®  enum(```flex- start```,```flex-end```,```center```,```space-between```,```space-around```)
 - alignItems
-  ×Ó²¼¾ÖÔÚ²àÖá·½ÏòÎ»ÖÃ enum(```flex-start```,```flex-end```,```center```,```stretch``` )
+  å­å¸ƒå±€åœ¨ä¾§è½´æ–¹å‘ä½ç½® enum(```flex-start```,```flex-end```,```center```,```stretch``` )
 - flex
- È¨ÖØ£¬Ä¬ÈÏÖµÊÇ0µ±ËüµÄÖµÎª1Ê±£¬×Ó×é¼ş½«×Ô¶¯Ëõ·ÅÒÔÊÊÓ¦¸¸×é¼şÊ£ÏÂµÄ¿Õ°×¿Õ¼ä¡£
+ æƒé‡ï¼Œé»˜è®¤å€¼æ˜¯0å½“å®ƒçš„å€¼ä¸º1æ—¶ï¼Œå­ç»„ä»¶å°†è‡ªåŠ¨ç¼©æ”¾ä»¥é€‚åº”çˆ¶ç»„ä»¶å‰©ä¸‹çš„ç©ºç™½ç©ºé—´ã€‚
 - alignSelf
- ºöÂÔËüµÄ¸¸×é¼şÑùÊ½ÖĞµÄ```alignItems```µÄÈ¡Öµ£¬¶ø¶Ô¸Ã×é¼şÊ¹ÓÃ```alignSelf```¼ü¶ÔÓ¦µÄ¹æÔò¡£
+ å¿½ç•¥å®ƒçš„çˆ¶ç»„ä»¶æ ·å¼ä¸­çš„```alignItems```çš„å–å€¼ï¼Œè€Œå¯¹è¯¥ç»„ä»¶ä½¿ç”¨```alignSelf```é”®å¯¹åº”çš„è§„åˆ™ã€‚
 enum(```auto```,```flex-start```,```flex-end```,```center```,```stretch```)
 - padding
 - margin
 
 
-![ºĞ×ÓÄ£ĞÍÊ¾ÒâÍ¼](http://upload-images.jianshu.io/upload_images/1132780-3e6d1a45fb4550ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![ç›’å­æ¨¡å‹ç¤ºæ„å›¾](http://upload-images.jianshu.io/upload_images/1132780-3e6d1a45fb4550ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
