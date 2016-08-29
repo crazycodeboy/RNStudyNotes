@@ -83,25 +83,23 @@ class Demo extends React.Component {
 -	Unmounting：卸载
 componentWillUnmount()
 
-```
-componentWillMount()，组件开始装载之前调用，在一次生命周期中只会执行一次。
-
-componentDidMount()，组件完成装载之后立即调用，在一次生命周期中只会执行一次。在这里开始就可以对组件进行各种操作了，比如在组件装载完成后要显示的时候执行动画。
-
-
+```javascript
+componentWillMount()，组件开始装载之前调用，在一次生命周期中只会执行一次。  
+componentDidMount()，组件完成装载之后立即调用，在一次生命周期中只会执行一次。在这里开始就可以对组件进行各种操作了，比如在组件装载完成后要显示的时候执行动画。  
 componentWillUpdate(object nextProps, object nextState)，当新的props或者state被接受时,组件属性更新之前调用,这个方法不会被初始渲染调用。不能在这个方法里使用 this.setState()。如果你要响应一个prop变化来更新state,使用componentWillReceiveProps 来替代。
 
-componentDidUpdate(object prevProps, object prevState)，组件属性更新之后调用，每次属性更新都会调用，这个方法不会被初始渲染调用。
-
+componentDidUpdate(object prevProps, object prevState)，组件属性更新之后调用，每次属性更新都会调用，这个方法不会被初始渲染调用。   
 componentWillUnmount()，组件卸载之前调用，在这个方法里执行一些必要的清理操作,比如timers。
 ```
 
-##### 组件属性更改时会调用以下方法，在一次生命周期中可以执行多次：
+#####  组件属性更改时会调用以下方法，在一次生命周期中可以执行多次：
 
+```javascript
 	componentWillReceiveProps(object nextProps)，已加载组件收到新的props时被调用.这个方法不会为最初的渲染调用。
 	
 	shouldComponentUpdate(object nextProps, object nextState)，组件判断是否重新渲染时调用，当新的props或者state被收到,在渲染前被调用.这个方法不会在最初的渲染被调用。
-	
+```
+
 并没有类似的 ```componentWillReceiveState ()```的方法。一个即将到来的 prop 转变可能会导致一个 state 变化,但是反之不是。如果你需要实现一个对 state 变化相应的操作，使用 ```componentWillUpdate()```。
 
 
