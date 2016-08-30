@@ -538,11 +538,10 @@ export default class RNText extends Component {
         style={{flex: 1}}/>
 ```
 
-```
+
 为了方便理解，我这里写了一个简单的[Demo][1]，没有上传 node_modules 文件夹以及 Pods 文件夹，下载下来记得 
-npm install
-pod install
-```
+`npm install` `pod install`
+
 
 [0]: http://www.lcode.org/react-native-integrating/
-[1]: http://www.lcode.org/react-native-integrating/
+[1]: ./RNProject
