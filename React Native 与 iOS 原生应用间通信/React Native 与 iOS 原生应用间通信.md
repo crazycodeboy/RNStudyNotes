@@ -39,6 +39,7 @@ react-native run-ios
 	// Tip：记得在 .gitignore 里面添加了 node_modules/ ，不然提交到版本控制仓库的时候会有好多文件。
 		
 	$ npm install
+	$ npm start
 	```
 1. 添加原生项目到根目录下	
 1. 在 Podfile 添加依赖
@@ -87,8 +88,35 @@ react-native run-ios
 	$ pod install
 	```
 
+**其他**
 
-简单几部就完成了在原生项目里继承 RN，但是，虽说集成成功了，可是我们还不知道怎么相互调用，接下来，我们一起看看怎么在 iOS 原生界面中调用 RN 界面。
+	Tip: 如果报错 could not connect to development server
+	
+	1. 是否 npm start
+	
+	2. 是否Xcode7,在info.plist 文件中添加
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    	<key>NSExceptionDomains</key>
+    	<dict>
+        	<key>localhost</key>
+        	<dict>
+            	<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+            	<true/>
+        	</dict>
+    	</dict>
+	</dict>
+	或者
+	<key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    
+    3.是否设置正确的IP地址，如果是真机的话请确保手机与电脑在同一局域网。
+
+
+简单几部就完成了在原生项目里集成 RN，但是，虽说集成成功了，可是我们还不知道怎么相互调用，接下来，我们一起看看怎么在 iOS 原生界面中调用 RN 界面。
 
 ####2. iOS 原生界面调用 React-Native 界面
 
@@ -137,26 +165,27 @@ react-native run-ios
 如果React Native还不支持某个你需要的原生特性，这个时候就需要自己实现该特性的封装。
 
 ##### 桥接原生模块
-首先我们需要创建一个类，然后导入头文件 `#import "RCTBridgeModule.h"` ,这个类需要实现 `RCTBridgeModule` 协议。
+首先我们需要创建一个类，然后导入头文件 `#import <RCTBridgeModule.h>` ,这个类需要实现 `RCTBridgeModule` 协议。
 
 ```
-// CalendarManager.h
-#import "RCTBridgeModule.h"
+#import <Foundation/Foundation.h>
+#import <RCTBridgeModule.h>
 
-@interface CalendarManager : NSObject <RCTBridgeModule>
+@interface RNTestManager : NSObject <RCTBridgeModule>
+
 @end
 ```
 在类的实现部分，需要包含 `RCT_EXPORT_MODULE()` 宏，这个宏也可以添加一个参数用来指定在Javascript中访问这个模块的名字。如果你不指定，默认就会使用这个Objective-C类的名字。
 
 ```
-// CalendarManager.m
-@implementation CalendarManager
+#import "RNTestManager.h"
 
-RCT_EXPORT_MODULE(); //CalendarManager
-//RCT_EXPORT_MODULE(Calendar);
+@implementation RNTestManager
+
+//RCT_EXPORT_MODULE();
+RCT_EXPORT_MODULE(Test); //注意这里不要加引号和 @ ，直接写模块的名字就可以了。
 
 @end
-
 ```
 
 ##### 导出方法给 JS 调用
@@ -169,100 +198,121 @@ RCT_EXPORT_MODULE(); //CalendarManager
 - object (NSDictionary) 包含string类型的键和本列表中任意类型的值
 - function (RCTResponseSenderBlock)
 
-这样我们就可以写一个简单的方法来让 JS 调用了。
-
+我们在 OC 实现 RCT_EXPORT_METHOD，这样我们就可以写一个简单的方法来让 JS 调用了。
 
 ```
-RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
-{
-  RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
+RCT_EXPORT_METHOD(print:(NSString *)text) {
+    NSLog(@"%@", text);
 }
+```
+
+```
+// JS 部分这样调用
+Test.print("Hello World");
+
+//Xcode控制台输出
+2016-08-30 11:12:16.420 Project[6679:147285] Hello World
 ```
 
 ##### 回掉函数
 如果我们需要在 OC 代码中返回结果给 JS， 我们可以通过传递一个回掉函数到原生代码中。`RCTResponseSenderBlock` 只接受一个参数——传递给 JS 回调函数的参数数组。
 
 ```
-RCT_EXPORT_METHOD(findEvents:(RCTResponseSenderBlock)callback)
-{
-  NSArray *events = ...
-  callback(@[params, params2 ...]);
+RCT_EXPORT_METHOD(add:(NSInteger)numA andNumB:(NSInteger)numB result:(RCTResponseSenderBlock)callback) {
+    callback(@[@(numA + numB)]);
 }
+```
+
+```
+// JS 部分这样调用
+Test.add(1, 2, (result) => {
+                        alert('1 + 2 = ' + result);
+                    });
 ```
 
 ##### 设置原生模块执行操作的线程
 如果你在原生模块中需要更改 UI 或者必须在主线程的话，可以实现 `- (dispatch_queue_t)methodQueue` 方法
 
 ```
-- (dispatch_queue_t)methodQueue
-{
+- (dispatch_queue_t)methodQueue {
   return dispatch_get_main_queue();
 }
 ```
-同样的也可以返回自定义的独立队列。如果返回的有 `methodQueue` 那么原生模块的所有方法都会在当前 `methodQueue`执行。
+同样的也可以返回自定义的独立队列。如果返回的有 `methodQueue` 那么原生模块的所有方法都会在当前 `methodQueue` 执行。
 
 ##### 导出常量
 原生模块可以导出一些常量，这些常量在 JS 端随时都可以访问。用这种方法来传递一些静态数据，可以避免通过 bridge 进行一次来回交互。常量仅仅在初始化的时候导出了一次，所以即使你在运行期间改变常量返回的值，也不会影响到 JS 环境下所得到的结果。
 
 ```
-- (NSDictionary *)constantsToExport
-{
-  return @{ @"firstDayOfTheWeek": @"Monday" };
+- (NSDictionary *)constantsToExport {
+    return @{
+             @"defaultValue": @"default value"
+             };
 }
 ```
-```
-console.log(CalendarManager.firstDayOfTheWeek);
-```
 
+```
+// JS 部分这样调用 Test.defaultValue
+alert(Test.defaultValue);
+```
 **枚举常量**
 
-用NS_ENUM定义的枚举类型必须要先扩展对应的RCTConvert方法才可以作为函数参数传递。
+用NS_ENUM定义的枚举类型必须要先扩展对应的RCTConvert方法才可以作为函数参数传递。添加头文件 `#import <RCTConvert.h>`
 
 ```
-typedef NS_ENUM(NSInteger, UIStatusBarAnimation) {
-    UIStatusBarAnimationNone,
-    UIStatusBarAnimationFade,
-    UIStatusBarAnimationSlide,
+typedef NS_ENUM(NSInteger, RNTestManagerType) {
+    RNTestManagerTypeNone,
+    RNTestManagerTypeDefault,
+    RNTestManagerTypeCustome,
 };
 ```
 
 ```
-@implementation RCTConvert (StatusBarAnimation)
-  RCT_ENUM_CONVERTER(UIStatusBarAnimation, (@{ @"statusBarAnimationNone" : @(UIStatusBarAnimationNone),
-                                               @"statusBarAnimationFade" : @(UIStatusBarAnimationFade),
-                                               @"statusBarAnimationSlide" : @(UIStatusBarAnimationSlide)}),
-                      UIStatusBarAnimationNone, integerValue)
+@implementation RCTConvert (TestManagerType)
+RCT_ENUM_CONVERTER(RNTestManagerType, (
+                                       @{ @"testManagerTypeNone" : @(RNTestManagerTypeNone),
+                                          @"testManagerTypeDefault" : @(RNTestManagerTypeDefault),
+                                          @"testManagerTypeCustome" : @(RNTestManagerTypeCustome)}),
+                   RNTestManagerTypeNone, integerValue)
 @end
 ```
 
 ```
-- (NSDictionary *)constantsToExport
-{
-  return @{ @"statusBarAnimationNone" : @(UIStatusBarAnimationNone),
-            @"statusBarAnimationFade" : @(UIStatusBarAnimationFade),
-            @"statusBarAnimationSlide" : @(UIStatusBarAnimationSlide) }
-};
+- (NSDictionary *)constantsToExport {
+    return @{
+             @"testManagerTypeNone" : @(RNTestManagerTypeNone),
+             @"testManagerTypeDefault" : @(RNTestManagerTypeDefault),
+             @"testManagerTypeCustome" : @(RNTestManagerTypeCustome)
+             };
+}
 
-RCT_EXPORT_METHOD(updateStatusBarAnimation:(UIStatusBarAnimation)animation
-                                completion:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(updateTestManagerType:(RNTestManagerType)type
+                  completion:(RCTResponseSenderBlock)callback) {
+    NSLog(@"%@", @(type));
+    [self changeType:type];
+    callback(@[@(type), @"success"]);
+}
 ```
 
 ##### 给 JS 发送事件
-即使没有被 JS 调用，本地模块也可以给 JS 发送事件通知。最直接的方式是使用 `eventDispatcher:`
+即使没有被 JS 调用，本地模块也可以给 JS 发送事件通知。最直接的方式是使用 `eventDispatcher:`，导入 `#import <RCTEventDispatcher.h>`
 
 ```
 #import "RCTBridge.h"
 #import "RCTEventDispatcher.h"
 
-@implementation CalendarManager
+@implementation RNTestManager
 
 @synthesize bridge = _bridge;
 
-- (void)calendarEventReminderReceived:(NSNotification *)notification
-{
-  NSString *eventName = notification.userInfo[@"name"];
-  [self.bridge.eventDispatcher sendAppEventWithName:@"EventReminder"
-                                               body:@{@"name": eventName}];
+- (void)changeType:(RNTestManagerType)type {
+    if (type != self.type) {
+        self.type = type;
+        [self.bridge.eventDispatcher sendAppEventWithName:@"typeChange"
+                                                     body:@{
+                                                            @"type" : @(self.type)
+                                                            }];
+    }
 }
 
 @end
@@ -271,19 +321,232 @@ RCT_EXPORT_METHOD(updateStatusBarAnimation:(UIStatusBarAnimation)animation
 在 JS 中可以这样订阅事件：
 
 ```
-var { NativeAppEventEmitter } = require('react-native');
+import { NativeAppEventEmitter } from 'react-native';
 
-var subscription = NativeAppEventEmitter.addListener(
-  'EventReminder',
-  (reminder) => console.log(reminder.name)
-);
-...
-// 千万不要忘记忘记取消订阅, 通常在componentWillUnmount函数中实现。
-subscription.remove();
+componentDidMount() {
+    this.subscription = NativeAppEventEmitter.addListener(
+                        'typeChange',
+                        (result)  => alert(result.type)
+                    );
+}
+
+componentWillUnmount() {
+    this.subscription.remove();
+}
 ```
 
 
 ####3. React-Native 调用原生UI组件
+RN 开发中已经封装了大部分常用的组件，但有些组件需要我们自定义，如果在原生中有已经封装好的组件的话，我们可以在 RN 中封装和植入已有的组件。
 
+##### 植入原生组件
+首先我们创建一个类继承自 `RCTViewManager`，并在实现部分添加 `RCT_EXPORT_MODULE()` 宏，然后实现 `- (UIView *)view`方法；
+
+```
+#import <RCTViewManager.h>
+
+@interface RNTextManager : RCTViewManager
+
+@end
+
+```
+
+```
+#import "RNTextManager.h"
+#import "RNText.h"
+
+@implementation RNTextManager
+
+RCT_EXPORT_MODULE()
+
+- (UIView *)view {
+    return [[RNText alloc] init];
+}
+
+@end
+
+```
+
+这样我们就可以在 JS 中调用原生UI组件了，
+
+```
+//RNText.js
+import { requireNativeComponent } from 'react-native';
+
+module.exports = requireNativeComponent('RNText', null);
+
+//home.js
+<View style={{flex: 1, backgroundColor: '#ffffee'}}>
+	<RNText style={{flex: 1}}/>
+</View>
+```
+
+##### 导出组件属性
+一般需要导出的原生组件都有一些定义的属性，所以我们需要封装一些原生属性供 JS 使用。
+
+```
+// RNTextManager.m
+RCT_EXPORT_VIEW_PROPERTY(value, NSString)
+
+// RNText.h
+@interface RNText : UIView
+
+@property (copy, nonatomic) NSString *value;
+
+@end
+
+```
+
+我们在 JS 中就可以这样调用了
+
+```
+<RNText value="HaHaHa~~~" style={{flex: 1}}/>
+```
+
+为了方便在 JS 中直接使用，不用查看 OC 代码获取属性名和类型，我们可以封装一个 RN 组件
+
+```
+//RNText.js
+import React, { Component, PropTypes } from 'react';
+import { requireNativeComponent } from 'react-native';
+
+var UIText = requireNativeComponent('RNText', RNText);
+
+export default class RNText extends Component {
+  static propTypes = {
+    value: PropTypes.string
+  };
+
+  static defaultProps = {
+  }
+
+  render() {
+      return <UIText {...this.props} />;
+  }
+}
+```
+
+有时候你的原生组件有一些特殊的属性希望导出，但并不希望它成为公开的接口。举个例子，Switch组件可能会有一个onChange属性用来传递原始的原生事件，然后导出一个onValueChange属性，这个属性在调用的时候会带上Switch的状态作为参数之一。这样的话你可能不希望原生专用的属性出现在API之中，也就不希望把它放到propTypes里。可是如果你不放的话，又会出现一个报错。解决方案就是带上额外的nativeOnly参数，像这样：
+
+```
+var RCTSwitch = requireNativeComponent('RCTSwitch', Switch, {
+  nativeOnly: { onChange: true }
+});
+```
+
+##### 事件
+如果你添加了一个二维码扫描的组件，那么当扫描二维码成功之后，我们需要把扫描结果传递给 JS，或者其他需要处理来自原生组件的事件。这时，我们就需要在继承自RCTViewManager的类中声明一个事件处理函数的属性（onChange），来委托我们提供的所有视图，然后把事件传递给 JS。
+
+```
+#import <UIKit/UIKit.h>
+#import <RCTComponent.h>
+@class RNText;
+
+@protocol RNTextDelegate <NSObject>
+
+- (void)text:(RNText *)text valueChange:(NSString *)value;
+
+@end
+
+@interface RNText : UIView
+
+@property (copy, nonatomic) NSString *value;
+
+@property (weak, nonatomic) id<RNTextDelegate> delegate;
+
+@property (copy, nonatomic) RCTBubblingEventBlock onChange;
+
+@end
+
+```
+
+```
+// RNText.m
+
+...
+
+- (void)setupChangeAction {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.value = @" 5 S ~~~";
+        if ([self.delegate respondsToSelector:@selector(text:valueChange:)]) {
+            [self.delegate text:self valueChange:self.label.text];
+        }
+    });
+}
+
+...
+
+```
+
+```
+#import "RNTextManager.h"
+#import "RNText.h"
+
+@interface RNTextManager ()<RNTextDelegate>
+
+@end
+
+@implementation RNTextManager
+
+RCT_EXPORT_MODULE()
+
+- (UIView *)view {
+    RNText *text = [[RNText alloc] init];
+    text.delegate = self;
+    return text;
+}
+
+- (void)text:(RNText *)text valueChange:(NSString *)value {
+    if (!text.onChange) {
+        return;
+    }
+    NSDictionary *params = @{
+                             @"value" : value
+                             };
+    text.onChange(params);
+}
+
+RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+
+RCT_EXPORT_VIEW_PROPERTY(value, NSString)
+
+@end
+```
+
+我在RNText中添加了onChange属性，并且在初始化组件时添加了一个延时操作，5s后会更改属性value的值，并且执行代理方法，把当前的组件和值传递给组件的代理RNTextManager，然后在代理方法中调用 onChange 传递数据。在JS部分的回掉函数名要和OC部分相同。
+
+```
+//RNText.js
+import React, { Component, PropTypes } from 'react';
+import { requireNativeComponent } from 'react-native';
+
+var UIText = requireNativeComponent('RNText', RNText);
+
+export default class RNText extends Component {
+  static propTypes = {
+      value: PropTypes.string,
+      onValueChange: PropTypes.func
+  };
+
+  static defaultProps = {
+  }
+
+  render() {
+      return <UIText {...this.props} onChange={(obj) => {
+          this.props.onValueChange(obj.nativeEvent.value);
+      }} />;
+  }
+}
+
+//home.js
+<RNText value="HaHaHa~~~" 
+		onValueChange={(value) => {
+                        alert(value);
+                    }}
+        style={{flex: 1}}/>
+```
+
+为了方便理解，我这里写了一个[Demo][1]。
 
 [0]: http://www.lcode.org/react-native-integrating/
+[1]: http://www.lcode.org/react-native-integrating/
