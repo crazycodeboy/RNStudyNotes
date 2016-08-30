@@ -1,0 +1,12 @@
+platform:ios, '7.0'
+inhibit_all_warnings!
+
+target "Project" do
+
+pod 'React', :path => '../node_modules/react-native', :subspecs => [
+'Core',
+'RCTText',
+'RCTImage',
+'RCTWebSocket'
+]
+end
