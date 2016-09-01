@@ -16,6 +16,9 @@
 8. [D8:React-Native 原生模块调用(iOS) (2016-8-29)](#d8react-native-原生模块调用ios-2016-8-29)
 9. [D9:动态属性名&字符串模板(2016-8-30)](#d9动态属性名字符串模板2016-8-30)
 10. [D10:优化切换动画卡顿的问题(2016-8-31)](#d10优化切换动画卡顿的问题2016-8-31)
+11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11AsyncStorage存储key管理小技巧2016-9-1))
+
+
 ```
 模板：   
 D1:标题 (日期)
@@ -27,6 +30,111 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+
+
+D11:AsyncStorage存储key管理小技巧   
+------
+
+### 场景  
+
+AsyncStorage是React Native推荐的数据存储方式。当我们需要根据条件从本地查询出多条记录时，你会想到来一个`select * from xx where xx`。但是很不幸的告诉你，AsyncStorage
+是不支持sql的，因为AsyncStorage是Key-Value存储系统。
+
+**那么如何才能快速的从众多记录中将符合条件的记录查询出来呢？**    
+请往下看... 
+
+###  AsyncStorage key管理   
+
+为了方便查询多条符合规则的记录，我们可以在保存数据前，对这条数据进行分类，然后记录下这条记录的key。下次再查询该数据前，只需要先查询之前保存的所有的所有key，然后通过
+`static multiGet(keys, callback?) `API，将符合规则的数据一并查询出来。   
+
+### 用例  
+
+>保存数据   
+
+**第一步：保存数据**
+
+```javascript
+  saveFavoriteItem(key,vaule,callback) {
+    AsyncStorage.setItem(key,vaule,(error,result)=>{
+      if (!error) {//更新Favorite的key
+        this.updateFavoriteKeys(key,true);
+      }
+    });
+  }
+```
+
+**第二步：更新key**  
+
+```javascript
+/**
+   * 更新Favorite key集合
+   * @param isAdd true 添加,false 删除
+   * **/
+  updateFavoriteKeys(key,isAdd){
+    AsyncStorage.getItem(this.favoriteKey,(error,result)=>{
+      if (!error) {
+        var favoriteKeys=[];
+        if (result) {
+          favoriteKeys=JSON.parse(result);
+        }
+        var index=favoriteKeys.indexOf(key);
+        if(isAdd){
+          if (index===-1)favoriteKeys.push(key);
+        }else {
+          if (index!==-1)favoriteKeys.splice(index, 1);
+        }
+        AsyncStorage.setItem(this.favoriteKey,JSON.stringify(favoriteKeys));
+      }
+    });
+  }
+```    
+
+>查询批量数据   
+
+**第一步：查询key**   
+
+```javascript
+getFavoriteKeys(){//获取收藏的Respository对应的key
+    return new Promise((resolve,reject)=>{
+      AsyncStorage.getItem(this.favoriteKey,(error,result)=>{
+        if (!error) {
+          try {
+            resolve(JSON.parse(result));
+          } catch (e) {
+            reject(error);
+          }
+        }else {
+          reject(error);
+        }
+      });
+    });
+  }
+```
+
+**第二步：根据key查询数据**    
+
+```javascript
+AsyncStorage.multiGet(keys, (err, stores) => {
+            try {
+              stores.map((result, i, store) => {
+                // get at each store's key/value so you can work with it
+                let key = store[i][0];
+                let value = store[i][1];
+                if (value)items.push(JSON.parse(value));
+              });
+              resolve(items);
+            } catch (e) {
+              reject(e);
+            }
+          });
+ ```
+
+>**以上是我在使用AsyncStorage进行批量数据查询的一些思路，大家根据实际情况进行调整。**   
+
+
+
+
 D10:优化切换动画卡顿的问题(2016-8-31)
 ------
 使用API InteractionManager，它的作用就是可以使本来JS的一些操作在动画完成之后执行，这样就可确保动画的流程性。当然这是在延迟执行为代价上来获得帧数的提高。
