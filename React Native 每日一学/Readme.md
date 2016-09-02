@@ -17,6 +17,7 @@
 9. [D9:动态属性名&字符串模板(2016-8-30)](#d9动态属性名字符串模板2016-8-30)
 10. [D10:优化切换动画卡顿的问题(2016-8-31)](#d10优化切换动画卡顿的问题2016-8-31)
 11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11asyncstorage存储key管理小技巧---)
+12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
 
 
 ```
@@ -29,6 +30,42 @@ D1:标题 (日期)
 ### 子标题
 内容   
 另外：记得在列表中添加链接 
+```
+
+
+D12:延展操作符(Spread operator)(2016-9-2)
+------
+通常我们在封装一个组件时，会对外公开一些 props 用于实现功能。大部分情况下在外部使用都应显示的传递 props 。但是当传递大量的props时，会非常繁琐，这时我们可以使用 `...(延展操作符,用于取出参数对象的所有可遍历属性)` 来进行传递。
+
+### 一般情况下我们应该这样写
+```
+<CustomComponent type='normal' number={2} />
+```
+
+### 使用 ... ，等同于上面的写法
+
+```
+var params = {
+		type: 'normal',
+		number: 2
+	}
+<CustomComponent {...params} />
+```
+
+### 配合解构赋值避免传入一些不需要的参数
+
+```
+var params = {
+	name: '123',
+	title: '456',
+	type: 'aaa'
+}
+
+var { type, ...other } = params;
+
+<CustomComponent type='normal' number={2} {...other} />
+//等同于
+<CustomComponent type='normal' number={2} name='123' title='456' />
 ```
 
 
