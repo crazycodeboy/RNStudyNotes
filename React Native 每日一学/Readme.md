@@ -18,7 +18,7 @@
 10. [D10:优化切换动画卡顿的问题(2016-8-31)](#d10优化切换动画卡顿的问题2016-8-31)
 11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11asyncstorage存储key管理小技巧---)
 12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
-
+13. [D13:React Native学习资料整理(2016-9-5)](#d13React Native学习资料整理2016-9-5)
 
 ```
 模板：   
@@ -31,7 +31,26 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D13:React Native学习资料整理(2016-9-5)
+------
+收集整理了一些学习指南，包含 教程、开源app和资源网站等的链接,如果需要查阅资料或找寻第三方库,大家可以去查找
 
+###资源整合
+
+[RNStudyNotes
+ ★300 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
+
+[awesome-react-native
+ ★7037](https://github.com/jondot/awesome-react-native)  Awesome React Native系列,有最全的第三方组件(推荐!)
+
+[react-native-guide
+ ★5777](https://github.com/reactnativecn/react-native-guide) React-Native学习指南,开源App和组件
+ 
+ [React Native 高质量学习资料汇总](http://www.jianshu.com/p/454f2e6f28e9)  @author ASCE1885整理
+ 
+ [React Native 从入门到原理](http://www.jianshu.com/p/978c4bd3a759) 作者@bestswifter
+ 
+ [深入浅出ES6](www.infoq.com/cn/es6-in-depth/)深入浅出ES6专栏合集迷你书
 
 D12:延展操作符(Spread operator)(2016-9-2)
 ------
