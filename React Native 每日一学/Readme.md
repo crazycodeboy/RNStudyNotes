@@ -18,7 +18,7 @@
 10. [D10:优化切换动画卡顿的问题(2016-8-31)](#d10优化切换动画卡顿的问题2016-8-31)
 11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11asyncstorage存储key管理小技巧---)
 12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
-13. [D13:React Native学习资料整理(2016-9-5)](#d13React Native学习资料整理2016-9-5)
+13. [D13:React Native学习资料整理(2016-9-5)](#d13react-native学习资料整理2016-9-5)
 
 ```
 模板：   
