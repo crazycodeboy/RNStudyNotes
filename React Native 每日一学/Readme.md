@@ -19,6 +19,7 @@
 11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11asyncstorage存储key管理小技巧---)
 12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
 13. [D13:React Native学习资料整理(2016-9-5)](#d13react-native学习资料整理2016-9-5)
+14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
 
 ```
 模板：   
@@ -31,6 +32,30 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D14:React Native Android跳入RN界面(2016-9-7)
+------
+步骤：
+1.新建一个类继承`Activity`，并实现`DefaultHardwareBackBtnHandler`接口
+2.new一个`ReactRootView`，并build 一个`ReactInstanceManager`
+3.`setContentView(mReactRootView);`
+```java
+	  mReactRootView = new ReactRootView(this);
+        mReactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(getApplication())
+                .setBundleAssetName("index.android.bundle")
+                .setJSMainModuleName("index.android")
+                .addPackage(new MainReactPackage())
+                .setUseDeveloperSupport(true)
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
+        Bundle bundle = new Bundle();
+        bundle.putString("enter","KsudiReward");
+        mReactRootView.startReactApplication(mReactInstanceManager,                      "KsudiCircle", bundle);
+
+        setContentView(mReactRootView);
+```
+其中`KsudiCircle`是RN入口 注册的组件名称，bundle为原生带入RN的属性值
+
 D13:React Native学习资料整理(2016-9-5)
 ------
 收集整理了一些学习指南，包含 教程、开源app和资源网站等的链接,如果需要查阅资料或找寻第三方库,大家可以去查找
@@ -65,9 +90,13 @@ D12:延展操作符(Spread operator)(2016-9-2)
 
 ```
 var params = {
+
 		type: 'normal',
+
 		number: 2
+
 	}
+
 <CustomComponent {...params} />
 ```
 
