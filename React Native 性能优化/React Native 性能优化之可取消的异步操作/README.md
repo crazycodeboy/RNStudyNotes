@@ -1,5 +1,6 @@
 # [React Native 性能优化之可取消的异步操作](https://github.com/crazycodeboy/RNStudyNotes/)  
 
+本文出自[《React Native 研究与实践》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
 
 ## 概述
 在项目开发中离不了的需要进行一些异步操作，这些异步操作在改善用户体验的同时也带来了一些性能隐患。
