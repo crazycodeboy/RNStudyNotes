@@ -9,7 +9,7 @@
 
 ## 列表  
 
-* [React Native 性能优化之可取消的异步操作](https://github.com/crazycodeboy/react-native-awesome)
+* [React Native 性能优化之可取消的异步操作](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%AF%E5%8F%96%E6%B6%88%E7%9A%84%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
 
 
 

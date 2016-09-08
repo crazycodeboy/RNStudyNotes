@@ -15,7 +15,7 @@
 
 ## 为Promise插上可取消的翅膀  
 
-`Promise`是React Native开发过程中用于异步操作的最常用的API，但Promise没有提供用于取消异步操作的方法。为了实现可取消的异步操作，我们可以在为Promise包裹一层可取消的外衣。    
+`Promise`是React Native开发过程中用于异步操作的最常用的API，但Promise没有提供用于取消异步操作的方法。为了实现可取消的异步操作，我们可以为Promise包裹一层可取消的外衣。    
 
 ```javascript
 const makeCancelable = (promise) => {
@@ -50,7 +50,7 @@ cancelable
 cancelable.cancel();   
 ```
 
-上述方法，可以为异步操作添加可取消的功能，但是使用还是不够方便：在每个使用可取消功能的异步操作的页面都需要复制粘贴上述代码。   
+上述方法，可以为异步操作添加可取消的功能，但是使用还是不够方便：在每个使用`makeCancelable`的页面都需要复制粘贴上述代码。   
 下面我们做一下改进，将上述代码抽离到一个文件中。   
 
  ```javascript
@@ -82,7 +82,7 @@ export default function makeCancelable(promise){
 }
 ```
 
-在使用的时候只需要将makeCancelable导入到你的相应js文件中就可以了。   
+这样在使用的时候只需要将makeCancelable导入到你的相应js文件中就可以了。   
 
 ```javascript
 import makeCancelable from '../util/Cancelable'
