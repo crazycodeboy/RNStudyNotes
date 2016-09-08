@@ -20,7 +20,7 @@
 12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
 13. [D13:React Native学习资料整理(2016-9-5)](#d13react-native学习资料整理2016-9-5)
 14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
-15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为Promise插上可取消的翅膀2016-9-8)
+15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
 
 ```
 模板：   
