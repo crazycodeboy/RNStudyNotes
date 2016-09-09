@@ -21,6 +21,7 @@
 13. [D13:React Native学习资料整理(2016-9-5)](#d13react-native学习资料整理2016-9-5)
 14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
 15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
+16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
 
 ```
 模板：   
@@ -33,6 +34,17 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+
+D16:Image组件遇到的宽高问题(2016-9-9)
+------
+开发中使用Image组件展示图片，在某些机型上有时并不能得到正确的宽高,设置`resizeMode`无效，此时可以设置宽高属性为`null`这样就可以正常显示了。
+
+|                 宽度不正确       |             宽度正确          |
+|--------------------------------|------------------------------|
+|![宽度不正确](./images/D16/1.png) |	![宽度正确](./images/D16/2.png)|
+
+更多相关问题[Stack Overflow][1]  [Github][2]
+
 
 D15:为Promise插上可取消的翅膀(2016-9-8)
 ------
@@ -1014,6 +1026,7 @@ import langsData from '../../../res/data/langs.json'
 
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-
+[1]: http://stackoverflow.com/questions/29322973/whats-the-best-way-to-add-a-full-screen-background-image-in-react-native
+[2]: https://github.com/facebook/react-native/issues/4598#issuecomment-162328501
 
 
