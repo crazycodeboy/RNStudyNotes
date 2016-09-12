@@ -22,6 +22,7 @@
 14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
 15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
 16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
+17. [D17:数据类型优化(2016-9-12)](#d16image组件遇到的宽高问题2016-9-9)
 
 ```
 模板：   
@@ -33,6 +34,42 @@ D1:标题 (日期)
 ### 子标题
 内容   
 另外：记得在列表中添加链接 
+```
+D17:数据类型优化(2016-9-12)
+------
+经常会遇到页面需要加载和渲染数据,有时刷新数据是state中的值没有修改,但是遇到this.setState(),界面就会被重新渲染,因为react-native的生命周期就是,当你调用setState时，总是会触发render的方法。
+###优化1
+可以使用shouldComponentUpdate生命周期方法，此方法作用是在props或 者state改变且接收到新的值时，则在要render方法之前调用。此方法在初始化渲染的时候不会调用，在使用forceUpdate方法的时候也不会。所以在这个方法中我们可以增加些判断规则来避免当state或者props没有改变时所造成的重新render.
+
+```
+shouldComponentUpdate(dataProps,dataState) {
+  return dataProps.value !== this.props.value;
+}
+```
+
+###优化2
+如果是一个列表的话这样判断就有问题,这里即使使用了shouldComponentUpdate中的判断，但却一直返回true，导致还会执行render。所以必须对对象所有的键值进行进行比较才能确认是否相等。这里推荐使用facebook自家的immutablejs。一个不可变数据类型的库。使用后可以直接使用以下的写法达到我们之前的目的。immutablejs其他的具体用法请见:[Immutable 详解及 React 中实践](http://www.w3ctech.com/topic/1595)优化后代码如下:
+
+```
+export default class KSD extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: Immutable.formJS({
+                value:{
+                    value1:'value1',
+                    value2:'value2',
+                    value3:'value3'
+                }
+            })
+        }
+    }
+    shouldComponentUpdate(dataProps,dataState) {
+        return(
+          return dataProps.data !== this.props.data;
+        )
+    }
+}
 ```
 
 D16:Image组件遇到的宽高问题(2016-9-9)
