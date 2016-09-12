@@ -22,7 +22,7 @@
 14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
 15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
 16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
-17. [D17:数据类型优化(2016-9-12)](#d16image组件遇到的宽高问题2016-9-9)
+17. [D17:数据类型优化(2016-9-12)](#d17数据类型优化2016-9-12)
 
 ```
 模板：   
@@ -154,7 +154,7 @@ D13:React Native学习资料整理(2016-9-5)
 ###资源整合
 
 [RNStudyNotes
- ★300 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
+ ★320 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
 
 [awesome-react-native
  ★7037](https://github.com/jondot/awesome-react-native)  Awesome React Native系列,有最全的第三方组件(推荐!)
