@@ -15,6 +15,16 @@
 7. [D7:解构赋值（Destructuring assignment）(2016-8-26)](#d7解构赋值destructuring-assignment2016-8-26)
 8. [D8:React-Native 原生模块调用(iOS) (2016-8-29)](#d8react-native-原生模块调用ios-2016-8-29)
 9. [D9:动态属性名&字符串模板(2016-8-30)](#d9动态属性名字符串模板2016-8-30)
+10. [D10:优化切换动画卡顿的问题(2016-8-31)](#d10优化切换动画卡顿的问题2016-8-31)
+11. [D11:AsyncStorage存储key管理小技巧(2016-9-1)](#d11asyncstorage存储key管理小技巧---)
+12. [D12:延展操作符(Spread operator)(2016-9-2)](#d12延展操作符spread-operator2016-9-2)
+13. [D13:React Native学习资料整理(2016-9-5)](#d13react-native学习资料整理2016-9-5)
+14. [D14:React Native Android跳入RN界面(2016-9-7)](#d14react-native-android跳入rn界面2016-9-7)
+15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
+16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
+17. [D17:数据类型优化(2016-9-12)](#d17数据类型优化2016-9-12)
+18. [D18:ReactMethod的参数类型(2016-9-14)](#d18reactmethod的参数类型2016-9-14)
+19. [D19:ListView滚动平滑(2016-9-14)](#d19listview滚动平滑2016-9-14)
 ```
 模板：   
 D1:标题 (日期)
@@ -26,7 +36,315 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D19:ListView滚动平滑(2016-9-14)
+------
+ListView设计的时候，当需要动态加载非常大的数据的时候，下面的方法性能优化的方法可以让我们的ListView滚动的时候更加平滑：
 
+- 只更新渲染数据变化的那一行  ，`rowHasChanged`方法会告诉ListView组件是否需要重新渲染当前那一行。
+- 选择渲染的频率 ，默认情况下面每一个`event-loop`(事件循环)只会渲染一行(可以同pageSize自定义属性设置)。这样可以把大的工作量进行分隔，提供整体渲染的性能。
+D18:ReactMethod的参数类型(2016-9-14)
+------
+`@ReactMethod`方法中传的参数必须是JavaScript和Java相互对应的。
+```javascript
+Boolean -> Bool
+Integer -> Number
+Double -> Number
+Float -> Number
+String -> String
+Callback -> function
+ReadableMap -> Object
+ReadableArray -> Array
+```
+D17:数据类型优化(2016-9-12)
+------
+经常会遇到页面需要加载和渲染数据,有时刷新数据是state中的值没有修改,但是遇到this.setState(),界面就会被重新渲染,因为react-native的生命周期就是,当你调用setState时，总是会触发render的方法。
+###优化1
+可以使用shouldComponentUpdate生命周期方法，此方法作用是在props或 者state改变且接收到新的值时，则在要render方法之前调用。此方法在初始化渲染的时候不会调用，在使用forceUpdate方法的时候也不会。所以在这个方法中我们可以增加些判断规则来避免当state或者props没有改变时所造成的重新render.
+
+```
+shouldComponentUpdate(dataProps,dataState) {
+  return dataProps.value !== this.props.value;
+}
+```
+
+###优化2
+如果是一个列表的话这样判断就有问题,这里即使使用了shouldComponentUpdate中的判断，但却一直返回true，导致还会执行render。所以必须对对象所有的键值进行进行比较才能确认是否相等。这里推荐使用facebook自家的immutablejs。一个不可变数据类型的库。使用后可以直接使用以下的写法达到我们之前的目的。immutablejs其他的具体用法请见:[Immutable 详解及 React 中实践](http://www.w3ctech.com/topic/1595)优化后代码如下:
+
+```
+export default class KSD extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: Immutable.formJS({
+                value:{
+                    value1:'value1',
+                    value2:'value2',
+                    value3:'value3'
+                }
+            })
+        }
+    }
+    shouldComponentUpdate(dataProps,dataState) {
+        return(
+          return dataProps.data !== this.props.data;
+        )
+    }
+}
+```
+
+D16:Image组件遇到的宽高问题(2016-9-9)
+------
+开发中使用Image组件展示图片，在某些机型上有时并不能得到正确的宽高,设置`resizeMode`无效，此时可以设置宽高属性为`null`这样就可以正常显示了。
+
+|                 宽度不正确       |             宽度正确          |
+|--------------------------------|------------------------------|
+|![宽度不正确](./images/D16/1.png) |	![宽度正确](./images/D16/2.png)|
+
+更多相关问题[Stack Overflow][1]  [Github][2]
+
+
+D15:为Promise插上可取消的翅膀(2016-9-8)
+------
+`Promise`是React Native开发过程中用于异步操作的最常用的API，但Promise没有提供用于取消异步操作的方法。为了实现可取消的异步操作，我们可以为Promise包裹一层可取消的外衣。    
+
+```javascript
+const makeCancelable = (promise) => {
+  let hasCanceled_ = false;
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then((val) =>
+      hasCanceled_ ? reject({isCanceled: true}) : resolve(val)
+    );
+    promise.catch((error) =>
+      hasCanceled_ ? reject({isCanceled: true}) : reject(error)
+    );
+  });
+  return {
+    promise: wrappedPromise,
+    cancel() {
+      hasCanceled_ = true;
+    },
+  };
+};  
+```
+
+然后可以这样使用取消操作：   
+
+```javascript
+const somePromise = new Promise(r => setTimeout(r, 1000));//创建一个异步操作
+const cancelable = makeCancelable(somePromise);//为异步操作添加可取消的功能
+cancelable
+  .promise
+  .then(() => console.log('resolved'))
+  .catch(({isCanceled, ...error}) => console.log('isCanceled', isCanceled));
+// 取消异步操作
+cancelable.cancel();   
+```
+
+**了解更多：[React Native 性能优化之可取消的异步操作](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%AF%E5%8F%96%E6%B6%88%E7%9A%84%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)**
+
+
+D14:React Native Android跳入RN界面(2016-9-7)
+------
+步骤：
+1.新建一个类继承`Activity`，并实现`DefaultHardwareBackBtnHandler`接口
+2.new一个`ReactRootView`，并build 一个`ReactInstanceManager`
+3.`setContentView(mReactRootView);`
+```java
+	  mReactRootView = new ReactRootView(this);
+        mReactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(getApplication())
+                .setBundleAssetName("index.android.bundle")
+                .setJSMainModuleName("index.android")
+                .addPackage(new MainReactPackage())
+                .setUseDeveloperSupport(true)
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
+        Bundle bundle = new Bundle();
+        bundle.putString("enter","KsudiReward");
+        mReactRootView.startReactApplication(mReactInstanceManager,                      "KsudiCircle", bundle);
+
+        setContentView(mReactRootView);
+```
+其中`KsudiCircle`是RN入口 注册的组件名称，bundle为原生带入RN的属性值
+
+D13:React Native学习资料整理(2016-9-5)
+------
+收集整理了一些学习指南，包含 教程、开源app和资源网站等的链接,如果需要查阅资料或找寻第三方库,大家可以去查找
+
+###资源整合
+
+[RNStudyNotes
+ ★320 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
+
+[awesome-react-native
+ ★7037](https://github.com/jondot/awesome-react-native)  Awesome React Native系列,有最全的第三方组件(推荐!)
+
+[react-native-guide
+ ★5777](https://github.com/reactnativecn/react-native-guide) React-Native学习指南,开源App和组件
+ 
+ [React Native 高质量学习资料汇总](http://www.jianshu.com/p/454f2e6f28e9)  @author ASCE1885整理
+ 
+ [React Native 从入门到原理](http://www.jianshu.com/p/978c4bd3a759) 作者@bestswifter
+ 
+ [深入浅出ES6](www.infoq.com/cn/es6-in-depth/)深入浅出ES6专栏合集迷你书
+
+D12:延展操作符(Spread operator)(2016-9-2)
+------
+通常我们在封装一个组件时，会对外公开一些 props 用于实现功能。大部分情况下在外部使用都应显示的传递 props 。但是当传递大量的props时，会非常繁琐，这时我们可以使用 `...(延展操作符,用于取出参数对象的所有可遍历属性)` 来进行传递。
+
+### 一般情况下我们应该这样写
+```
+<CustomComponent type='normal' number={2} />
+```
+
+### 使用 ... ，等同于上面的写法
+
+```
+var params = {
+
+		type: 'normal',
+
+		number: 2
+
+	}
+
+<CustomComponent {...params} />
+```
+
+### 配合解构赋值避免传入一些不需要的参数
+
+```
+var params = {
+	name: '123',
+	title: '456',
+	type: 'aaa'
+}
+
+var { type, ...other } = params;
+
+<CustomComponent type='normal' number={2} {...other} />
+//等同于
+<CustomComponent type='normal' number={2} name='123' title='456' />
+```
+
+
+D11:AsyncStorage存储key管理小技巧   
+------
+
+### 场景  
+
+AsyncStorage是React Native推荐的数据存储方式。当我们需要根据条件从本地查询出多条记录时，你会想到来一个`select * from xx where xx`。但是很不幸的告诉你，AsyncStorage
+是不支持sql的，因为AsyncStorage是Key-Value存储系统。
+
+**那么如何才能快速的从众多记录中将符合条件的记录查询出来呢？**    
+请往下看... 
+
+###  AsyncStorage key管理   
+
+为了方便查询多条符合规则的记录，我们可以在保存数据前，对这条数据进行分类，然后记录下这条记录的key。下次再查询该数据前，只需要先查询之前保存的key，然后通过
+`static multiGet(keys, callback?) `API，将符合规则的数据一并查询出来。   
+
+### 用例  
+
+>保存数据   
+
+**第一步：保存数据**
+
+```javascript
+  saveFavoriteItem(key,vaule,callback) {
+    AsyncStorage.setItem(key,vaule,(error,result)=>{
+      if (!error) {//更新Favorite的key
+        this.updateFavoriteKeys(key,true);
+      }
+    });
+  }
+```
+
+**第二步：更新key**  
+
+```javascript
+/**
+   * 更新Favorite key集合
+   * @param isAdd true 添加,false 删除
+   * **/
+  updateFavoriteKeys(key,isAdd){
+    AsyncStorage.getItem(this.favoriteKey,(error,result)=>{
+      if (!error) {
+        var favoriteKeys=[];
+        if (result) {
+          favoriteKeys=JSON.parse(result);
+        }
+        var index=favoriteKeys.indexOf(key);
+        if(isAdd){
+          if (index===-1)favoriteKeys.push(key);
+        }else {
+          if (index!==-1)favoriteKeys.splice(index, 1);
+        }
+        AsyncStorage.setItem(this.favoriteKey,JSON.stringify(favoriteKeys));
+      }
+    });
+  }
+```    
+
+>查询批量数据   
+
+**第一步：查询key**   
+
+```javascript
+getFavoriteKeys(){//获取收藏的Respository对应的key
+    return new Promise((resolve,reject)=>{
+      AsyncStorage.getItem(this.favoriteKey,(error,result)=>{
+        if (!error) {
+          try {
+            resolve(JSON.parse(result));
+          } catch (e) {
+            reject(error);
+          }
+        }else {
+          reject(error);
+        }
+      });
+    });
+  }
+```
+
+**第二步：根据key查询数据**    
+
+```javascript
+AsyncStorage.multiGet(keys, (err, stores) => {
+            try {
+              stores.map((result, i, store) => {
+                // get at each store's key/value so you can work with it
+                let key = store[i][0];
+                let value = store[i][1];
+                if (value)items.push(JSON.parse(value));
+              });
+              resolve(items);
+            } catch (e) {
+              reject(e);
+            }
+          });
+ ```
+
+>**以上是我在使用AsyncStorage进行批量数据查询的一些思路，大家根据实际情况进行调整。**   
+
+
+
+
+D10:优化切换动画卡顿的问题(2016-8-31)
+------
+使用API InteractionManager，它的作用就是可以使本来JS的一些操作在动画完成之后执行，这样就可确保动画的流程性。当然这是在延迟执行为代价上来获得帧数的提高。
+```javascript
+	InteractionManager.runAfterInteractions(()=>{
+		//...耗时较长的同步任务...
+		//更新state也需要时间
+		this.setState({
+			...
+		})
+		//获取某些数据，需要长时间等待
+		this.fetchData(arguements)
+	})
+```
 D9:动态属性名&字符串模板(2016-8-30)
 ------
 在 ES6+ 中，我们不仅可以在对象字面量属性的定义中使用表达式，还有使用使用字符串模板：
@@ -765,6 +1083,7 @@ import langsData from '../../../res/data/langs.json'
 
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-
+[1]: http://stackoverflow.com/questions/29322973/whats-the-best-way-to-add-a-full-screen-background-image-in-react-native
+[2]: https://github.com/facebook/react-native/issues/4598#issuecomment-162328501
 
 
