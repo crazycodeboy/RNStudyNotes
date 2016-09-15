@@ -1,4 +1,4 @@
-# [React Native 性能优化](https://github.com/crazycodeboy/RNStudyNotes/)  
+# [React Native 问题及解决方案合集](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20问题及解决方案合集)  
 该项目用于分享我们在研究与实践React Native过程中的一些经验，总结，教程，以及踩过的一些坑。   
 本项目持续更新，欢迎大家[Fork and Star](https://github.com/crazycodeboy/RNStudyNotes/)。   
 **另外感谢项目的每一位无私的[贡献者](https://github.com/crazycodeboy/RNStudyNotes/graphs/contributors)。**    
@@ -9,7 +9,7 @@
 
 ## 列表  
 
-* [React Native 问题及解决方案合集](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86)
+* [React Native Android启动屏，启动白屏，闪现白屏](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20Android%E5%90%AF%E5%8A%A8%E5%B1%8F%EF%BC%8C%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%EF%BC%8C%E9%97%AA%E7%8E%B0%E7%99%BD%E5%B1%8F)
 
 
 
