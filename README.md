@@ -8,7 +8,7 @@
 
 ## 列表  
 
-* [React Native 问题及解决方案](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
+* [React Native 问题及解决方案合集](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86)
 * [React Native 性能优化](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
 * [React Native Awesome(汇聚知识，分享精华)](https://github.com/crazycodeboy/react-native-awesome)：只求精不求全的React Native学习资料库。React Native Awesome 汇集了各类react-native学习资料、工具、组件、开源App、以及相关新闻等（**据说还有资源下载哦**）。
 * [React Native 每日一学](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%AF%8F%E6%97%A5%E4%B8%80%E5%AD%A6)：每天一个知识点（技巧，经验，填坑日记等），每天学一点，离大神近一点。
