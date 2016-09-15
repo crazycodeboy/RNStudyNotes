@@ -1,5 +1,7 @@
 # React Native Android启动屏，启动白屏，闪现白屏
 
+本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。
+
 ![React Native Android启动屏，启动白屏，闪现白屏](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/React Native Android启动屏，启动白屏，闪现白屏.gif)
 
 ## 问题描述：  
@@ -345,5 +347,17 @@ LaunchScreen.hide();
 这样一来，启动时变不会闪现黑屏或白屏了。  
 
 >如果，你的应用需要一个特定的主题，但该主题不是透明的，你可以先将application的默认主题设置成透明的主题，然后在程序启动后（可以在启动页进行），通过`public void setTheme(int resid)`方法将主题设置成你想要的主题即可。
+
+## 最后
+
+**既然来了，留下个喜欢再走吧，鼓励我继续创作(^_^)∠※**   
+
+**如果喜欢我的文章，那就关注我的[博客](http://www.cboy.me/)吧，让我们一起做朋友~~**
+
+#### 戳这里,加关注哦:   
+
+>**[微博](http://weibo.com/u/6003602003)：第一时间获取推送**    
+**[个人博客](http://www.cboy.me/)：干货文章都在这里哦**  
+**[GitHub](https://github.com/crazycodeboy/)：我的开源项目**     
 
 
