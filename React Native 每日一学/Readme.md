@@ -23,6 +23,7 @@
 15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
 16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
 17. [D17:数据类型优化(2016-9-12)](#d17数据类型优化2016-9-12)
+18. [D18:TextInput高度自增长(2016-9-21)](#d18textinput高度自增长2016-9-21)
 
 ```
 模板：   
@@ -35,6 +36,37 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D18:TextInput高度自增长(2016-9-21)
+------
+自定义组件
+
+	class AutoExpandingTextInput extends Component{
+		 render() {
+	        return (
+	            <TextInput {...this.props}  //将组件定义的属性交给TextInput
+	                multiline={true}
+	                onChange={this.onChange}
+	                onContentSizeChange={this.onContentSizeChange}
+	                style={[styles.textInputStyle,{height:Math.max(35,this.state.height)}]}
+	                value={this.state.text}
+	            />
+	        );
+	    }
+	}
+
+然后引用：
+
+		 render() {
+	        return (
+	            <View style={styles.container}>
+	                <AutoExpandingTextInput
+	                    style={styles.textInputStyle}
+	                    onChangeText={this._onChangeText}
+	                />
+	            </View>
+	        );
+     
+
 D17:数据类型优化(2016-9-12)
 ------
 经常会遇到页面需要加载和渲染数据,有时刷新数据是state中的值没有修改,但是遇到this.setState(),界面就会被重新渲染,因为react-native的生命周期就是,当你调用setState时，总是会触发render的方法。
@@ -1064,6 +1096,7 @@ import langsData from '../../../res/data/langs.json'
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 [1]: http://stackoverflow.com/questions/29322973/whats-the-best-way-to-add-a-full-screen-background-image-in-react-native
+
 [2]: https://github.com/facebook/react-native/issues/4598#issuecomment-162328501
 
 
