@@ -23,9 +23,11 @@
 15. [D15:为Promise插上可取消的翅膀(2016-9-8)](#d15为promise插上可取消的翅膀2016-9-8)
 16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
 17. [D17:数据类型优化(2016-9-12)](#d17数据类型优化2016-9-12)
-18. [D18:TextInput高度自增长(2016-9-21)](#d18textinput高度自增长2016-9-21)
-19. [D19:ListView滚动平滑(2016-9-22)](#d19listview滚动平滑2016-9-22)
-20. [D20:ReactMethod的参数类型(2016-9-22)](#d20reactmethod的参数类型2016-9-22)
+18. [D18:TextInput高度自增长(2016-9-19)](#d18textinput高度自增长2016-9-19)
+19. [D19:ListView滚动平滑(2016-9-20)](#d19listview滚动平滑2016-9-20)
+20. [D20:ReactMethod的参数类型(2016-9-21)](#d20reactmethod的参数类型2016-9-21)
+21. [D21:React Native 和iOS Simulator 那点事(2016-9-22)](#d21react-native2016-9-22)
+
 
 ```
 模板：   
@@ -38,9 +40,42 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
-D20:ReactMethod的参数类型(2016-9-22)
+
+D21:React Native 和iOS Simulator 那点事(2016-9-22)
+----
+
+### 问题1：使用React Native时按cmd+r无法reload js，cmd+d无法唤起 React Native开发菜单？  
+
+不知大家是否有过这样的经历，用 React Native开发应用正不亦乐乎的时候，突然发现，cmd+r，cmd+d快捷键在iOS Simulator上不起作用了，一时抓狂，不知道问题出在哪。
+
+其实这个问题主要是由于iOS Simulator和键盘之间断开了连接导致的，也就是说iOS Simulator不在接受键盘的事件了（也不是完全不是受，至少cmd+shift+h它还是会响应的）。   
+
+那么你肯定会问了，刚才还好好的，怎么突然间就断开连接了呢，我也没做什么啊？   
+
+这是因为在iOS Simulator的Hardware菜单下的“Connect hardware keyboard”功能有个打开和关闭的快捷键“shift+cmd+k”,想想刚才是不是使用了这组快捷键了呢。   
+
+![Connect hardware keyboard](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%92%8CiOS%20Simulator%20%E9%82%A3%E7%82%B9%E4%BA%8B/images/Connect%20hardware%20keyboard.png)   
+
+>解决办法：将“Connect hardware keyboard”重新勾选上就好了。   
+
+### 问题2：iOS Simulator的动画变得非常慢？   
+
+为了方便开发者调试动画，iOS官方为iOS Simulator添加了一个可以“放慢动画”的功能叫“Slow Animation”，以方便开发者能更好的调试动画。   
+
+![Slow Animation](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%92%8CiOS%20Simulator%20%E9%82%A3%E7%82%B9%E4%BA%8B/images/Slow%20Animation.png)
+
+这个功能确实在调试动画的时候起了不少的作用，但不知情的开发者，当不小心打开了“Slow Animation”功能之后，发现APP所有的动画都变得非常慢，一时不解，是不是程序出什么问题了？难道摊上性能方面的事了？      
+
+>解决办法：取消勾选iOS Simulator(模拟器)的Debug菜单下“Slow Animation”功能即可。
+
+
+
+
+
+D20:ReactMethod的参数类型(2016-9-21)
 ------
 `@ReactMethod`方法中传的参数必须是JavaScript和Java相互对应的。
+
 ```javascript
 Boolean -> Bool
 Integer -> Number
@@ -51,14 +86,15 @@ Callback -> function
 ReadableMap -> Object
 ReadableArray -> Array
 ```
-D19:ListView滚动平滑(2016-9-22)
+
+D19:ListView滚动平滑(2016-9-20)
 ------
 ListView设计的时候，当需要动态加载非常大的数据的时候，下面的方法性能优化的方法可以让我们的ListView滚动的时候更加平滑：
 
 - 只更新渲染数据变化的那一行  ，`rowHasChanged`方法会告诉ListView组件是否需要重新渲染当前那一行。
 - 选择渲染的频率 ，默认情况下面每一个`event-loop`(事件循环)只会渲染一行(可以同pageSize自定义属性设置)。这样可以把大的工作量进行分隔，提供整体渲染的性能。
 
-D18:TextInput高度自增长(2016-9-21)
+D18:TextInput高度自增长(2016-9-19)
 ------
 自定义组件
 

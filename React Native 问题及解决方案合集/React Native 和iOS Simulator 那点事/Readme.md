@@ -12,7 +12,7 @@
 
 这是因为在iOS Simulator的Hardware菜单下的“Connect hardware keyboard”功能有个打开和关闭的快捷键“shift+cmd+k”,想想刚才是不是使用了这组快捷键了呢。   
 
-![Connect hardware keyboard](/Users/penn/百度云同步盘/Sync/work/Study&Developing/待发博文/React Native 和iOS Simulator 那点事/images/Connect hardware keyboard.png)   
+![Connect hardware keyboard](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%92%8CiOS%20Simulator%20%E9%82%A3%E7%82%B9%E4%BA%8B/images/Connect%20hardware%20keyboard.png)   
 
 >解决办法：将“Connect hardware keyboard”重新勾选上就好了。   
 
@@ -20,7 +20,7 @@
 
 为了方便开发者调试动画，iOS官方为iOS Simulator添加了一个可以“放慢动画”的功能叫“Slow Animation”，以方便开发者能更好的调试动画。   
 
-![Slow Animation](/Users/penn/百度云同步盘/Sync/work/Study&Developing/待发博文/React Native 和iOS Simulator 那点事/images/Slow Animation.png)
+![Slow Animation](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%92%8CiOS%20Simulator%20%E9%82%A3%E7%82%B9%E4%BA%8B/images/Slow%20Animation.png)
 
 这个功能确实在调试动画的时候起了不少的作用，但不知情的开发者，当不小心打开了“Slow Animation”功能之后，发现APP所有的动画都变得非常慢，一时不解，是不是程序出什么问题了？难道摊上性能方面的事了？      
 

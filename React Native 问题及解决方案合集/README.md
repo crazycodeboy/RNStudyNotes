@@ -9,6 +9,7 @@
 
 ## 列表  
 
+* [React Native 和iOS Simulator 那点事](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%92%8CiOS%20Simulator%20%E9%82%A3%E7%82%B9%E4%BA%8B)
 * [React Native Android启动屏，启动白屏，闪现白屏](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20Android%E5%90%AF%E5%8A%A8%E5%B1%8F%EF%BC%8C%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%EF%BC%8C%E9%97%AA%E7%8E%B0%E7%99%BD%E5%B1%8F)
 
 
