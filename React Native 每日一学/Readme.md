@@ -24,6 +24,8 @@
 16. [D16:Image组件遇到的宽高问题(2016-9-9)](#d16image组件遇到的宽高问题2016-9-9)
 17. [D17:数据类型优化(2016-9-12)](#d17数据类型优化2016-9-12)
 18. [D18:TextInput高度自增长(2016-9-21)](#d18textinput高度自增长2016-9-21)
+19. [D19:ListView滚动平滑(2016-9-22)](#d19listview滚动平滑2016-9-22)
+20. [D20:ReactMethod的参数类型(2016-9-22)](#d20reactmethod的参数类型2016-9-22)
 
 ```
 模板：   
@@ -36,6 +38,26 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+D20:ReactMethod的参数类型(2016-9-22)
+------
+`@ReactMethod`方法中传的参数必须是JavaScript和Java相互对应的。
+```javascript
+Boolean -> Bool
+Integer -> Number
+Double -> Number
+Float -> Number
+String -> String
+Callback -> function
+ReadableMap -> Object
+ReadableArray -> Array
+```
+D19:ListView滚动平滑(2016-9-22)
+------
+ListView设计的时候，当需要动态加载非常大的数据的时候，下面的方法性能优化的方法可以让我们的ListView滚动的时候更加平滑：
+
+- 只更新渲染数据变化的那一行  ，`rowHasChanged`方法会告诉ListView组件是否需要重新渲染当前那一行。
+- 选择渲染的频率 ，默认情况下面每一个`event-loop`(事件循环)只会渲染一行(可以同pageSize自定义属性设置)。这样可以把大的工作量进行分隔，提供整体渲染的性能。
+
 D18:TextInput高度自增长(2016-9-21)
 ------
 自定义组件
