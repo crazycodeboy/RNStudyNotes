@@ -26,7 +26,7 @@
 18. [D18:TextInput高度自增长(2016-9-19)](#d18textinput高度自增长2016-9-19)
 19. [D19:ListView滚动平滑(2016-9-20)](#d19listview滚动平滑2016-9-20)
 20. [D20:ReactMethod的参数类型(2016-9-21)](#d20reactmethod的参数类型2016-9-21)
-21. [D21:React Native 和iOS Simulator 那点事(2016-9-22)](#d21react-native2016-9-22)
+21. [D21:React Native 和iOS Simulator 那点事(2016-9-22)](#d21react-native-和ios-simulator-那点事2016-9-22)
 
 
 ```
