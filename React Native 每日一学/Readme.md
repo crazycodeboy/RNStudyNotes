@@ -27,7 +27,7 @@
 19. [D19:ListView滚动平滑(2016-9-20)](#d19listview滚动平滑2016-9-20)
 20. [D20:ReactMethod的参数类型(2016-9-21)](#d20reactmethod的参数类型2016-9-21)
 21. [D21:React Native 和iOS Simulator 那点事(2016-9-22)](#d21react-native-和ios-simulator-那点事2016-9-22)
-
+22. [D22:如何判断对象是否有某个属性(2016-9-23)](#d22如何判断对象是否有某个属性2016-9-23)
 
 ```
 模板：   
@@ -40,6 +40,42 @@ D1:标题 (日期)
 内容   
 另外：记得在列表中添加链接 
 ```
+
+D22:如何判断对象是否有某个属性(2016-9-23)
+------
+- 使用in关键字 该方法可以判断对象的自有属性和继承来的属性是否存在。
+	
+	```
+	var o={x:1};
+	"x" in o; //true，自有属性存在
+	"y" in o; //false
+	"toString" in o; //true，是一个继承属性
+	```
+	
+- 使用对象的hasOwnProperty()方法 该方法只能判断自有属性是否存在，对于继承属性会返回false。
+	
+	```
+	var o={x:1};
+	o.hasOwnProperty("x"); 　　 //true，自有属性中有x
+	o.hasOwnProperty("y"); 　　 //false，自有属性中不存在y
+	o.hasOwnProperty("toString"); //false，这是一个继承属性，但不是自有属性
+	```
+	
+- 用undefined判断 自有属性和继承属性均可判断。
+	
+	```
+	var o={x:1};
+	o.x!==undefined; //true
+	o.y!==undefined; //false
+	o.toString!==undefined //true
+	```
+- 在条件语句中直接判断
+	
+	```
+	var o={};
+	if(o.x) o.x+=1; //如果x是undefine,null,false," ",0或NaN,它将保持不变
+	```
+
 
 D21:React Native 和iOS Simulator 那点事(2016-9-22)
 ----
