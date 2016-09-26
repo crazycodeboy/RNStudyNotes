@@ -28,6 +28,7 @@
 20. [D20:ReactMethod的参数类型(2016-9-21)](#d20reactmethod的参数类型2016-9-21)
 21. [D21:React Native 和iOS Simulator 那点事(2016-9-22)](#d21react-native-和ios-simulator-那点事2016-9-22)
 22. [D22:如何判断对象是否有某个属性(2016-9-23)](#d22如何判断对象是否有某个属性2016-9-23)
+23. [D23:生命周期回调函数总结(2016-9-26)](#d22如何判断对象是否有某个属性2016-9-23)
 
 ```
 模板：   
@@ -39,6 +40,24 @@ D1:标题 (日期)
 ### 子标题
 内容   
 另外：记得在列表中添加链接 
+```
+
+D22:生命周期回调函数总结(2016-9-26)
+------
+就和iOS开发一样,RN中的组件也有生命周期,所谓生命周期，就是一个对象从开始生成到最后消亡所经历的状态,生命周期大家肯定都很熟悉,此篇把生命周期的回调函数做一个总结
+###总结
+```
+生命周期                   调用次数         能否使用 setSate()
+getDefaultProps           1(全局调用一次)  否
+getInitialState           1              否
+componentWillMount        1              是
+render                    >=1            否
+componentDidMount         1              是
+componentWillReceiveProps >=0            是
+shouldComponentUpdate     >=0            否
+componentWillUpdate       >=0            否
+componentDidUpdate        >=0            否
+componentWillUnmount      1              否
 ```
 
 D22:如何判断对象是否有某个属性(2016-9-23)
@@ -280,7 +299,7 @@ D13:React Native学习资料整理(2016-9-5)
 ###资源整合
 
 [RNStudyNotes
- ★320 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
+ ★350 ](https://github.com/crazycodeboy/RNStudyNotes)作者的学习笔记,欢迎star,每天不定时更新
 
 [awesome-react-native
  ★7037](https://github.com/jondot/awesome-react-native)  Awesome React Native系列,有最全的第三方组件(推荐!)
