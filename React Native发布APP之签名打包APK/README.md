@@ -83,7 +83,7 @@ android {
 terminal进入项目下的android目录，运行如下代码：   
 `./gradlew assembleRelease`   
 
-![签名打包成功.png](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK/images/%E9%80%9A%E8%BF%87%E2%80%9C%E9%92%A5%E5%8C%99%E4%B8%B2%E8%AE%BF%E9%97%AE(Keychain%20Access)%E2%80%9D%E5%B7%A5%E5%85%B7%E4%BF%9D%E6%8A%A4%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%20%20.png)
+![签名打包成功.png](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK/images/%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85%E6%88%90%E5%8A%9F.png)
 
 签名打包成功后你会在 "android/app/build/outputs/apk/"目录下看到签名成功后的app-release.apk文件。  
 提示：如果你需要对apk进行混淆打包 编辑android/app/build.gradle：   
