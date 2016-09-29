@@ -1,5 +1,7 @@
 # React Native原生模块向JS传递数据的几种方式(Android)
 
+![React Native原生模块向JS传递数据的几种方式.png](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%8E%9F%E7%94%9F%E6%A8%A1%E5%9D%97%E5%90%91JS%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/images/React%20Native%E5%8E%9F%E7%94%9F%E6%A8%A1%E5%9D%97%E5%90%91JS%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F(Android).jpg)
+
 在做React Native开发的时候避免不了的需要原生模块和JS之间进行数据传递，这篇文章将向大家分享原生模块向JS传递数据的几种方式。
 
 
@@ -206,8 +208,8 @@ onScanningResult = (e)=> {
 
 ## 三种方式的优缺点  
 
-方式  |  缺点  |  优点
----|---
+方式  |  缺点  |  优点    
+----|----|-----
 通过Callbacks的方式  |  只能传递一次 |	传递可控，JS模块调用一次，原生模块传递一次
 通过Promises的方式  |  只能传递一次  |  传递可控，JS模块调用一次，原生模块传递一次
 通过发送事件的方式  |  原生模块主动传递，JS模块被动接收 |  可多次传递
