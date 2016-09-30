@@ -1,6 +1,6 @@
 # React Native 启动白屏问题解决教程
 
-![react-native-splash-screen.png](/images/react-native-splash-screen-.png)
+![react-native-splash-screen.png](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/images/react-native-splash-screen-.png)
 
 ## 目录
 
