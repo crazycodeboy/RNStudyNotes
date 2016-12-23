@@ -11,7 +11,7 @@
 
 * [React Native 性能优化之可取消的异步操作](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%AF%E5%8F%96%E6%B6%88%E7%9A%84%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
 
-
+* [Jest简单使用介绍](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/Jest/Jest%E7%9A%84%E6%B5%8B%E8%AF%95%E7%89%B9%E6%80%A7.md)
 
 
 
