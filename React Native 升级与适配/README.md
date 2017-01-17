@@ -12,6 +12,6 @@ React Native学习交流2群：`422654286`
 
 ## 列表  
 
-* [React Native升级指南|v0.40+升级适配经验与心得](./React Native升级指南|v0.40+升级适配经验与心得.md)
+* [React Native升级指南|v0.40+升级适配经验与心得](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E5%8D%87%E7%BA%A7%E4%B8%8E%E9%80%82%E9%85%8D/React%20Native%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97%7Cv0.40%2B%E5%8D%87%E7%BA%A7%E9%80%82%E9%85%8D%E7%BB%8F%E9%AA%8C%E4%B8%8E%E5%BF%83%E5%BE%97/React%20Native%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97%7Cv0.40%2B%E5%8D%87%E7%BA%A7%E9%80%82%E9%85%8D%E7%BB%8F%E9%AA%8C%E4%B8%8E%E5%BF%83%E5%BE%97.md)
 
 
