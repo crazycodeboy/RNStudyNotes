@@ -1,10 +1,14 @@
-# React Native应用部署/热更新-CodePush最新集成总结
+
+# React Native应用部署/热更新-CodePush最新集成总结(新)
 本文出自[《React Native学习笔记》](https://github.com/crazycodeboy/RNStudyNotes/)系列文章。  
 了解更多，可以[关注我的GitHub](https://github.com/crazycodeboy/)和加入：  
 [React Native学习交流群](http://jq.qq.com/?_wv=1027&k=2IBHgLD)     
 ![React Native学习交流群](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK/images/react%20native%20%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%BE%A4_qrcode_share.png)
 
 -------
+
+>更新说明：
+此次博文更新适配了最新版的CodePush v1.17.0；添加了iOS的集成方式与调试技巧；添加了更为简洁的CodePush发布更新的方式以及进行了一些其他的优化。
 
 React Native的出现为移动开发领域带来了两大革命性的创新：  
 1. 整合了移动端APP的开发，不仅缩短了APP的开发时间，也提高了APP的开发效率。  
@@ -24,7 +28,7 @@ CodePush 可以进行实时的推送代码更新：
 * 管理 Alpha，Beta 和生产环境应用  
 * 支持 React Native 和 Cordova  
 * 支持JavaScript 文件与图片资源的更新
-* 暂不支持增量更新  
+
 
 CodePush开源了react-native版本，[react-native-code-push](https://github.com/Microsoft/react-native-code-push)托管在GitHub上。
 
@@ -49,7 +53,7 @@ CodePush开源了react-native版本，[react-native-code-push](https://github.co
 然后终端输入`code-push login`进行登陆，登陆成功后，你的session文件将会写在 /Users/你的用户名/.code-push.config。  
 ![登陆成功](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/登陆成功.png)
 
-** PS.相关命令**  
+**PS.相关命令**  
 
 * `code-push login` 登陆  
 * `code-push loout` 注销  
@@ -59,7 +63,18 @@ CodePush开源了react-native版本，[react-native-code-push](https://github.co
 ### 在CodePush服务器注册app  
 为了让CodePush服务器知道你的app，我们需要向它注册app： 在终端输入`code-push app add <appName>`即可完成注册。
 
-** PS.相关命令**   
+![code-push-add-app](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/code-push-add-app.png)
+
+注册完成之后会返回一套deployment key，该key在后面步骤中会用到。
+
+>心得：如果你的应用分为Android和iOS版，那么在向CodePush注册应用的时候需要注册两个App获取两套deployment key，如：
+
+```
+code-push app add MyApp-Android
+code-push app add MyApp-iOS
+```
+
+**PS.相关命令**   
 
 * `code-push app add` 在账号里面添加一个新的app  
 * `code-push app remove` 或者 rm 在账号里移除一个app  
@@ -71,24 +86,34 @@ CodePush开源了react-native版本，[react-native-code-push](https://github.co
 
 ### Android   
 下面我们通过如下步骤在Android项目中集成CodePush。  
-第一步：在项目中安装react-native插件，终端进入你的项目根目录然后运行  
+第一步：在项目中安装 react-native-code-push插件，终端进入你的项目根目录然后运行  
 `npm install --save react-native-code-push`
 
-第二步：在Anroid project中安装插件。  
+第二步：在Android project中安装插件。  
 CodePush提供了两种方式：RNPM 和 Manual，本次演示所使用的是RNPM。  
 运行`npm i -g rnpm`，来安装RNPM。
 
+>在React Native v0.27及以后版本RNPM已经被集成到了 React Native CL中，就不需要再进行安装了。
+
 第三步： 运行 `rnpm link react-native-code-push`。这条命令将会自动帮我们在anroid文件中添加好设置。
-[react-native-code-push has been successfully linked]()  
+
+![react-native-code-push has been successfully linked](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/react-native-code-push%20has%20been%20successfully%20linked.png)  
+
+>在终端运行此命令之后，终端会提示让你输入deployment key，这是你只需将你的deployment Staging key输入进去即可，如果不输入则直接单击enter跳过即可。
 
 第四步： 在 android/app/build.gradle文件里面添如下代码：
 
 ```  
-apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"  
 ```
+然后在/android/settings.gradle中添加如下代码:
 
-第五步: 运行 `code-push deployment ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。   
+```
+include ':react-native-code-push'
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
+```
+
+第五步: 运行 `code-push deployment -k ls <appName>`获取 部署秘钥。默认的部署名是 staging，所以 部署秘钥（deployment key ） 就是 staging。   
 第六步： 添加配置。当APP启动时我们需要让app向CodePush咨询JS bundle的所在位置，这样CodePush就可以控制版本。更新 MainApplication.java文件：    
 
 ```java
@@ -119,6 +144,93 @@ public class MainApplication extends Application implements ReactApplication {
   }
 }
 ```
+
+**关于deployment-key的设置**
+
+在上述代码中我们在创建CodePush实例的时候需要设置一个deployment-key,因为deployment-key分生产环境与测试环境两种,所以建议大家在build.gradle中进行设置。在build.gradle中的设置方法如下:
+
+打开android/app/build.gradle文件,找到`android { buildTypes {} }`然后添加如下代码即可:
+
+```
+android {
+    ...
+    buildTypes {
+        debug {
+            ...
+            // CodePush updates should not be tested in Debug mode
+            ...
+        }
+
+        releaseStaging {
+            ...
+            buildConfigField "String", "CODEPUSH_KEY", '"<INSERT_STAGING_KEY>"'
+            ...
+        }
+
+        release {
+            ...
+            buildConfigField "String", "CODEPUSH_KEY", '"<INSERT_PRODUCTION_KEY>"'
+            ...
+        }
+    }
+    ...
+}
+```
+
+>心得:另外,我们也可以将deployment-key存放在local.properties中:
+
+```
+code_push_key_production=erASzHa1-wTdODdPJDh6DBF2Jwo94JFH08Kvb
+code_push_key_staging=mQY75RkFbX6SiZU1kVT1II7OqWst4JFH08Kvb
+```
+如图:
+![local.properties存放codepush-key](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/local.properties%E5%AD%98%E6%94%BEcodepush-key.png)
+然后在就可以在android/app/build.gradle可以通过下面方式来引用它了:
+
+```
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+android {
+    ...
+    buildTypes {
+        debug {
+            ...
+            // CodePush updates should not be tested in Debug mode
+            ...
+        }
+
+        releaseStaging {
+            ...
+            buildConfigField "String", "CODEPUSH_KEY", '"'+properties.getProperty("code_push_key_production")+'"'
+            ...
+        }
+
+        release {
+            ...
+            buildConfigField "String", "CODEPUSH_KEY", '"'+properties.getProperty("code_push_key_staging")+'"'
+            ...
+        }
+    }
+    ...
+}
+```
+
+
+在android/app/build.gradle设置好deployment-key之后呢,我们就可以这样使用了:
+
+```
+@Override
+protected List<ReactPackage> getPackages() {
+     return Arrays.<ReactPackage>asList(
+         ...
+         new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG), // Add/change this line.
+         ...
+     );
+}
+```
+
+
+
 第七步：修改versionName。  
 在 android/app/build.gradle中有个 android.defaultConfig.versionName属性，我们需要把 应用版本改成 1.0.0（默认是1.0，但是codepush需要三位数）。
 
@@ -132,7 +244,40 @@ android{
 至此Code Push for Android的SDK已经集成完成。   
 
 ### iOS  
-本文主要使用Android作为演示，在iOS上集成CodePush可参照：[iOS Setup](https://microsoft.github.io/code-push/docs/react-native.html#link-4)
+
+CodePush官方提供RNPM、CocoaPods与手动三种在iOS项目中集成CodePush的方式，接下来我就以RNPM的方式来讲解一下如何在iOS项目中集成CodePush。
+
+第一步：在项目中安装react-native-code-push插件，终端进入你的项目根目录然后运行
+
+```
+npm install --save react-native-code-push
+```
+第二步： 运行 `rnpm link react-native-code-push`。这条命令将会自动帮我们在ios中添加好设置。
+
+>在终端运行此命令之后，终端会提示让你输入deployment key，这是你只需将你的deployment Staging key输入进去即可，如果不输入则直接单击enter跳过即可。
+
+**关于deployment-key的设置**
+
+在我们想CodePush注册App的时候，CodePush会给我们两个deployment-key分别是在生产环境与测试环境时使用的，我们可以通过如下步骤来设置deployment-key。
+
+1.用Xcode 打开项目 ➜ Xcode的项目导航视图中的`PROJECT`下选择你的项目 ➜ 选择Info页签 ➜ 在`Configurations`节点下单击 + 按钮 ➜ 选择`Duplicate "Release`  ➜ 输入Staging(名称可以自定义)；
+![Duplicate-Release-Staging.png](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/Duplicate-Release-Staging.png)
+
+2.然后选择`Build Settings`页签 ➜ 单击 + 按钮然后选择添加`User-Defined Setting` 
+
+![添加User-Defined-Setting](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/%E6%B7%BB%E5%8A%A0User-Defined-Setting.png)
+
+3.然后输入CODEPUSH_KEY(名称可以自定义)
+
+![设置Staging deployment key](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/%E8%AE%BE%E7%BD%AEStaging%20deployment%20key.png)
+
+>提示：你可以通过`code-push deployment ls <APP_NAME> -k`命令来查看deployment key。
+
+4.打开 Info.plist文件，在CodePushDeploymentKey列的Value中输入`$(CODEPUSH_KEY)`
+
+![引用CODEPUSH_KEY](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/%E5%BC%95%E7%94%A8CODEPUSH_KEY.png)
+
+到目前为止，iOS的设置已经完成了，和在Android上的集成相比是不是简单了很多呢。
 
 ## 使用CodePush进行热更新  
 
@@ -159,8 +304,43 @@ AppState.addEventListener("change", (newState) => {
 });
 ```
 
+### 发布更新
+
+CodePush支持两种发布更新的方式，一种是通过`code-push release-react`简化方式，另外一种是通过`code-push release`的复杂方式。
+
+>第一种方式：通过`code-push release-react`发布更新
+
+这种方式将打包与发布两个命令合二为一，可以说大大简化了我们的操作流程，建议大家多使用这种方式来发布更新。
+
+命令格式：
+
+```
+code-push release-react <appName> <platform>
+```
+
+eg:
+
+```
+code-push release-react MyApp-iOS ios
+code-push release-react MyApp-Android android
+```
+再来个更高级的：
+
+```
+code-push release-react MyApp-iOS ios  --t 1.0.0 --dev false --d Production --des "1.优化操作流程" --m true
+```
+其中参数--t为二进制(.ipa与apk)安装包的的版本；--dev为是否启用开发者模式(默认为false)；--d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新。
+
+关于`code-push release-react`更多可选的参数，可以在终端输入`code-push release-react`进行查看。
+
+另外，我们可以通过`code-push deployment ls <appName>`来查看发布详情与此次更新的安装情况。
+
+>第二中方式：通过`code-push release`发布更新
+
+`code-push release`发布更新呢我们首先需要将js与图片资源进行打包成 bundle。
+
 #### 生成bundle  
-发布更新之前，需要先把 js打包成 bundle，以下是anroid的做法：
+发布更新之前，需要先把 js打包成 bundle，如：
 
 第一步： 在 工程目录里面新增 bundles文件：`mkdir bundles`
 
@@ -173,7 +353,7 @@ eg:
 **需要注意的是：**  
 
 * 忽略了资源输出是因为 输出资源文件后，会把bundle文件覆盖了。
-* 输出的bundle文件名不叫其他，而是 index.android.bundle，是因为 在debug模式下，工程读取的bundle就是叫做 index.android.buundle。
+* 输出的bundle文件名不叫其他，而是 index.android.bundle，是因为 在debug模式下，工程读取的bundle就是叫做 index.android.bundle。
 * 平台可以选择 android 或者 ios。  
 
 ### 发布更新  
@@ -207,9 +387,6 @@ eg:
 ![提示更新](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/提示更新.png)  
 应用启动之后，从CodePush服务器查询更新，并下载到本地，下载好之后，提示用户进行更新。这就是CodePush用于热更新的整个过程。  
 
-对比一下推送到CodePush上的更新，与应用从CodePush下载下来的更新：  
-![Code Push非增量更新](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/Code Push非增量更新.png)  
-由此可以发现，CodePush在更新方便并没有采用增量更新。  
 
 **更多部署APP相关命令**
 
@@ -222,9 +399,30 @@ eg:
 
 ### 调试技巧  
 如果你用模拟器进行调试CodePush，在默认情况下是无法达到调试效果的，因为在开发环境下装在模拟器上的React Native应用每次启动时都会从NodeJS服务器上获取最新的bundle，所以还没等CodePush从服务器将更新包下载下来时，APP就已经从NodeJS服务器完成了更新。
-为规避这个问题可以将开发环境的调试地址改为一个不可用的地址，如下图：
+
+**Android**
+
+为规避这个问题在Android可以将开发环境的调试地址改为一个不可用的地址，如下图：
+
 ![解决NodeJS对CodePush的影响](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native应用部署、热更新-CodePush最新集成总结/images/解决NodeJS对CodePush的影响.png)  
 这样APP就无法连接到NodeJS服务器了，自然也就不能从NodeJS服务器下载bundle进行更新了，它也只能乖乖的等待从CodePush服务器下载更新包进行更新了。   
+
+**iOS**
+
+在iOS中我们需要上文中讲到的[生成bundle](#生成bundle)，将bundle包与相应的图片资源拖到iOS项目中如图：
+
+![导入bundle到xcode](https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93/images/%E5%AF%BC%E5%85%A5bundle%E5%88%B0xcode.png)
+
+然后呢，我们需要在AppDelegate.m中进行如下修改：
+
+```
+//#ifdef DEBUG
+//    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+//#else
+    jsCodeLocation = [CodePush bundleURL];
+//#endif
+```
+让React Native通过CodePush去获取bundle包即可。
 
 
 ## JavaScript API Reference
@@ -389,8 +587,7 @@ codePush.getUpdateMetadata(UpdateState.PENDING).then((update) => {
 ## 总结  
 上文已经介绍了CodePush在动态更新方面的一些特性，但CodePush也存在着一些缺点：  
 1. 服务器在国外，在国内访问，网速不是很理想。   
-2. 其升级服务器端程序并不开源的，后期微软会不会对其收费还是个未知数。  
-3. 不支持增量更新。    
+2. 其升级服务器端程序并不开源的，后期微软会不会对其收费还是个未知数。     
 如果在没有更好的动态更新React Native应用的方案的情况下，并且这些问题还在你的接受范围之内的话，那么CodePush可以作为动态更新React Native应用的一种选择。  
 后期会向大家分享不采用CodePush，自己搭建服务器并实现React Native应用的动态更新相关的方案。  
 
