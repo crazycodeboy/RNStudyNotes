@@ -1,3 +1,5 @@
+
+
 # React Native发布APP之打包iOS应用
 
 
@@ -24,7 +26,7 @@ react-native bundle --entry-file index.ios.js --platform ios --dev false --bundl
 ```
 通过上述命令，我们可以将JS部分的代码和图片资源等打包导出到release_ios目录下：
 
-![生成jsbundle](/Users/penn/百度云同步盘/Sync/work/Study&Developing/待发博文/React Native发布APP之打包iOS应用/images/生成jsbundle.png)
+![生成jsbundle](https://raw.githubusercontent.com/crazycodeboy/Resources-Blog/master/images/2017/2/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E6%89%93%E5%8C%85iOS%E5%BA%94%E7%94%A8/images/%E7%94%9F%E6%88%90jsbundle.png)
 
 其中，assets为项目中的JS部分所用到的图片资源(不包括原生模块中的图片资源)，main.jsbundle是JS部分的代码。
 
@@ -34,7 +36,7 @@ react-native bundle --entry-file index.ios.js --platform ios --dev false --bundl
 ## 第二步：将js bundle包和图片资源导入到iOS项目中
 这一步我们需要用到XCode，选择assets文件夹与main.jsbundle文件将其拖拽到XCode的项目导航面板中即可。
 
-![导入jsbundle](/Users/penn/百度云同步盘/Sync/work/Study&Developing/待发博文/React Native发布APP之打包iOS应用/images/导入jsbundle.png)
+![导入jsbundle](https://raw.githubusercontent.com/crazycodeboy/Resources-Blog/master/images/2017/2/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E6%89%93%E5%8C%85iOS%E5%BA%94%E7%94%A8/images/%E5%AF%BC%E5%85%A5jsbundle.png)
 
 然后，修改AppDelegate.m文件，添加如下代码：
 
@@ -78,3 +80,8 @@ react-native bundle --entry-file index.ios.js --platform ios --dev false --bundl
 接下来我们就需要进行申请APPID ➜ 在Tunes Connect创建应用 ➜ 打包程序 ➜ 将应用提交到app store等几大步骤。
 
 因为[官方文档](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/About.html#//apple_ref/doc/uid/TP40011225-CH1-SW1)中有详细的说明，在这我就不再重复了。
+
+
+如果，大家在打包发布React Native iOS应用的过程中遇到问题可以在本文的下方进行留言，我看到了后会及时回复的哦。
+另外也可以关注我的[`新浪微博`](http://weibo.com/devio)，或者关注我的[`Github`](https://github.com/crazycodeboy/)来获取更多有关[`React Native开发的技术干货`](https://github.com/crazycodeboy/RNStudyNotes)。
+
