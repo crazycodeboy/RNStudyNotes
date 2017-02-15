@@ -11,7 +11,8 @@ import {
     Text,
     View,
     Image,
-    TextInput
+    TextInput,
+    Platform
 } from 'react-native';
 import ImageCrop from './ImageCrop'
 const ASPECT_X="2";
@@ -36,12 +37,12 @@ export default class index extends Component {
     }
 
     render() {
-        let imgUrl = 'file:///' + this.state.result;
+        let imgUrl =Platform.OS==='android'? 'file:///' + this.state.result:this.state.result;
         let imageView=this.state.result===""?null:
             <Image
                 resizeMode='contain'
                 style={{height: 200,width:200}}
-                source={{uri: this.state.result}}/>
+                source={{uri: imgUrl}}/>
         return (
             <View style={styles.container}>
                 <View
