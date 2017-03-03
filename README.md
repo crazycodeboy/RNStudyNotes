@@ -13,6 +13,7 @@ React Native学习交流2群：`422654286`
 
 ## 列表  
 
+* [React Native免费自学视频](http://www.imooc.com/learn/808)
 * [GitHub Popular开发教程，源码解析，项目总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/GitHub%20Popular%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B%EF%BC%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%8C%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93)
 * [React Native 问题及解决方案合集](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86)
 * [React Native 性能优化](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
