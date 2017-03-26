@@ -9,7 +9,7 @@ React Native是基于React的，在开发React Native过程中少不了的需要
 本篇为《React Native之React速学教程》的第一篇。本篇将从React的特点、如何使用React、JSX语法、组件(Component）以及组件的属性，状态等方面进行讲解。  
 
 
-## What's React 
+## What's React
 React是一个用于组建用户界面的JavaScript库，让你以更简单的方式来创建交互式用户界面。    
 
 1. 当数据改变时，React将高效的更新和渲染需要更新的组件。声明性视图使你的代码更可预测，更容易调试。
@@ -31,11 +31,11 @@ React是一个用于组建用户界面的JavaScript库，让你以更简单的�
 - browser.min.js  
 
 上面一共列举了三个库： react.js 、react-dom.js 和 browser.min.js ，它们必须首先加载。其中，react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，browser.min.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。  
-你可以从[React官网](https://facebook.github.io/react/downloads.html)下载这些库，也可以将其下载到本地去使用。 
+你可以从[React官网](https://facebook.github.io/react/downloads.html)下载这些库，也可以将其下载到本地去使用。
 
 >心得：在做React Native开发时，这些库作为React Native核心库已经被初始化在node_modules目录下，所以不需要单独下载。  
 
-### 使用React 
+### 使用React
 解压从上述地址下载的压缩包，在根目录中创建一个包含以下内容的 “helloworld.html” 。  
 
 ```html
@@ -76,12 +76,12 @@ ReactDOM.render(
 ## JSX  
 JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。
 每一个XML标签都会被JSX转换工具转换成纯JavaScript代码，使用JSX，组件的结构和组件之间的关系看上去更加清晰。  
-JSX并不是React必须使用的，但React官方建议我们使用 JSX , 因为它能定义简洁且我们熟知的包含属性的树状结构语法。 
-    
+JSX并不是React必须使用的，但React官方建议我们使用 JSX , 因为它能定义简洁且我们熟知的包含属性的树状结构语法。
+
 
 **Usage:**  
-  
-```html 
+
+```html
 React.render(//使用JSX
     <div>
         <div>
@@ -89,7 +89,7 @@ React.render(//使用JSX
         </div>
     </div>,
     document.getElementById('example')
-); 
+);
 React.render(//不使用JSX
     React.createElement('div', null,
         React.createElement('div', null,
@@ -105,14 +105,14 @@ React.render(//不使用JSX
 React 可以渲染 HTML 标签 (strings) 或 React 组件 (classes)。   
 要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。
 
-```html 
+```html
 var myDivElement = <div className="foo" />;
 React.render(myDivElement, document.body);
 ```
 
 要渲染 React 组件，只需创建一个大写字母开头的本地变量。
 
-```html 
+```html
 var MyComponent = React.createClass({/*...*/});
 var myElement = <MyComponent someProperty={true} />;
 React.render(myElement, document.body);
@@ -220,7 +220,7 @@ var component = <Component foo={x} bar={y} />;
 
 
 ## Component  
-React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。 
+React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。
 
 ```html
 var HelloMessage = React.createClass({
@@ -235,16 +235,16 @@ ReactDOM.render(
 ```
 上面代码中，变量 HelloMessage 就是一个组件类。模板插入 `<HelloMessage /> `时，会自动生成 HelloMessage 的一个实例。所有组件类都必须有自己的 render 方法，用于输出组件。
 
->注意 
+>注意
 
 - 组件类的第一个字母必须大写。
 - 组件类只能包含一个顶层标签。  
 
- 
+
 ## 组件的属性(props)  
 我们可以通过`this.props.xx`的形式获取组件对象的属性，对象的属性可以任意定义，但要避免与JavaScript关键字冲突。  
 
-### 遍历对象的属性： 
+### 遍历对象的属性：
 `this.props.children`会返回组件对象的所有属性。  
 React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 `React.Children.map`或`React.Children.forEach` 来遍历子节点。   
 **React.Children.map**  
@@ -347,7 +347,7 @@ var MyComponent = React.createClass({
     return (
       <div>
         <input type="text" ref="myTextInput" />
-        <input type="button" value="Focus the text input" 		  onClick={this.handleClick} />
+        <input type="button" value="Focus the text input" onClick={this.handleClick.bind(this)} />
       </div>
     );
   }
@@ -364,7 +364,7 @@ React 组件支持很多事件，除了 Click 事件以外，还有 KeyDown 、C
 
 ### ref属性不只是string  
 ref属性不仅接受string类型的参数，而且它还接受一个function作为callback。这一特性让开发者对ref的使用更加灵活。   
-     
+
 
 ```javascript
  render: function() {
@@ -405,12 +405,12 @@ render() 方法依赖于 this.props 和 this.state ，框架会确保渲染出�
   }
 ```
 
-### 更新 state 
+### 更新 state
 通过`this.setState()`方法来更新state，调用该方法后，React会重新渲染相关的UI。  
 `this.setState({favorite:!this.state.favorite});`
 
 **Usage:**  
-  
+
 ```html
 var FavoriteButton=React.createClass({
   getInitialState:function(){
@@ -449,6 +449,3 @@ var FavoriteButton=React.createClass({
 * [React Native调试技巧与心得](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97/React%20Native%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BF%83%E5%BE%97.md)
 *  [React Native发布APP之签名打包APK](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%8F%91%E5%B8%83APP%E4%B9%8B%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85APK)    
 *  [React Native应用部署、热更新-CodePush最新集成总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E3%80%81%E7%83%AD%E6%9B%B4%E6%96%B0-CodePush%E6%9C%80%E6%96%B0%E9%9B%86%E6%88%90%E6%80%BB%E7%BB%93)
-
-
-
