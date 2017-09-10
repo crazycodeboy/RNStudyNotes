@@ -17,9 +17,10 @@
 ## 列表  
 
 * [React Native项目实战视频教程](http://coding.imooc.com/class/89.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
+* [React Native 集成分享第三方登录功能分享第三方登录模块开发]http://www.devio.org/2017/09/10/React-Native-integration-share-third-party-login-function/)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [教你轻松在React Native中集成统计的功能)](http://www.devio.org/2017/09/03/React-Native-Integrated-analysis-function/)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [React Native免费自学视频](http://www.imooc.com/learn/808)
-* [教你轻松修改React Native端口(如何同时运行多个React Native、8081端口占用问题)](http://www.devio.org/2017/08/18/Modify-the-React-Native-listening-port/)![ new](http://www.devio.org/img/ico/ico_new.gif)
+* [教你轻松修改React Native端口(如何同时运行多个React Native、8081端口占用问题)](http://www.devio.org/2017/08/18/Modify-the-React-Native-listening-port/)
 * [快速创建React Native App](http://www.devio.org/2017/07/12/quickly-create-react-native-app/) 
 * [GitHub Popular开发教程，源码解析，项目总结](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/GitHub%20Popular%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B%EF%BC%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%8C%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93)
 * [React Native 问题及解决方案合集](https://github.com/crazycodeboy/RNStudyNotes/tree/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86)
