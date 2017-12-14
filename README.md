@@ -17,9 +17,10 @@
 ## 列表  
 
 * [双平台真实开发GitHub App React Native技术全面掌握视频教程](http://coding.imooc.com/class/89.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
+* [React Native0.50+开发指导](http://www.devio.org/2017/12/12/React-Native0.50-Development-Guide-Chinese-update-instructions/)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [React Native 开发适配心得](http://www.devio.org/2017/10/06/How-to-develop-a-React-Native-application-for-Android-and-iOS-dual-platforms/)![ new](http://www.devio.org/img/ico/ico_new.gif)
-* [React Native 集成分享第三方登录功能分享第三方登录模块开发(iOS)](http://www.devio.org/2017/09/30/React-Native-integration-share-third-party-login-function-ios/)![ new](http://www.devio.org/img/ico/ico_new.gif)
-* [React Native 集成分享第三方登录功能分享第三方登录模块开发(Android)](http://www.devio.org/2017/09/10/React-Native-integration-share-third-party-login-function/)![ new](http://www.devio.org/img/ico/ico_new.gif)
+* [React Native 集成分享第三方登录功能分享第三方登录模块开发(iOS)](http://www.devio.org/2017/09/30/React-Native-integration-share-third-party-login-function-ios/)
+* [React Native 集成分享第三方登录功能分享第三方登录模块开发(Android)](http://www.devio.org/2017/09/10/React-Native-integration-share-third-party-login-function/)
 * [教你轻松在React Native中集成统计的功能)](http://www.devio.org/2017/09/03/React-Native-Integrated-analysis-function/)
 * [React Native免费自学视频](http://www.imooc.com/learn/808)
 * [教你轻松修改React Native端口(如何同时运行多个React Native、8081端口占用问题)](http://www.devio.org/2017/08/18/Modify-the-React-Native-listening-port/)
