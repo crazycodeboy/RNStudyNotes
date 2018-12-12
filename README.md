@@ -16,10 +16,11 @@
 
 ## 列表  
 
-* [React Native技术精讲与高质量上线APP开发](http://coding.imooc.com/class/89.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
-* [React Native 混合开发(Android篇)](http://www.devio.org/2018/08/26/React-Native-Hybrid-Android/)![ new](http://www.devio.org/img/ico/ico_new.gif)
-* [React Native 混合开发(iOS篇)](http://www.devio.org/2018/08/26/React-Native-Hybrid-iOS/)![ new](http://www.devio.org/img/ico/ico_new.gif)
-* [从navigator到react-navigation进阶教程](http://www.devio.org/2018/05/15/navigator-to-react-navigation/)![ new](http://www.devio.org/img/ico/ico_new.gif)
+* [最新版React Native+Redux打造高质量上线App](http://coding.imooc.com/class/304.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
+* [React Native+react-navigation3x实战视频](http://coding.imooc.com/class/304.html)![ new](http://www.devio.org/img/ico/ico_new.gif)
+* [React Native 混合开发(Android篇)](http://www.devio.org/2018/08/26/React-Native-Hybrid-Android/)
+* [React Native 混合开发(iOS篇)](http://www.devio.org/2018/08/26/React-Native-Hybrid-iOS/)
+* [从navigator到react-navigation进阶教程](http://www.devio.org/2018/05/15/navigator-to-react-navigation/)
 * [React Native年度报告(2017-2018)](http://www.devio.org/2018/02/26/React-Native-Annual-Report-2017-2018/)
 * [React Native0.50+开发指导](http://www.devio.org/2017/12/12/React-Native0.50-Development-Guide-Chinese-update-instructions/)
 * [React Native 开发适配心得](http://www.devio.org/2017/10/06/How-to-develop-a-React-Native-application-for-Android-and-iOS-dual-platforms/)
