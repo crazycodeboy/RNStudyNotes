@@ -19,6 +19,7 @@
 * [最新版React Native+Redux打造高质量上线App](http://coding.imooc.com/class/304.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
 * [React Native+react-navigation3x实战视频](http://coding.imooc.com/class/304.html)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [最新版React Native+Redux打造高质量上线App](http://coding.imooc.com/class/304.html)![ hot](http://www.devio.org/img/ico/ico_hot.gif)
+* [『React Navigation 3x系列教程』createDrawerNavigator开发指南](http://www.imooc.com/article/273065)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [『React Navigation 3x系列教程』createMaterialTopTabNavigator开发指南](http://www.imooc.com/article/271652)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [『React Navigation 3x系列教程』之createBottomTabNavigator开发指南](http://www.imooc.com/article/269529)![ new](http://www.devio.org/img/ico/ico_new.gif)
 * [『React Navigation 3x系列教程』之React Navigation 3x开发指南](http://www.imooc.com/article/267857)![ new](http://www.devio.org/img/ico/ico_new.gif)
