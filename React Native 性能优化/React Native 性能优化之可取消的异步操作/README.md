@@ -91,7 +91,7 @@ import makeCancelable from '../util/Cancelable'
 
 ## 可取消的网络请求fetch
 
-`fetch`是React Native开发过程中最常用的网络请求API，和`Promis`一样，fetch也没有提供用于取消已发出的网络请求的API。因为fetch返回的是一个`Promise`，所以我们可以借助上述方法，来取消fetch所发出的网络请求。  
+`fetch`是React Native开发过程中最常用的网络请求API，和`Promise`一样，fetch也没有提供用于取消已发出的网络请求的API。因为fetch返回的是一个`Promise`，所以我们可以借助上述方法，来取消fetch所发出的网络请求。  
 
 ```JavaScript
 this.cancelable = makeCancelable(fetch('url')));
